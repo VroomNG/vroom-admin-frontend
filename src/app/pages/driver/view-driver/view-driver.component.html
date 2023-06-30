@@ -1,0 +1,202 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col" >
+      <div class="card shadow">
+        <div class="card-header border-0">
+
+          <!-- <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '1'? 'Approved Drivers': '' || pagePath === '2'? 'Unapproved Drivers': '' || pagePath === '3'? 'Inactive Drivers': ''  ">View Drivers</h3> -->
+          <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '1'? 'Approved Drivers': '' ">Approved Drivers</h3>
+          <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '2'? 'Unapproved Drivers': '' ">Unapproved Drivers</h3>
+          <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '3'? 'Inactive Drivers': ''  ">Rejected Drivers</h3>
+
+          <span class="text-right p-2 ">
+            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" />
+          </span>
+          <span class="spnFilter" *ngIf="pagePath === '1'">Status 
+            <select id="selDriverFilter" class="form-control form-control-alternative drpFilter" (change)="driverFilter($event)">            
+            <option *ngFor="let level of driverFil" value="{{level.id}}">
+              {{level.value}}
+            </option>
+          </select>
+          <span style="margin-left: 25px;">Days <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span>
+       
+          <select style="margin-left: 30px;" id="selOnlineFilter" class="form-control form-control-alternative drpFilter" (change)="OnlineFilter($event)">            
+            <option *ngFor="let level of driverOnline" value="{{level.id}}">
+              {{level.value}}
+            </option>
+          </select>
+
+        </span>
+          <span class="text-right p-2 expBtn">
+            <button class="btn btn-primary" (click)="exportDriver()">Export</button>  <button id="btnNotify" [hidden]="true" class="btn btn-primary" (click)="openNotifyModel()">Send Notification</button></span>
+        </div>
+        <div class="table-responsive" id = "main">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Code <i id="id" (click)="sortNumberColumn($event,booleanValue)" class="my-icon fa fa-chevron-up"></i></th>
+                <th scope="col">Driver Name </th>
+                <th scope="col">City</th>
+                <th scope="col">Vechile Type</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Registered On</th>
+                <th scope = "col">Wallet</th>
+                <!-- <th scope="col">Company</th> -->
+                <!-- <th scope="col">Reference Code</th>   [style.display]="(isEdit ? 'inline-block':'none')"-->
+                <th scope="col" *ngIf="pagePath === '1'">Status</th>
+                <th scope="col" *ngIf="pagePath === '1'">Online Status</th>
+                <th scope="col" *ngIf="pagePath === '1'">Last Trip Date <i id="last_trip_date" (click)="sortNumberColumn($event,booleanValue)" class="my-icon fa fa-chevron-up"></i></th>
+                <th scope="col">Action</th>
+                <th scope="col" *ngIf="pagePath === '1'">InActive</th>
+                <th scope="col">Notify</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of (pageOfItems | search: FilterName)">
+                <th scope="row">DRV00{{item.id}}</th>
+                <td>{{item.firstname | titlecase}} {{item.lastname | titlecase}}</td>
+                <td>{{item.city | titlecase}}</td>
+                <td>{{item.vehicle_type}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.phone_no}}</td>
+                <td>{{item.created_at| date:'mediumDate'}}</td>
+                <td>{{item.balance}}</td>
+                <!-- <td>Default</td> -->
+                <!-- <td></td> -->
+                <td *ngIf="pagePath === '1'">{{item.is_active == 1?'Approved':'Pending'}}</td>
+                <td *ngIf="pagePath === '1'">{{item.current_status == '0'?'Off':'On'}}</td>
+                <td *ngIf="pagePath === '1'">{{item.last_trip_date | date:'mediumDate'}}</td>                
+                <td class="text-center">
+                  <!-- <div ngbDropdown placement="bottom-right">
+                  <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                    <i class="fas fa-ellipsis-v"></i>
+                  </a>
+                  <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow"> -->
+                  <span class="p-1 mr-2" (click)="viewDriverDetails(item.id,item.isBlock)">
+                    <a class="dropdown-item1" style="color: #5e72e4; cursor: pointer;"><i
+                        class="fas fa-pencil-alt"></i></a>
+                  </span>
+                  <!-- <span class="p-1" *ngIf="this.pagePath != '3'? true: false" (click)="approveDriver(item.id,-5)">
+                    <a class="dropdown-item1 text-danger" style="cursor: pointer;">
+                     
+                      <button class="btn btn-danger px-2 py-1">Reject</button>
+                    </a>
+                  </span> -->
+                  <!-- <span class="p-1" *ngIf="this.pagePath === '3'? true: false" (click)="approveDriver(item.id,5)">
+                    <a class="dropdown-item1 text-success" style="cursor: pointer;">
+                      
+                      <button class="btn btn-success px-2 py-1">Approve</button>
+                    </a>
+                  </span> -->
+
+                  <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                    <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                  <!-- </div>
+                </div> -->
+                </td>
+                <td *ngIf="pagePath === '1'"><input type="checkbox" id="chkBlock" (change)="setDriverBlock($event,item.id)" [checked]="(item.isBlock === '1' ? true: false)"></td>
+                <td><input type="checkbox" class="notifycheck" id="{{item.id}}" (change)="showNotifyBtn($event,item.id)"></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <div class="card-footer pb-0 pt-3">
+            <jw-pagination [items]="driverList | search: FilterName" (changePage)="onChangePage($event)">
+            </jw-pagination>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reason for Block</h4>
+        <button id="closeBtn" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- <button id="btnHideClose" [hidden]="true" ></button> -->
+      </div>
+      <div class="modal-body map-detail-pop-up">         
+          <div class="form-group">            
+            <div class="input-group">              
+              <input type="text" id="txtreason" class="form-control" (keyup)="clearError()"
+                placeholder="Block Reason" />    
+               
+              
+            </div>
+            <div *ngIf="errorMessage != ''" class="divclass">
+              <div class="help-block">
+                <div class="invalid-feedback">{{errorMessage}}</div>
+              </div>
+            </div>
+            <div class="input-group-append" style="float: right;">
+              <span class="text-right p-2">
+                <button id="btnReason" class="btn btn-primary" (click)="saveReason()">Save</button></span>
+            </div>
+          </div>         
+      </div>
+    
+    </ng-template>
+    <button id="btnModelPopup" [hidden]="true" class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+    <button id="btnModelPopupNotify" [hidden]="true" class="btn btn-lg btn-outline-primary" (click)="open1(contentNotify)">Launch demo modal</button>
+
+    <ng-template #contentNotify let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Notification</h4>
+        <button id="closeBtnNotify" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- <button id="btnHideClose" [hidden]="true" ></button> -->
+      </div>
+      <div class="modal-body map-detail-pop-up">         
+          <div class="form-group">            
+            Title
+            <div class="input-group">                            
+              <input type="text" id="txtTitle" class="form-control" (keyup)="clearError1()"
+                placeholder="Title" />    
+            </div>
+            <div *ngIf="errorMessageTit != ''" class="divclass">
+              <div class="help-block">
+                <div class="invalid-feedback">{{errorMessageTit}}</div>
+              </div>
+            </div>
+            Description 
+            <div class="input-group">                          
+                
+                <textarea type="text" id="txtDescription" placeholder="Description" class="md-textarea form-control" (keyup)="clearError2()" mdbInput style="height: 100px;"></textarea> 
+            </div>
+            <div *ngIf="errorMessageDes != ''" class="divclass">
+              <div class="help-block">
+                <div class="invalid-feedback">{{errorMessageDes}}</div>
+              </div>
+            </div>
+            <div class="input-group">
+            <label>                            
+              <input type="checkbox" id = "forInbox" (change) = "setTarget()"/> Check to send to inbox</label>   
+            </div>
+            <div class="input-group">
+            <label>                            
+              <input type="checkbox" id = "forInbox" (change) = "setTarget2()"/> Check to keep push notification in inbox</label>   
+            </div>
+
+            <div class="input-group-append" style="float: right;">
+              <span class="text-right p-2">
+                <button id="btnSendNotify" class="btn btn-primary" (click)="sendNotifyMsg()">Send Notify</button></span>
+            </div>
+          </div>  
+                 
+      </div>
+    
+    </ng-template>
+  </div>
+
+</div>

@@ -1,0 +1,10 @@
+.drpFilter{
+    width: 10%;
+    display: inline-block;
+}
+.spnFilter{
+    margin-left: 150px;
+}
+.daysFil{
+    width: 8% !important;
+}

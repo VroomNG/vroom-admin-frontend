@@ -1,0 +1,24 @@
+.drpFilter{
+    width: 10%;
+    display: inline-block;
+}
+.spnFilter{
+    margin-left: 90px;
+}
+.daysFil{
+    width: 8% !important;
+}
+.mt--7, .my--7 {
+    margin-top: -2rem !important;
+}
+/* .col {    
+    max-width: 91% !important;
+} */
+.listreport{
+    width: 1270px;
+}
+.expbtnfixed{
+    position: initial !important;
+}
+
+

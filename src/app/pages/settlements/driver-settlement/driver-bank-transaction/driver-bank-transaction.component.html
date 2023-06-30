@@ -1,0 +1,68 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+<!-- Table -->
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <h3 class="mb-0 d-inline-block">Withdraw Request</h3>
+        <span class="text-right p-2 ">
+          <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName" placeholder="search" />
+        </span>
+        <span class="text-right p-2 expBtn">
+          <button class="btn btn-primary" (click)="exportRiderBankSettlement()">Export</button></span>
+      </div>
+        
+      
+      <div class="table-responsive" >
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Driver Code</th>
+              <th scope="col">Driver Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Withdraw <br>Amount</th>
+              <th scope="col">Withdraw <br>Request Date</th>
+              <th scope="col">Status</th>            
+              <th scope="col" class="text-center">Action</th>
+             </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of (pageOfItems | search: FilterName)">
+              <td>DRV00{{item.driver_id}}</td>
+              <th scope="row">{{item.firstname | titlecase}} {{item.lastname | titlecase}}</th>
+              <td>{{item.email}}</td>
+              <td>{{item.phone_no}}</td>
+              <td>{{item.withdraw_amt}}</td>
+              <td>{{item.withdraw_request_date}}</td>
+              <td>{{item.status}}</td>
+              <td class="text-center"> <span (click)="viewWithdrawHistory(item.id,item.current_commission)">
+                <i class="fas fa-history his_icon" title="History"></i></span> 
+                <a (click)="viewWithdrawReq(item.id,item.withdraw_amt)">
+                <i class="fas fa-clipboard-list" style="font-size: 28px;"></i></a></td>
+              <!-- <td class="text-center">              
+                  <div  class=" dropdown-menu-right dropdown-menu-arrow">
+                    <a class="dropdown-item" href="#/settlements/driver-settlement/driver-bank-transaction-detail">Edit</a>                    
+                  </div>               
+              </td> -->
+            </tr>
+                  
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer py-4">
+        <div class="card-footer pb-0 pt-3">         
+          <jw-pagination [items]="driverList | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+   
+
+  

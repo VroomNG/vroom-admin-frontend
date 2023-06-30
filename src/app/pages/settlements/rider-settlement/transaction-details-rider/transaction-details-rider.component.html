@@ -1,0 +1,48 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+<!-- Table -->
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <!-- <h3 class="mb-0">Rider Transaction Details | Rider: {{paramsName}}</h3> -->
+        <h3 class="mb-0">Rider Transaction Details </h3>
+      </div>
+
+        
+      
+      <div class="table-responsive" >
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>           
+              <th scope="col">Transaction ID</th>
+              <th scope="col">Type</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Date</th>
+             </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let item of pageOfItems">
+              <th scope="row">{{item.transactionId}}</th>
+              <td>{{item.payment_type}}</td>
+              <td>{{item.amount}}</td>
+              <td>{{item.created_at | date:'MMMM dd, yyyy'}}</td>              
+            </tr>         
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer py-4">
+        <div class="card-footer pb-0 pt-3">         
+          <jw-pagination [items]="riderPaymentList" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+   
+
+  

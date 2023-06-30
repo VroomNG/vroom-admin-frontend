@@ -1,0 +1,10 @@
+.paidalgn{
+    float: right;;
+}
+.txtalign{
+    text-align: center;
+}
+.backicon{
+    float: left;
+    padding: 1px 12px;
+}

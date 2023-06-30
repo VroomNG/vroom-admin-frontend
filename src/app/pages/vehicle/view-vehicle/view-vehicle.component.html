@@ -1,0 +1,218 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+<!-- Table -->
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <h3 class="mb-0 d-inline-block">Vehicle Type</h3>
+        <span class="text-right p-2 ">
+          <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName" placeholder="search" /> 
+        </span>
+        <span style="margin-left: 16px;">
+          <h4 class="mb-0 d-inline-block">Searchable Vehicle Radius</h4>
+          <input id="vehicleRadius" type="number" value="{{settlementList != undefined? settlementList.radius:0}}" class="form-control w-25 d-inline-block" placeholder="Radius" style="width: 10% !important; margin-left: 10px;text-align: center;" /> 
+          <button class="btn btn-primary" (click)="changeRadius(settlementList.id)" style="margin-left: 10px;">Change</button>
+        </span>
+        <span class="text-right expBtn">
+          <button class="btn btn-primary" (click)="exportVehicles()">Export</button></span>
+      </div>
+      <div class="table-responsive" >
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <!-- <th scope="col">Add Distance Fare</th> -->
+              
+              <th scope="col">Type</th>
+              <!-- <th scope="col">Make</th>
+              <th scope="col">Model</th> -->
+              <th scope="col">Trip Type</th>
+              <th scope="col">Per KM Rate (&#x20A6;)</th>
+              <th scope="col">Minimum Fare (&#x20A6;)</th>
+              <th scope="col">Comm. (%)</th>
+              <th scope="col">Available Seats </th>
+              <th scope="col">Base Fee (&#x20A6;)</th>
+              <th scope="col">Tolls Fee (&#x20A6;)</th>
+              <th scope="col">Rate Per Minute (&#x20A6;)</th>
+              <!-- <th scope="col">Peak Hour Fee (&#x20A6;)</th> -->
+              <th scope="col">Lagos <br>Road<br> Development<br> Fund Levy<br> (&#x20A6;)</th>
+
+              <th scope="col">Cancellation Charge For Driver (&#x20A6;)</th>
+              <th scope="col">Cancellation Charge For Rider (&#x20A6;)</th>
+              <!-- <th scope="col">Icon </th> -->
+              <th scope="col">(share) Per KM Rate (&#x20A6;)</th>
+              <th scope="col">(share) Rate Per Minute (&#x20A6;)</th>
+              <th scope="col">(share) Minimum Fare (&#x20A6;)</th>
+              <th scope="col">(share) Base Fee (&#x20A6;)</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let item of pageOfItems | search: FilterName">
+                <!-- <th scope="row"> <a  href="#/distancefareview/distancefareview"><i class="ni ni-fat-add"></i></a></th> -->
+              
+              <td>{{item.vehicle_type}}</td>
+              <!-- <td>{{item.make}}</td>
+              <td>{{item.model}}</td> -->
+              <td>{{item.trip_type}}</td>
+              <td class="text-right">{{item.per_km_rate | number:'1.2-2'}}</td>
+              <td class="text-right">{{item.minimum_fare | number:'1.2-2'}}</td>
+              <td class="text-right">{{item.commission}}</td>
+              <td>{{item.available_seat}}</td>
+
+              <td class="text-right">{{item.base_fare | number:'1.2-2'}}</td>
+              <td class="text-right">{{item.tolls_fees | number:'1.2-2'}}</td>
+              <td class="text-right">{{item.per_minute_rate | number:'1.2-2'}}</td>
+              <td class="text-right">{{item.tax_percent}}</td>
+              
+              <td class="text-right">{{item.cancel_charge_driver | number:'1.2-2'}}</td>
+              <td class="text-right"> {{item.cancel_charge_rider | number:'1.2-2'}} </td>
+              <td class="text-right">{{item.per_km_rate_share | number:'1.2-2'}}</td>
+              <td class="text-right">{{item.per_minute_rate_share | number:'1.2-2'}}</td>
+              <td class="text-right">{{item.minimum_fare_share | number:'1.2-2'}}</td>
+              <td class="text-right">{{item.base_fare_share | number:'1.2-2'}}</td>
+              <!-- <td><img src="assets/img/car.png" style="width: 20px;" /></td> -->
+              <td class="text-center">
+                <!-- <div ngbDropdown placement="bottom-right">
+                  <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                    <i class="fas fa-ellipsis-v"></i>
+                  </a> -->
+                  <div  class=" dropdown-menu-right dropdown-menu-arrow">
+                    <a class="dropdown-item1" (click)="viewVehicleDetails(item.id)" style="color: #5e72e4; cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
+                    <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                    <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                  </div>
+                <!-- </div> -->
+              </td>
+            </tr>
+            <!-- <tr>
+            <th scope="row"><a  href="#/distancefareview/distancefareview"><i class="ni ni-fat-add"></i></a></th>
+            <td>1</td>
+            <td>Eco</td>
+            <td>Daily</td>
+            <td>1.25</td>
+            <td>6</td>
+            <td>20</td>
+            <td>0</td>
+            <td>0</td>
+            <td> 0 </td>
+            <td><img src="assets/img/car.png" style="width: 45px;"/></td>
+            <td class="text-center">
+              <div ngbDropdown placement="bottom-right">
+                <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                  <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                  <a class="dropdown-item" href="#/vehicle/add-vehicle">Edit</a>
+                   </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+          <th scope="row"><a  href="#/distancefareview/distancefareview"><i class="ni ni-fat-add"></i></a></th>
+          <td>1</td>
+          <td>Eco</td>
+          <td>Daily</td>
+          <td>1.25</td>
+          <td>6</td>
+          <td>20</td>
+          <td>0</td>
+          <td>0</td>
+          <td> 0 </td>
+          <td><img src="assets/img/car.png" style="width: 45px;"/></td>
+          <td class="text-center">
+            <div ngbDropdown placement="bottom-right">
+              <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+              <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                <a class="dropdown-item" href="#/vehicle/add-vehicle">Edit</a>
+                   </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+        <th scope="row"><a  href="#/distancefareview/distancefareview"><i class="ni ni-fat-add"></i></a></th>
+        <td>1</td>
+        <td>Eco</td>
+        <td>Daily</td>
+        <td>1.25</td>
+        <td>6</td>
+        <td>20</td>
+        <td>0</td>
+        <td>0</td>
+        <td> 0 </td>
+        <td><img src="assets/img/car.png" style="width: 45px;"/></td>
+        <td class="text-center">
+          <div ngbDropdown placement="bottom-right">
+            <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+              <i class="fas fa-ellipsis-v"></i>
+            </a>
+            <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+              <a class="dropdown-item" href="#/vehicle/add-vehicle">Edit</a>
+                </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+      <th scope="row"><a  href="#/distancefareview/distancefareview"><i class="ni ni-fat-add"></i></a></th>
+      <td>1</td>
+      <td>Eco</td>
+      <td>Daily</td>
+      <td>1.25</td>
+      <td>6</td>
+      <td>20</td>
+      <td>0</td>
+      <td>0</td>
+      <td> 0 </td>
+      <td><img src="assets/img/car.png" style="width: 45px;"/></td>
+      <td class="text-center">
+        <div ngbDropdown placement="bottom-right">
+          <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+            <i class="fas fa-ellipsis-v"></i>
+          </a>
+          <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+            <a class="dropdown-item" href="#/vehicle/add-vehicle">Edit</a>
+                </div>
+        </div>
+      </td>
+    </tr> -->
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer py-4">
+        <div class="card-footer pb-0 pt-3">         
+          <jw-pagination [items]="vehicleList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>
+        <!-- <nav aria-label="...">
+          <ul class="pagination justify-content-end mb-0">
+            <li class="page-item disabled">
+              <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                <i class="fas fa-angle-left"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="javascript:void(0)">1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="javascript:void(0)">
+                <i class="fas fa-angle-right"></i>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav> -->
+      </div>
+    </div>
+  </div>
+</div>
+   
+</div>

@@ -1,0 +1,308 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Dispatch</h3>
+            </div>
+            <div class="col-4 text-right">
+              <!-- <a href="#!" class="btn btn-sm btn-primary">Settings</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- <h6 class="heading-small text-muted mb-4">User information</h6> -->
+            <div class="pl-lg-4" style="Padding: 0 !important;">
+          
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Phone Number *</label>
+                    <div  class="input-group mb-3">
+                        <input  class="form-control ng-untouched ng-pristine"  id="phone" name="phone" placeholder="Phone Number" required="" type="tel" ng-reflect-required="" ng-reflect-name="phone" ng-reflect-is-disabled="" ng-reflect-model="*******000">
+                        <div  class="input-group-append ">
+                        <button  class="btn btn-primary" disabled="" tabindex="-1" type="button">Check</button>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-name">Name *</label>
+                    <input type="text" id="input-name" class="form-control form-control-alternative" placeholder="Name" value="Naveen"  ng-reflect-is-disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Email address *</label>
+                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="Enter Email" value="">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-phone">Trip Type *</label>
+                      <select class="form-control form-control-alternative"> 
+                        <option>Daily</option>
+                        <option>Weekly</option>
+                        <option>Monthly</option>
+                        
+                       </select>
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Pickup Location *</label>
+                    <input  class="form-control ng-pristine ng-valid pac-target-input ng-touched" name="pickupLocation" placeholder="Pickup Location" places-auto-complete="" required=""  value="">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-phone">Drop Location (*) </label>
+                      <div  class="input-group mb-3"><input  class="form-control ng-pristine ng-valid pac-target-input ng-touched" name="dropLocation" placeholder="Drop Location" places-auto-complete="" required=""  value=""><div  class="input-group-append ">
+                          <button  class="btn btn-primary" type="button">Get Available Vehicles</button></div></div>
+                    </div>
+                  </div>
+              </div>
+              <!-- <div class="row">
+                <div class="col-lg-12">
+                    <a href="#!" class="btn btn-info">Add</a>
+                    <a href="#!" class="btn btn-info">Update</a>
+                    <a href="#!" class="btn btn-info">Delete</a>
+                    
+              </div>
+              </div> -->
+            </div>
+            </form>
+            </div>
+           </div> 
+            <hr>
+            <div class="row">
+                <div class="col-lg-6">
+           <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0" style="padding-bottom: 0;">
+                <h4>Trip Settings</h4>
+            </div>
+            <div class="card-body" style="padding-top: 0;">
+                <div  class="row">
+                    <div  class="col-md-6">
+                       <div  class="form-group">
+                          <label > Select Vehicle (<span  class="red">*</span>)</label>
+                          <select  class="form-control ng-pristine ng-valid ng-touched" name="serviceTypeId" placeholder="Vehicle Type" required="" ng-reflect-required="" ng-reflect-name="serviceTypeId" ng-reflect-is-disabled="false" ng-reflect-model="5e42b91f524acc565eec51f1">
+                             <option  hidden="" selected="" value="undefined"> Select a Vehicle Type</option>
+                        
+                             <option   class="ng-star-inserted"> Eagles standard </option>
+                             <option   class="ng-star-inserted"> Berline </option>
+                             <option   class="ng-star-inserted"> Premium </option>
+                             <option   class="ng-star-inserted"> Tempo Traveller </option>
+                             <option   class="ng-star-inserted"> testex </option>
+                             <option   class="ng-star-inserted"> v8 </option>
+                             <option   class="ng-star-inserted"> Tuk Tuk </option>
+                             <option   class="ng-star-inserted"> Tuk Tuk </option>
+                             <option   class="ng-star-inserted"> Lamborghini </option>
+                             <option   class="ng-star-inserted"> Bike </option>
+                          </select>
+                       </div>
+                    </div>
+                    <div  class="col-md-6">
+                       <div  class="form-group">
+                          <label  class="form-control-label" for="bookingTypeComboBox">Booking Type (<span  class="red">*</span>)</label>
+                          <select  class="form-control ng-pristine ng-valid ng-touched" name="serviceTypeId" placeholder="Vehicle Type" required="" ng-reflect-required="" ng-reflect-name="serviceTypeId" ng-reflect-is-disabled="false" ng-reflect-model="5e42b91f524acc565eec51f1">
+                            <option  hidden="" selected="" value="undefined">Ride Now</option>
+                       
+                            <option   class="ng-star-inserted">Ride Later (Scheduled Trip) </option>
+                            
+                         </select>
+                       </div>
+                    </div>
+                    <div  class="col-md-6">
+                        <div  class="form-group">
+                           <label  class="form-control-label" for="bookingTypeComboBox">Driver Assignment Type(<span  class="red">*</span>)</label>
+                           <select  class="form-control ng-pristine ng-valid ng-touched" name="serviceTypeId" placeholder="Vehicle Type" required="" ng-reflect-required="" ng-reflect-name="serviceTypeId" ng-reflect-is-disabled="false" ng-reflect-model="5e42b91f524acc565eec51f1">
+                             <option  hidden="" selected="" value="undefined">Auto Assign</option>
+                        
+                             <option   class="ng-star-inserted">Manual Assign </option>
+                             
+                          </select>
+                        </div>
+                     </div>
+                 </div>
+
+            </div>
+            </div> 
+             <hr>
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0" style="padding-bottom: 0;">
+                    <h4>Promo Code</h4>
+                </div>
+                <div class="card-body" style="padding-top: 0;">
+                    <div  class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="input-email">Enter Promo Code</label>
+                              <input  class="form-control ng-pristine ng-valid pac-target-input ng-touched" name="pickupLocation" placeholder="Enter Promo Code" required=""  value="">
+                            </div>
+                            <a href="#!" class="btn btn-info">Submit</a>
+                          </div>
+                   
+               
+                     </div>
+    
+                </div>
+                </div>   
+            </div>
+            <div class="col-lg-6">
+                <div class="card bg-secondary shadow">
+                 <div class="card-header bg-white border-0" style="padding-bottom: 0;">
+                     <h4> Fare Breakdown For Ride No : 1337</h4>
+                 </div>
+                 <div class="card-body" style="padding-top: 0;">
+                    <table  class="table">
+                        <!--bindings={
+                           "ng-reflect-ng-if": "true"
+                           }-->
+                        <tbody  class="ng-star-inserted">
+                           <tr >
+                              <td >Total Distance:</td>
+                              <td >1.56 KM</td>
+                           </tr>
+                           <tr >
+                              <td >Estimated Time:</td>
+                              <td >4 mins</td>
+                           </tr>
+                           <tr >
+                              <td >Base/Booking Fee:</td>
+                              <td >5 INR</td>
+                           </tr>
+                           <tr >
+                              <td >Minimum Fare:</td>
+                              <td >0 INR</td>
+                           </tr>
+                           <tr >
+                              <td >Distance Fare (2.50 INR/KM): </td>
+                              <td >3.9 INR (KM Rate)</td>
+                           </tr>
+                           <tr >
+                              <td > Time Fare (0 INR/Min):</td>
+                              <td >0 INR</td>
+                           </tr>
+                           <tr >
+                              <td > Pickup Charge:</td>
+                              <td >0 INR</td>
+                           </tr>
+                           <tr >
+                              <td >Waiting Charge (0 INR/Min):</td>
+                              <td >0 INR</td>
+                           </tr>
+                           <tr >
+                              <td >Promo Code:</td>
+                              <td ></td>
+                           </tr>
+                           <tr >
+                              <td >Other Discount:</td>
+                              <td >0 INR</td>
+                           </tr>
+                           <tr >
+                              <td >Tax Amount: (0%)</td>
+                              <td >0 INR</td>
+                           </tr>
+                           <tr >
+                              <td >Surge Percentage:</td>
+                              <td >0%</td>
+                           </tr>
+                           <tr >
+                              <td >Surge Reason:</td>
+                              <td >N/A</td>
+                           </tr>
+                           <tr >
+                              <td >Total Fare:</td>
+                              <!--bindings={
+                                 "ng-reflect-ng-if": "true"
+                                 }-->
+                              <td  class="ng-star-inserted">12 INR</td>
+                              <!--bindings={
+                                 "ng-reflect-ng-if": "false"
+                                 }-->
+                           </tr>
+                        </tbody>
+                        <!--bindings={
+                           "ng-reflect-ng-if": "false"
+                           }-->
+                     </table>
+
+                     <div class="row" style="padding-top:25px">
+                        <div class="col-lg-12">
+                            
+                            <a href="#!" class="btn btn-info">Resend Request</a>
+                            <a href="#!" class="btn btn-danger">Reset</a>
+                            
+                      </div>
+                      </div>
+
+                 </div>
+                     
+                 </div>  
+                 </div>
+            </div>  
+
+            <hr>
+         
+            <div class="card bg-secondary shadow">
+              <div class="card-header bg-white border-0">
+                  <h3>Request Trip Details</h3>
+                </div>
+                <div class="card-body" style="padding-top: 0;">
+                  <table class="table table-bordered table-responsive-md" style="text-align: center">
+                    <thead>
+                       <tr>
+                          <th>Trip Type</th>
+                          <th>Trip No</th>
+                          <th>Date</th>
+                          <th>Rider</th>
+                          <th>Fare</th>
+                          <th>Vechile Type</th>
+                          <th>Status</th>
+                          <th>Via</th>
+                          <th>Action</th>
+                       </tr>
+                    </thead>
+                    <tbody>
+
+                       <tr border="1" class="ng-star-inserted">
+                         <td>Daily</td>
+                          <td>DRV496</td>
+                          <td>14-5-2020</td>
+                          <td>naveen</td>
+                          <td>Berline</td>
+                          <td>free</td>
+                          <td>Accepted</td>
+                          <td>0.00</td>
+                          <td>    <div  class=" dropdown-menu-right dropdown-menu-arrow">
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                            <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                          </div></td>
+
+                       </tr>
+
+                    </tbody>
+                 </table>
+
+                  </div>
+                </div>
+   
+</div>
+  
+
+  
+
+
+

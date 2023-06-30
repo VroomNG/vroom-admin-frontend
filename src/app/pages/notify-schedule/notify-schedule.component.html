@@ -1,0 +1,49 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+      	 <div class="card-header border-0">
+      	 <h3 class="mb-0 d-inline-block" >Notification label</h3>
+      	 <span class="text-right p-2 ">
+            <input type="text" class="form-control w-25 d-inline-block" 
+              placeholder="Label" required [(ngModel)] = "noteLabel"/>
+          </span>
+          <span class="text-right p-2 ">
+          	<span class="text-right p-2 ">
+              <input placeholder=" Date" class="form-control d-inline-block" style = "width:15%"  type="text" data-date-format="MM/DD/YYYY" 
+                 onfocus="(this.type='datetime-local')" onblur="(this.type='text')" id="date" [(ngModel)] = "selectedDate" required #dt = "ngModel" />
+                </span>
+              <span class="text-right p-2 ">
+              <button class="btn btn-info" (click) = "schedule()">Schedule</button>
+            </span>
+          </span>
+          <div style = "width:50%">
+          	<div class = "form-group">
+          		<h3 style = "margin-top:50px;">Title</h3>
+            <div class="input-group">                            
+              <input type="text" id="txtTitle" class = "form-control title" (keyup)="clearError1()"
+                placeholder="Title" [(ngModel)] = "title" required  #tit = "ngModel"/>
+            </div>
+             <h3 style = "margin-top:50px">Description</h3>
+            <div class="input-group">                          
+                
+                <textarea type="text" id="txtDescription" placeholder="Description" class="md-textarea form-control" (keyup)="clearError2()" mdbInput style="height: 100px;"  [(ngModel)] = "description" required></textarea> 
+            </div>
+            <div class = "input-group" style = "margin-top: 50px;">
+            	<label>Notify approved drivers&nbsp;&nbsp;&nbsp;<input type="checkbox" (change) = "setDrivers()" [checked] = "forDrivers == 1 ? true : false"></label>
+            	<label style = "margin-left: 100px;">Notify riders&nbsp;&nbsp;&nbsp;<input type = "checkbox" (change) = "setRiders()" [checked] = "forRiders == 1 ? true : false"></label>
+              <div>
+              <label style = "margin-top: 50px;color:red">Notify unapproved drivers&nbsp;&nbsp;&nbsp;<input type = "checkbox" (change) = "setUd()" [checked] = "forUd == 1 ? true : false"></label>
+            </div>
+            </div>
+          	</div>
+          </div>
+      	 </div>
+      </div>
+  </div>
+</div>
+</div>

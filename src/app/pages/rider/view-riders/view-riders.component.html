@@ -1,0 +1,179 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7"> 
+<!-- Table -->
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <h3 class="mb-0 d-inline-block">View Riders</h3>
+        <span class="text-right p-2 ">
+          <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName" placeholder="search" /> 
+        </span>
+        <span class="spnFilter">Status 
+          <select id="selRiderFilter" class="form-control form-control-alternative drpFilter" (change)="riderFilter($event)">            
+          <option *ngFor="let level of riderFil" value="{{level.id}}">
+            {{level.value}}
+          </option>
+        </select>
+        <span style="margin-left: 25px;">Days <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span>
+        </span>
+        <span class="text-right p-2 expBtn">
+          <button class="btn btn-primary" (click)="exportRiders()">Export</button>
+       <button id="btnNotify" [hidden]="true" class="btn btn-primary" (click)="openNotifyModel()">Send Notification</button>
+        </span>
+      </div>
+      <div class="table-responsive" id = "main">
+        <table class="table align-items-center table-flush" >
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <!-- <th scope="col">Profile Status</th> -->
+              <th scope="col">Registered On</th>              
+              <th scope="col">Wallet</th>
+              <th scope="col">Last Trip Date</th>
+              <th scope="col">Action</th>
+              <th scope="col">Block</th>
+              <th scope = "col">Notify</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let item of (pageOfItems  | search: FilterName)">
+              <th scope="row">
+                {{item.firstname | titlecase}}
+              </th>
+              <td>
+                {{item.lastname | titlecase}}
+              </td>
+              <td>
+               
+                {{item.email}}
+                
+              </td>
+              <td>
+             {{item.phone_no}}
+              </td>
+              <!-- <td>
+               {{item.is_active == '1' ? 'Active' : 'Inactive'}} 
+              </td> -->
+              <td>
+                {{item.created_at | date:'mediumDate'}} 
+               </td>
+               <td>
+                {{item.balance}}
+                 </td>
+                 <td>
+                  {{item.last_trip_date | date:'mediumDate'}} 
+                 </td>
+              <td class="text-center">
+                <!-- <div ngbDropdown placement="bottom-right">
+                  <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                    <i class="fas fa-ellipsis-v"></i>
+                  </a>
+                  <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow"> -->
+                    <a class="dropdown-item1" (click)="editRiders(item.id)" style="color: #5e72e4; cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
+                    <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                    <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
+                  <!-- </div>
+                </div> -->
+              </td>
+              <td><input type="checkbox" id="chkBlock" (change)="setUserBlock($event,item.id)" [checked]="(item.isBlock === '1' ? true: false)"></td>
+              <td><input type="checkbox" class="notifycheck" id="{{item.id}}" (change)="showNotifyBtn($event,item.id)"></td>
+            </tr>
+        
+          </tbody>
+        </table>
+      </div>
+     
+      <div class="card-footer py-4">
+        <div class="card-footer pb-0 pt-3">         
+          <jw-pagination [items]="ridersList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>       
+      </div>
+     
+    </div>
+  </div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Reason for Block</h4>
+      <button id="closeBtn" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body map-detail-pop-up">         
+        <div class="form-group">            
+          <div class="input-group">              
+            <input type="text" id="txtreason" class="form-control" (keyup)="clearError()"
+              placeholder="Block Reason" />    
+             
+            
+          </div>
+          <div *ngIf="errorMessage != ''" class="divclass">
+            <div class="help-block">
+              <div class="invalid-feedback">{{errorMessage}}</div>
+            </div>
+          </div>
+          <div class="input-group-append" style="float: right;">
+            <span class="text-right p-2">
+              <button id="btnReason" class="btn btn-primary" (click)="saveReason()">Save</button></span>
+          </div>
+        </div>         
+    </div>
+  
+  </ng-template>
+  <button id="btnModelPopup" [hidden]="true" class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+  <button id="btnModelPopupNotify" [hidden]="true" class="btn btn-lg btn-outline-primary" (click)="open1(contentNotify)">Launch demo modal</button>
+    <ng-template #contentNotify let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Notification</h4>
+        <button id="closeBtnNotify" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- <button id="btnHideClose" [hidden]="true" ></button> -->
+      </div>
+      <div class="modal-body map-detail-pop-up">         
+          <div class="form-group">            
+            Title
+            <div class="input-group">                            
+              <input type="text" id="txtTitle" class="form-control" (keyup)="clearError1()"
+                placeholder="Title" />    
+            </div>
+            <div *ngIf="errorMessageTit != ''" class="divclass">
+              <div class="help-block">
+                <div class="invalid-feedback">{{errorMessageTit}}</div>
+              </div>
+            </div>
+            Description 
+            <div class="input-group">                          
+                
+                <textarea type="text" id="txtDescription" placeholder="Description" class="md-textarea form-control" (keyup)="clearError2()" mdbInput style="height: 100px;"></textarea> 
+            </div>
+            <div *ngIf="errorMessageDes != ''" class="divclass">
+              <div class="help-block">
+                <div class="invalid-feedback">{{errorMessageDes}}</div>
+              </div>
+            </div>
+            <div class="input-group-append" style="float: right;">
+              <span class="text-right p-2">
+                <button id="btnSendNotify" class="btn btn-primary" (click)="sendNotifyMsg()">Send Notification</button></span>
+            </div>
+          </div>  
+                 
+      </div>
+    
+    </ng-template>
+
+</div>
+
+   
+</div>
+  
+
+  
+
+

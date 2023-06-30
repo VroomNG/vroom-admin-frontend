@@ -1,0 +1,35 @@
+a:not([href]):not([tabindex]) {
+    color: #fff;
+    text-decoration: none;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    color: #fff;
+}
+
+#Ins-file{
+    display:none;
+}
+.img-pointer{
+    cursor: pointer;
+}
+
+.hide{
+    display: none;
+}
+
+.edit-div:hover{
+    opacity: 0.3;
+}
+
+.edit-div:hover + .hide {
+    display: inline-block;
+    margin-left: -98px;
+    color: #2aaeeb;
+    width: 150px;
+}
+
+.multUpld{
+    max-width: 37% !important;
+    margin-bottom: 20px;
+}

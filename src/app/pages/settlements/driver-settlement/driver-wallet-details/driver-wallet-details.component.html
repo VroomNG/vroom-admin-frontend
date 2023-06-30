@@ -1,0 +1,72 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <span class="backicon" (click)="backscreen()"><i class="fas fa-backward"></i></span> <h3 class="mb-0">Withdraw Request History
+            <!-- <span class="ml-4 float-right">
+              <button class="btn btn-danger px-4 py-1">Paid</button>
+             </span> -->
+            <!-- <span class="float-right">Wallet Balance :
+              {{+paramsval - +paramsCash | number :'1.2-2'}}             
+            </span> -->
+            <!-- <span><input value="Paid" type="button" class="btn btn-primary paidbtn" id="btnPaid" (click)="btnPaidCalculate()"></span> -->
+
+          </h3>
+        </div>
+
+
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Transaction ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone Number</th>                
+                <th scope="col">Transaction Date</th>
+                <th scope="col">Withdraw Request Date</th>
+                <th scope="col">Withdraw Amount</th>
+                <!-- <th scope="col">Status</th>
+                <th scope="col">Action</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of pageOfItems">
+                <td>{{item.transactionId}}</td>
+                <th scope="row">{{item.firstname}} {{item.lastname}}</th>
+                <td>{{item.phone_no}}</td>
+                <td>{{item.transaction_date}}</td>
+                <td>{{item.withdraw_request_date}}</td>
+                <td>{{item.withdraw_amt}}</td>
+                
+                <!-- <td>
+                  <span *ngIf="item.payment_status === 0? true:false ">Pending</span>
+                  <span *ngIf="item.payment_status === 1? true:false ">Paid</span>
+                </td>
+                <td>
+                  <button class="btn btn-danger px-4 py-1" (click)="UpdatePaidOrPennding($event)" [value]="item.trip_id"
+                    *ngIf="item.payment_status === 1? false:true">Paid</button>
+                </td> -->
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <div class="card-footer pb-0 pt-3">
+
+            <jw-pagination [items]="driverPaymentList" (changePage)="onChangePage($event)"></jw-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+   
+
+  

@@ -1,0 +1,403 @@
+<!-- <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"> -->
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,700" rel="stylesheet">
+<div class="header bg-gradient-danger py-5">
+
+  <div class="container-fluid">
+    <div class="header-body" style="margin-top: 20px;">
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Riders</h5>
+                  <span class="h2 font-weight-bold mb-0">{{dashboardList.riders}}</span>
+                </div>
+                <!-- <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                </div> -->
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2">
+                  <!-- <i class="fa fa-arrow-up"></i> 3.48% -->
+                </span>
+                <span class="text-nowrap">
+                  <!-- Since last month -->
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Drivers</h5>
+                  <span class="h2 font-weight-bold mb-0">{{dashboardList.drivers}}</span>
+                </div>
+                <!-- <div class="col-auto">
+                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                    <i class="fas fa-chart-pie"></i>
+                  </div>
+                </div> -->
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-danger mr-2">
+                  <!-- <i class="fas fa-arrow-down"></i> 3.48% -->
+                </span>
+                <span class="text-nowrap">
+                  <!-- Since last week -->
+
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Vehicles</h5>
+                  <span class="h2 font-weight-bold mb-0">{{dashboardList.vehicles}}</span>
+                </div>
+                <!-- <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="fas fa-users"></i>
+                  </div>
+                </div> -->
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-warning mr-2">
+                  <!-- <i class="fas fa-arrow-down"></i> 1.10% -->
+                </span>
+                <span class="text-nowrap">
+                  <!-- Since yesterday -->
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Completed Trip</h5>
+                  <span class="h2 font-weight-bold mb-0">{{dashboardList.completedTrips}}</span>
+                </div>
+                <!-- <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <i class="fas fa-percent"></i>
+                  </div>
+                </div> -->
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2">
+                  <!-- <i class="fas fa-arrow-up"></i> 12% -->
+                </span>
+                <span class="text-nowrap">
+                  This month
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-body" [hidden]="true">
+      <!-- Card stats -->
+      <div class="col">
+        <h3 class="text-white mb-4 d-inline-block">REPORTS :</h3>
+        <!-- <span class="d-inline-block ml-3">
+        <select class="form-control w_135" (click)="selectedDropdown($event)" >
+          <option value="1">Rider</option>
+          <option value="2">Driver</option>
+        </select>
+      </span> -->
+      </div>
+      <div class="row" *ngFor="let item of primaryObject">
+
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver</h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.January}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">January</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.February}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">February</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.March}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">March</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.April}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">April</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.May}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">May</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.June}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">June</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.July}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">July</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.August}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">August</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.September}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">September</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.October}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">October</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.November}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">November</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Driver </h5>
+                  <span class="h2 font-weight-bold mb-0">{{item.December}}</span>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                <span class="text-nowrap">December</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--* Pie chart for riders *-->
+<div class="container">
+  <div class="tab-slider--nav">
+    <ul class="tab-slider--tabs">
+      <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1"
+        (click)="viewMode ='tab1'; driverReports(currentYear)">Registration</li>
+      <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2"
+        (click)="viewMode ='tab2'; tripReports(currentYear)">Trips</li>
+      <li class="tab-slider--trigger" [class.active]="viewMode == 'tab3'" rel="tab3"
+        (click)="viewMode ='tab3'; getActiveDriver(currentYear)">Driver</li>
+      <li class="tab-slider--trigger" [class.active]="viewMode == 'tab4'" rel="tab4"
+        (click)="viewMode ='tab4'; getActiveRider(currentYear)">Revenue</li>
+    </ul>
+  </div>
+  <div class="tab-slider--container" [ngSwitch]="viewMode">
+    <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
+      <h2>Registration</h2>
+
+      <div class="card">
+        <div class="card-header">                   
+        </div>
+        <!-- Card body -->      
+        <div class="row">
+          <!-- <app-view-driver style="margin-left: 60px;"></app-view-driver> -->
+          <app-report-list class="reportTemp"></app-report-list>
+        </div>
+
+      </div>
+    </div>
+    <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+      <h2>Trips</h2>
+
+      <div class="card">
+        <div class="card-header">
+        </div>
+        <!-- Card body -->       
+        <div class="row">
+          <app-report-trips class="reportTemp"></app-report-trips>
+        </div>
+      </div>
+
+    </div>
+    <div id="tab3" class="tab-slider--body" *ngSwitchCase="'tab3'">
+      <h2>Driver</h2>
+      <div class="card">
+        <div class="card-header">
+         
+        </div>
+        <!-- Card body -->             
+      <div class="row">
+      <app-report-driver class="reportTemp"></app-report-driver>
+      </div></div>
+    </div>
+    <div id="tab4" class="tab-slider--body" *ngSwitchCase="'tab4'">
+      <h2>Revenue</h2>
+      <div class="card">
+        <div class="card-header">
+         
+        </div>
+        <!-- Card body -->      
+        <div class="row">
+          <!-- <app-report-riders></app-report-riders> -->
+          <app-revenue-report class="reportTemp"></app-revenue-report>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--* Pie chart for Drives *-->
+
+
+<!--* Bar chart for drivers earned *-->

@@ -1,0 +1,64 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0 d-inline-block">Discount Code Use</h3>
+         <span class="text-right p-2 ">
+            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" />
+          </span>
+         
+
+          <span class="text-right p-2 expBtn">
+            <button class="btn btn-primary" (click)="exportTrips()">Export</button>
+          </span>
+
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">UserID</th>
+                <th scope="col">firstname</th>
+                <th scope="col" >lastname</th>
+                <th scope="col">Discount Code</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date Applied</th>
+                <!--<th scope="col">Status</th> 
+                <th scope="col">Payment Date</th>-->     
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
+                <th scope="row">{{item.userid}}</th>
+                <td>{{item.firstname}}</td>
+                
+                <td>{{item.lastname}}</td>
+                <td>{{item.discount_code}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.date_applied | date}}</td>
+                <!--<td *ngIf  = "item.paid == 1"><button [disabled]="item.paid == 1 ? true : false" id="btnAdminPaid" class="btn btn-primary paidalgn" (click)="setPaid(item.id)">Paid</button></td>
+                <td *ngIf = "item.paid == 0"><button  id="btnAdminPaid" class="btn btn-primary paidalgn" (click)="setPaid(item.id)">Open</button></td>
+                <td *ngIf = "item.pay_date != 'Pending'">{{item.pay_date | date }}</td>
+                <td *ngIf = "item.pay_date == 'Pending'">{{item.pay_date}}</td>-->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <div class="card-footer pb-0 pt-3">
+            <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

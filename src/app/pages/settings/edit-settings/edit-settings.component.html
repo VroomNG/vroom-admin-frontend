@@ -1,0 +1,79 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0 d-inline-block">View Surge charge</h3>
+          <span class="text-right p-2 ">
+            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" />
+          </span>
+          <span class="text-right p-2 expBtn" [hidden]="true">
+            <button class="btn btn-primary" (click)="exportSurCharge()">Export</button>
+          </span>
+        </div>
+        <table
+          class="table align-items-center table-flush table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl table-responsive-xs">
+          <thead class="thead-light">
+            <tr>
+              <!--<th scope="col" class="sort" data-sort="name">Charge</th>
+              <th scope="col" class="sort" data-sort="budget" s>Date</th>-->
+              <!-- <th scope="col">End Date</th> -->
+              <th scope="col">Serial</th>
+              <th scope="col">Pickup</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Trip Start Time</th>
+              <th scope="col">Multiplier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of (pageOfItems | search: FilterName)">
+              <th scope="row">
+                {{item.id}}
+              </th>
+              <td style = "word-wrap: break-word;">
+                {{item.from_address}}
+              </td>
+              <!-- <td>
+                {{item.toDate}}
+              </td> -->
+              <td style = "word-wrap: break-word;">
+                {{item.to_address}}
+              </td>
+              <td>
+                {{item.trip_start_time | date:'MM/dd/yyyy'}}
+              </td>
+              <td>
+                {{item.total_surge.toFixed(2)}}
+              </td>
+              <!--<td class="text-center">
+
+                <div class=" dropdown-menu-right dropdown-menu-arrow">
+                  <a style="color: #5e72e4; cursor: pointer;" class="dropdown-item1" disabled 
+                  (click)="editSurcharge(item.id)"><i
+                      class="fas fa-pencil-alt"></i></a>
+
+                </div>
+                </td>-->
+            </tr>
+
+          </tbody>
+        </table>
+        <!-- </div> -->
+        <div class="card-footer py-4">
+          <div class="card-footer pb-0 pt-3">
+            <jw-pagination [items]="surgechargeList  | search: FilterName" (changePage)="onChangePage($event)">
+            </jw-pagination>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

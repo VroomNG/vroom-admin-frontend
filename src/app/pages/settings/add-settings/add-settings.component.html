@@ -1,0 +1,182 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0" *ngIf="settingData.id === 0 ">Add Surge Charge</h3>
+                    <h3 class="mb-0" *ngIf="settingData.id != 0">Edit Surge Charge</h3>
+                </div>
+                <div class="col-4 text-right">
+                    <!-- <a href="#!" class="btn btn-sm btn-primary">Settings</a> -->
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="surgeForm">
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-first-name">Recurring days *</label>
+                                <select id="days" class="form-control" formControlName="SelectedDate"
+                                    (change)="selectedEvent($event)"
+                                    [ngClass]="{ 'is-invalid': submitted && f.SelectedDate.errors }">
+                                    <option value="" selected disabled>Selected Days</option>
+                                    <option *ngFor="let level of select" value="{{level.value}}"
+                                        [attr.selected]="level.value == settingData.surgeSelected?true: null">
+                                        {{level.name}}</option>
+                                </select>
+
+
+
+                                <!-- [attr.selected]="level.value == 0?true: null" [(ngModel)]="settingData.surgeSelected" -->
+                                <!-- validation SelectedDate -->
+                                <div *ngIf="submitted && f.SelectedDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.SelectedDate.errors?.required">Selected day is required</div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-last-name" style="margin-right:25px;">Surge
+                                    Charge *</label>
+                                <input type="radio" id="amount" [checked]="chargeOption==1?'checked':null"
+                                    (click)="chargeErrMsg()" value="Amount" name="charge"> Amount
+                                <input (click)="chargeErrMsg()" style="margin-left:10px;"
+                                    [checked]="chargeOption==2?'checked':null" type="radio" id="multipler"
+                                    value="Multipler" name="charge"> Multipler
+                                <input type="text" class="form-control" (keyup)="chargeErrMsg()"
+                                    placeholder="Surge Charge" formControlName="charge" value="{{settingData.charge}}"
+                                    required [ngClass]="{ 'is-invalid': submitted && f.charge.errors }" />
+
+                                <!-- validation lastname -->
+                                <!-- onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" -->
+
+                                <div *ngIf="submitted && f.charge.errors" class="invalid-feedback">
+                                    <div *ngIf="f.charge.errors?.required">Surge Charge is required</div>
+                                    <div *ngIf="f.charge.errors?.pattern">Invalid input</div>
+                                    <!-- <span style="color:red" *ngIf="(
+          myForm.get('number').hasError('pattern') &&
+          myForm.get('number').touched)">Invalid input.</span> -->
+                                </div>
+                                <div *ngIf="errorMessage != ''" class="divclass">
+                                    <div class="help-block">
+                                        <div class="invalid-feedback">{{errorMessage}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-first-name">Start Time *</label>
+                                <input type="time" class="form-control" [(ngModel)]="utcStartDateTime"
+                                    formControlName="utcStartDateTime" min="{{minTime}}"
+                                    [ngClass]="{ 'is-invalid': submitted && f.utcStartDateTime.errors }" />
+
+                                <div *ngIf="submitted && f.utcStartDateTime.errors" class="invalid-feedback">
+                                    <div *ngIf="f.utcStartDateTime.errors?.required">Start Time is required</div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-last-name">End Time *</label>
+                                <input type="time" class="form-control" formControlName="utcToDateTime"
+                                    [value]="utcToDateTime" max="{{minTime}}"
+                                    [ngClass]="{ 'is-invalid': submitted && f.utcToDateTime.errors }" />
+
+                                <div *ngIf="submitted && f.utcToDateTime.errors" class="invalid-feedback">
+                                    <div *ngIf="f.utcToDateTime.errors?.required">End Time is required</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-first-name">Date </label>
+                                <input type="date" id="date" class="form-control" min="{{minDate}}"
+                                    (click)="chargeErrMsgDate()" formControlName="fromDate" [value]="fromDate"
+                                    [readonly]="(dateEnable ? false:true)"
+                                    [ngClass]="{ 'is-invalid': submitted && f.fromDate.errors }" />
+
+                                <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.fromDate.errors?.required">Date is required</div>
+                                </div>
+                                <div *ngIf="errorMessageDate != ''" class="divclass">
+                                    <div class="help-block">
+                                        <div class="invalid-feedback">{{errorMessageDate}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-last-name1">City</label>
+                                <!-- <select id="city" class="form-control">                                  
+                                    <option *ngFor="let level of cities" 
+                                        [attr.selected]="level.value === citySelect?true:null"
+                                        value="{{level.value}}">{{level.name}}</option>
+                                </select> -->
+                                <input placeholder="City" autocorrect="off" autocapitalize="off"
+                                    spellcheck="off" type="text" class="form-control auto" #search
+                                    value="{{citySelect}}">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-last-name1">Radius</label>
+                                <input id="radius" type="text" class="form-control" placeholder="Radius"
+                                    value="{{radiusVal}}" required />
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="map" id="map" #map></div>
+                            <!-- <iframe width="300" height="170" frameborder="0" scrolling="no" marginheight="0"
+                                marginwidth="0"
+                                src="https://maps.google.com/maps?q='{{latitude}}','{{longitude}}'&hl=es&z=14&output=embed">
+                            </iframe> -->
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a class="btn btn-info text-white" *ngIf="settingData.id == 0"
+                                (click)="addSettings()">Add</a>
+                            <a class="btn btn-info text-white" *ngIf="settingData.id != 0"
+                                (click)="updateSettings(settingData.id)">Update</a>
+                            <a class="btn btn-danger text-white" *ngIf="settingData.id != 0"
+                                (click)="deleteSettings(settingData.id)">Delete</a>
+                            <a class="btn btn-dark text-white" *ngIf="settingData.id == 0" (click)="surgeForm.reset()"
+                                (click)="changePathUrl()">Cancel</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

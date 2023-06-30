@@ -1,0 +1,19 @@
+.table .thead-light th {
+    white-space: normal;
+  }
+  
+  .w-20{
+    width: 15%!important;
+  }
+  .spnFilter{
+    margin-left: 150px;
+  }
+  .mt--7, .my--7 {
+    margin-top: -2rem !important;
+}
+.listreport{
+    width: 1270px;
+}
+.expbtnfixed{
+  position: initial !important;
+}

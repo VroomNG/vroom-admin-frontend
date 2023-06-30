@@ -1,0 +1,81 @@
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+	pointer-events: none;
+}
+
+.dotted_lines_selected{
+    padding: 7px 3px;
+    border-radius: 5px;
+    background-color: #362363;
+    color: white;
+    width: 140px;
+    font-weight: bold;
+    margin: 0 auto;
+}    
+
+.dotted_lines_selected label{
+    margin: 0;
+    width: 100%;
+}
+
+
+.form-group.dotted_lines_selected:hover{
+    color: black;
+    background-color: #e9ecef;
+}
+
+.edit_icons{
+    top: 107px;
+    color: #219cdb;
+    font-size: 30px;
+    width: 35px;
+    left: -10px;
+    height: 35px;
+    border: 1px solid #b5b5b5;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.edit_icons:hover{
+    color: #38cdef;
+}
+
+.edit_icons i:hover{
+    -webkit-transform: translate(-50%, -33%);
+    transform: translate(-50%, -33%);
+}
+
+.image-upload>input {
+    display: none;
+  }

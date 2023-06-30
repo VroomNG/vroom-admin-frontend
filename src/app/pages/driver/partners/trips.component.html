@@ -1,0 +1,116 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0 d-inline-block">Partners</h3>
+          <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '2'? 'Upcoming Trips': '' ">Upcoming Trips</h3>
+          <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '3'? 'Past Trips': ''  ">Past Trips</h3>
+          <span class="text-right p-2 ">
+            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" />
+          </span>
+          <!-- <span class="spnFilter"><span>From Date    <input id="fromDate" style="width: 15%;" type="date" class="form-control" /> </span>
+          <span>To Date    <input id="toDate" style="width: 15%;" type="date" class="form-control" /></span>
+            <button class="btn btn-secondary" (click)="submitDateFilter()">Submit</button>
+            </span> -->
+          <!--<span class="text-right p-2 ">
+            <span class="text-right p-2 ">
+              <input placeholder="From Date" class="form-control w-20 d-inline-block" type="text" data-date-format="MM/DD/YYYY"
+                [(ngModel)]="startDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
+                <input placeholder="From Date" class="form-control w-20 d-inline-block" type="text"
+                [value]="startDate | dateFilter:dateFormat" onblur="(this.type='text')" id="date" />
+                <owl-date-time #dt1></owl-date-time> 
+            </span>
+            <span class="text-right p-2 ">
+              <input placeholder="To Date" class="form-control w-20 d-inline-block" type="text" [disabled]="!startDate"
+                [(ngModel)]="endDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date1" />
+            </span>
+            <span class="text-right p-2 ">
+              <button class="btn btn-info" (click)="dateFilter()" [disabled]="!endDate" *ngIf="show">Submit</button>
+              <button class="btn btn-dark" (click)="CanceldateFilter()" *ngIf="hide">Cancel</button>
+            </span>
+          </span>-->
+
+          <span class="text-right p-2 expBtn">
+            <button class="btn btn-primary" (click)="exportTrips()">Export</button>
+          </span>
+
+        </div>
+        <div class="table-responsive" id = "main">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Organization Name</th>
+                <th scope="col">Contact Person</th>
+                <th scope="col" >Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Referral Code</th>
+                <th scope="col">Action</th>
+                <!--<th scope="col">Actual Amount <br><span class="d-block text-center">(&#x20A6;)</span></th>
+                <th scope="col">Trip Rounding Amount <br><span class="d-block text-center">(&#x20A6;)</span></th>                
+                <th scope="col">Vehicle Type</th>
+                <th scope="col">Trip Status</th>
+                <th scope="col">Payment Mode</th>
+                <th scope="col" *ngIf="pagePath === '1'">Past/<br>Upcoming</th>
+                <th scope="col">Action</th> -->               
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
+                <th scope="row">{{item.firstname | titlecase}}</th>
+                <td>{{item.lastname | titlecase}}</td>
+                <!--<td>{{item.trip_date | date:'MM/dd/yyyy'}}<br>{{item.trip_date | date:'HH:mm'}}</td>-->
+                <td>{{item.email}}</td>
+                <td>{{item.phone_no | titlecase}}</td>
+                <!--<td class="text-right">{{item.actual_amount | number:'1.2-2'}}</td>
+                <td class="text-right">{{item.trip_amount | number:'1.2-2'}}</td> -->               
+                <td>{{item.ref_code}}</td>
+                <td>
+                  <span class="p-1 mr-2" (click)="viewPartnerDetails(item.id)">
+                    <a class="dropdown-item1" style="color: #5e72e4; cursor: pointer;"><i
+                        class="fas fa-pencil-alt"></i></a>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <div class="card-footer pb-0 pt-3">
+            <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+          </div>
+          <!-- <nav aria-label="...">
+          <ul class="pagination justify-content-end mb-0">
+            <li class="page-item disabled">
+              <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                <i class="fas fa-angle-left"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="javascript:void(0)">1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="javascript:void(0)">
+                <i class="fas fa-angle-right"></i>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

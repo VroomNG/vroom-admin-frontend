@@ -1,0 +1,16 @@
+i.fa-cog.fas.set-cls {
+    color: #479cdb !important;
+    font-size: 35px !important;
+    position: relative;
+    top: 11px;
+    right: 14px;
+}
+.his_icon{
+    font-size: 23px;
+    position: relative;
+    right: 20px;
+}
+
+.redcolor{
+    color: red;
+}

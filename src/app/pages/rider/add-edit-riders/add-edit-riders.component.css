@@ -1,0 +1,18 @@
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+    border-color: #28094f !important;
+}
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #28094f !important;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #28094f !important;
+}
+
+a:not([href]):not([tabindex]) {
+    color: #fff;
+    text-decoration: none;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    color: #fff;
+}

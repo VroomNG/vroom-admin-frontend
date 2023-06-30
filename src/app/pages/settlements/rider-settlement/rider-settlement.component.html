@@ -1,0 +1,65 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0 d-inline-block">Rider Settlement Details</h3>
+          <span class="text-right p-2 ">
+            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" />
+          </span>
+          <span class="text-right p-2 expBtn">
+            <button class="btn btn-primary" (click)="exportRiderSettlement()">Export</button></span>
+        </div>
+
+
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Rider Name</th>
+                <th scope="col">Phone</th>
+                <!-- <th scope="col"><span class="text-center d-block">Wallet Balance</span> <br> <span
+                    class="text-center d-block"> (&#x20A6;)</span></th> -->
+                <th scope="col" class="text-center">View Transaction<br>Details</th>
+                <!-- <th scope="col" class="text-center">Add <br>Payment</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of (pageOfItems | search: FilterName)">
+                <th scope="row">{{item.firstname | titlecase}} {{item.lastname | titlecase}}</th>
+                <td>{{item.phone_no}}</td>
+                <!-- <td>{{item.amount}}</td> -->
+                <!-- <td class="text-right">{{item.amount | number :'1.2-2'}}</td> -->
+
+
+
+                <td class="text-center"> <a (click)="SinglRiderPayment(item.user_id,item.amount,item.firstname,item.lastname)"><i class="fas fa-clipboard-list"
+                      style="font-size: 28px;"></i></a></td>
+
+
+                <!-- <td class="text-center">              
+                  <div  class=" dropdown-menu-right dropdown-menu-arrow">
+                    <a class="dropdown-item" href="#/payment/add-payment">Edit</a>                   
+                  </div>               
+              </td> -->
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <div class="card-footer pb-0 pt-3">
+            <jw-pagination [items]="riderList  | search: FilterName" (changePage)="onChangePage($event)">
+            </jw-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

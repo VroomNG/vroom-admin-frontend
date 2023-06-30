@@ -1,0 +1,157 @@
+<!-- <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div> -->
+<!-- Page content -->
+<div class="container-fluid mt--7"> 
+    <div class="card-header">
+        <div class="col">
+          <h5 class="h3 mb-4 d-inline-block">Rider</h5>
+          <span class="d-inline-block ml-3">
+            <select id="riderRevenue" class="form-control w_135" (click)="selectedDropdownActiveRider($event)">
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              
+             <!-- <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option> -->
+            </select>
+          </span>
+          <span class="d-inline-block ml-3">
+            <select id="RiderRevFilter" class="form-control w_135" (click)="selectedDropdownRiderFilter($event)">
+              <option value="0">Select</option>
+              <option value="7">Last 7 days</option>
+              <option value="30">Last 30 days</option>
+              <option value="1">This Month</option>
+              <option value="2">Last 3 Month</option>
+            </select>
+          </span>
+          <span class="text-right p-2 expBtn">
+            <button class="btn btn-primary" (click)="exportRiders()">Export</button></span>
+        </div>
+        <ul class="nav justify-content-center">
+
+          <!-- <li class="nav-item px-3 text-center"  *ngFor="let item of tempArray2; let i of index">
+            <p class="mb-0 text-uppercase ">{{item.name}}</p>
+            <p class="btn btn_primary py-0 px-3 text-white font-weight-bold"  [ngStyle]="{'background-color': item.color}" >{{item.data}}</p>
+          </li> -->
+
+        </ul>
+      </div>
+      <!-- Card body -->
+      <div class="card-body">
+        <div class="chart">
+          <!-- Chart wrapper -->
+          <canvas id="Bar-ChartRiderreport" class="chart-canvas"></canvas>
+        </div>
+      </div>
+<!-- Table -->
+<div class="row listreport">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <h3 class="mb-0 d-inline-block">Rider</h3>
+        <span class="text-right p-2 ">
+          <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName" placeholder="search" /> 
+        </span>
+        <span class="spnFilter">Status 
+          <select id="selRiderFilter" class="form-control form-control-alternative drpFilter" (change)="riderFilter($event)">            
+          <option *ngFor="let level of riderFil" value="{{level.id}}">
+            {{level.value}}
+          </option>
+        </select>
+        <span style="margin-left: 25px;">Days <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span>
+        </span>
+      
+      </div>
+      <div class="table-responsive" >
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <!-- <th scope="col">Profile Status</th> -->
+              <th scope="col">Last Trip Date</th>
+              <!-- <th scope="col">Action</th> -->
+              <!-- <th scope="col">Block</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let item of (pageOfItems  | search: FilterName)">
+              <th scope="row">
+                {{item.firstname | titlecase}}
+              </th>
+              <td>
+                {{item.lastname | titlecase}}
+              </td>
+              <td>
+               
+                {{item.email}}
+                
+              </td>
+              <td>
+             {{item.phone_no}}
+              </td>
+             
+              <td>
+                {{item.last_trip_date | date:'mediumDate'}} 
+               </td>
+              <!-- <td class="text-center">               
+                    <a class="dropdown-item1" (click)="editRiders(item.id)" style="color: #5e72e4; cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
+                    
+              </td>
+              <td><input type="checkbox" id="chkBlock" (change)="setUserBlock($event,item.id)" [checked]="(item.isBlock === '1' ? true: false)"></td> -->
+            </tr>
+        
+          </tbody>
+        </table>
+      </div>
+     
+      <div class="card-footer py-4">
+        <div class="card-footer pb-0 pt-3">         
+          <jw-pagination [items]="ridersList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>       
+      </div>
+     
+    </div>
+  </div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Reason for Block</h4>
+      <button id="closeBtn" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body map-detail-pop-up">         
+        <div class="form-group">            
+          <div class="input-group">              
+            <input type="text" id="txtreason" class="form-control" (keyup)="clearError()"
+              placeholder="Block Reason" />    
+             
+            
+          </div>
+          <div *ngIf="errorMessage != ''" class="divclass">
+            <div class="help-block">
+              <div class="invalid-feedback">{{errorMessage}}</div>
+            </div>
+          </div>
+          <div class="input-group-append" style="float: right;">
+            <span class="text-right p-2">
+              <button id="btnReason" class="btn btn-primary" (click)="saveReason()">Save</button></span>
+          </div>
+        </div>         
+    </div>
+  
+  </ng-template>
+  <button id="btnModelPopup" [hidden]="true" class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+
+</div>
+   
+</div>
+  
+
+  
+
+

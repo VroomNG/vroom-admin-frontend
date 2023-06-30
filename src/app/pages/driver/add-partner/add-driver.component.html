@@ -1,0 +1,643 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <form [formGroup]="driverForm" *ngIf="isFormReady">
+    <div class="card bg-secondary shadow">
+      <div class="card-header bg-white border-0">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0" *ngIf="paramsval === undefined ">Add Partner</h3>
+            <h3 class="mb-0" *ngIf="paramsval === '1' ">Edit Approved Driver</h3>
+            <h3 class="mb-0" *ngIf="paramsval === '2' ">Edit Unapproved Driver</h3>
+            <h3 class="mb-0" *ngIf="paramsval === '3' ">Edit Reject Driver</h3>
+
+            <!-- <h3 class="mb-0" *ngIf="driverForm.status === '1'">Edit Approved Driver</h3> -->
+            <!-- <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '1'? 'Approved Drivers': '' ">Approved Drivers</h3>
+            <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '2'? 'Unapproved Drivers': '' ">Unapproved Drivers</h3>
+            <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '3'? 'Inactive Drivers': ''  ">Inactive Drivers</h3> -->
+          </div>
+          <!--<div class="col-4 text-right">
+            <img *ngIf="profile_url" src="{{siteURL}}/{{profile_url}}" class="rounded-circle" width="100" height="100" />
+            <img *ngIf="!profile_url" src="{{siteURL}}/upload/images/default.jpg" class="rounded-circle" width="100" height="100" />
+            <!-- <a href="#!" class="btn btn-sm btn-primary">Settings</a> --
+          </div>-->
+        </div>
+      </div>
+      <div class="card-body">
+
+        <!-- <h6 class="heading-small text-muted mb-4">User information</h6> -->
+        <div class="pl-lg-4">
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-firstname">Organization Name *</label>
+                <input type="text" id="input-firstname" class="form-control form-control-alternative"
+                  placeholder="Organization Name" formControlName="firstname" value="{{driverDetails.firstname | titlecase}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+                <!-- first name -->
+                <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                  <div *ngIf="f.firstname.errors?.required">Organization Name is required</div>
+                  <div *ngIf="f.firstname.errors.minlength">Organization Name should be min 3 chars</div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-lastname">Contact Person *</label>
+                <input type="text" id="input-lastname" class="form-control form-control-alternative"
+                  placeholder="Contact Person" formControlName="lastname" value="{{driverDetails.lastname | titlecase}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+                <!-- last name -->
+                <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastname.errors?.required">Contact person is required</div>
+                  <div *ngIf="f.lastname.errors.minlength">Contact person should be min 3 chars</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-city">City</label>
+                <input id="selCity" placeholder="City" autocorrect="off" autocapitalize="off" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+                spellcheck="off" type="text" class="form-control auto" #search
+                value="{{driverDetails.city}}">
+                <!-- <select id="selCity" class="form-control form-control-alternative"
+                  [ngClass]="{ 'is-invalid': submitted && f.city.errors }" formControlName="city" 
+                  required [(ngModel)]="driverDetails.city">
+                  <option selected disabled value="">Select a City</option>
+                  <option *ngFor="let level of cityList" value="{{level.value}}">
+                    {{level.name}}
+                  </option>
+                </select> -->
+                <!-- last name -->
+                <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                  <div *ngIf="f.city.errors?.required">City Name is required</div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-phone">Phone Number *</label>
+                <input type="text" id="input-phone" class="form-control form-control-alternative" placeholder="Phone"
+                  formControlName="phone_no" value="{{driverDetails.phone_no}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.phone_no.errors }" maxlength="13" minlength="11"
+                  onkeypress="return(event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" />
+                <!-- phone number -->
+                <div *ngIf="submitted && f.phone_no.errors" class="invalid-feedback">
+                  <div *ngIf="f.phone_no.errors.required">Phone Number is required</div>
+                  <div *ngIf="f.phone_no.errors.minlength">Phone Number should be min 11 digits</div>
+                  <div *ngIf="f.phone_no.errors.maxlength">Phone Number should be max 13 digits</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="row" [hidden]="true">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-Birth">Date Of Birth</label>
+                <input type="date" id="input-Birth" class="form-control form-control-alternative"
+                  placeholder="Select a Date">
+              </div>
+
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-Minimum">Upload Profile Image</label>
+                <form>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="Upload_Profile_Image" lang="en">
+                    <label class="custom-file-label" for="Upload_Profile_Image">Select file</label>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-Email">Email</label>
+                <input type="email" id="input-Email" [readonly]="(driverDetails.id == 0 ? false:true)"
+                  class="form-control form-control-alternative" placeholder="Email" formControlName="email"
+                  value="{{driverDetails.email}}" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <!-- email number -->
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+
+              </div>
+              <div class="form-group">
+                <label class="form-control-label" for="input-supervisor">Supervisor Reference</label>
+                <input type="text" id="input-supervisor" class="form-control form-control-alternative"
+                  placeholder="Supervisor" formControlName="supervisor" value="{{driverDetails.supervisor}}" [readonly]="(driverDetails.id == 0 ? false:true)" />
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-Password">Password *</label>
+                <input type="password" id="input-Password" [readonly]="(driverDetails.id == 0 ? false:true)"
+                  class="form-control form-control-alternative" placeholder="Password" formControlName="password"
+                  value="{{driverDetails.password}}" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <!-- password number -->
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors?.required">Password is required</div>
+                </div>
+
+              </div>
+              
+            </div>
+          </div>
+          <!--<div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-licence">Licence Number</label>
+                <input type="text" id="input-licence" class="form-control form-control-alternative"
+                  placeholder="Licence No" formControlName="licence_no" value="{{driverDetails.licence_no}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.licence_no.errors }" />
+                 licence number
+                <div *ngIf="submitted && f.licence_no.errors" class="invalid-feedback">
+                  <div *ngIf="f.licence_no.errors?.required">Licence Number is required</div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-lg-6">
+              <div class="col-lg-6 p-0">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-licence">Vehicle Type</label>
+
+                  <select id="selVehicleType" class="form-control form-control-alternative"
+                    [ngClass]="{ 'is-invalid': submitted && f.vehicle_type.errors }" formControlName="vehicle_type"
+                    required [(ngModel)]="driverDetails.vehicle_type_id">
+                    <option selected disabled value="">Select a Vehicle Type</option>
+                    <option *ngFor="let level of vehicletypeList" value="{{level.id}}">
+                      {{level.vehicle_type}}
+                    </option>
+                  </select>
+
+                  <select id="selVehicleType" [(ngModel)]="driverDetails.vehicle_type_id" class="form-control" formControlName="vehicle_type" (change)="driverDetails.vehicle_type">
+                    <option *ngFor="let level of vehicletypeList" value="{{level.vehicle_type}}">{{ level.vehicle_type }}</option>
+                </select>
+
+
+                  Vechicle type 
+                  <div *ngIf="submitted && f.vehicle_type.errors" class="invalid-feedback">
+                    <div *ngIf="f.vehicle_type.errors?.required">Vehicle Type is required</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>-->
+          <div class="row" [hidden]="true">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-country">Country</label>
+                <select class="form-control form-control-alternative">
+                  <option>Select a Country</option>
+                  <option>USA</option>
+                  <option>India</option>
+
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-state">State/Provinces</label>
+                <select class="form-control form-control-alternative">
+                  <option>Select a State / Provinces</option>
+                  <option>New York</option>
+                  <option>New Jessy</option>
+                  <option>Florida</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row" [hidden]="true">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-phone">Gender</label>
+                <div class="custom-control custom-control-alternative custom-radio mb-3">
+                  <input name="custom-radio-1" class="custom-control-input" id="customRadio1" type="radio">
+                  <label class="custom-control-label" for="customRadio1">Male</label>
+                </div>
+                <div class="custom-control custom-control-alternative custom-radio mb-3">
+                  <input name="custom-radio-1" class="custom-control-input" id="customRadio2" checked="" type="radio">
+                  <label class="custom-control-label" for="customRadio2">Female</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-NIC">National ID Card Number (NIC)</label>
+                <input type="type" id="input-NIC" class="form-control form-control-alternative"
+                  placeholder="NIC Number">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card bg-secondary shadow" style="margin-top:20px;">
+      <div class="card-header bg-white border-0">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0">Add Bank Details</h3>
+          </div>
+          <div class="col-4 text-right">
+            <!-- <a href="#!" class="btn btn-sm btn-primary">Settings</a> -->
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <!-- <h6 class="heading-small text-muted mb-4">User information</h6> -->
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-AccountName">Account Holder Name</label>
+                <input type="type" id="input-AccountName" class="form-control form-control-alternative"
+                  placeholder="Account Holder Name" formControlName="holder_name" value="{{driverDetails.holder_name}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.holder_name.errors }" />
+                <!-- Account Holder number -->
+                <div *ngIf="submitted && f.holder_name.errors" class="invalid-feedback">
+                  <div *ngIf="f.holder_name.errors?.required">Account Holder Name is required</div>
+                  <div *ngIf="f.holder_name.errors.minlength">Account Holder Name should be min 3 chars</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-AccountNumber">Account Number</label>
+                <input type="type" id="input-AccountNumber" class="form-control form-control-alternative"
+                  placeholder="Account Number" formControlName="account_number" value="{{driverDetails.account_number}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.account_number.errors }" />
+                <!-- Account number -->
+                <div *ngIf="submitted && f.account_number.errors" class="invalid-feedback">
+                  <div *ngIf="f.account_number.errors?.required">Account Number is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-bankName">Name of Bank</label>
+                <input type="type" id="input-bankName" class="form-control form-control-alternative"
+                  placeholder="Name of Bank" formControlName="bank_name" value="{{driverDetails.bank_name}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.bank_name.errors }" />
+                <!-- Name Of Bank -->
+                <div *ngIf="submitted && f.bank_name.errors" class="invalid-feedback">
+                  <div *ngIf="f.bank_name.errors?.required">Bank Name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-banklocation">Bank Location</label>
+                <input type="type" id="input-banklocation" class="form-control form-control-alternative"
+                  placeholder="Bank Location" formControlName="location" value="{{driverDetails.location}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.location.errors }" />
+                <!-- Bank Location -->
+                <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                  <div *ngIf="f.location.errors?.required">Bank Location is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-paymentemail">Payment Email</label>
+                <input type="type" id="input-paymentemail" class="form-control form-control-alternative"
+                  placeholder="Payment Email" formControlName="payment_email" value="{{driverDetails.payment_email}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.payment_email.errors }" />
+                <!-- Payment Email -->
+                <div *ngIf="submitted && f.payment_email.errors" class="invalid-feedback">
+                  <div *ngIf="f.payment_email.errors?.required">Email Payment is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-code">Bank Sort Code</label>
+                <input type="type" id="input-code" class="form-control form-control-alternative"
+                  placeholder="Bank Sort Code" formControlName="IFSC" value="{{driverDetails.IFSC}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.IFSC.errors }" />
+                <!-- IFSC Code -->
+                <div *ngIf="submitted && f.IFSC.errors" class="invalid-feedback">
+                  <div *ngIf="f.IFSC.errors?.required">Bank Sort code is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+           <div class="row">
+            <div class="col-lg-12 text-right">
+              <a class="btn btn-info" *ngIf="driverDetails.id == 0" (click)="addDriver()">Add</a>
+            <!-- <a (click)="approveDriver(driverDetails.id,2)" class="btn btn-info">Delete</a> -->
+            <a class="btn btn-info" *ngIf="driverDetails.id != 0" (click)="updateDriver(driverDetails.id)">Update</a>
+              <a (click)="driverForm.reset();cancel()" class="btn btn-dark" (click)="changetoView()">Cancel</a>
+
+            </div>
+          </div>
+          <!-- *ngIf="isBlock === '1'"      [style.display]="isBlock=='1'?'block':'none'"-->
+          <div class="row">
+            <div class="col-lg-6" [style.display]="paramsBlock=='1' || paramsval == '3'?'block':'none'">
+              <div class="form-group">
+                <label class="form-control-label" for="input-reason">Block Reason</label>
+                <!-- <input type="text" id="input-reason" [readonly]="true" class="form-control"
+                  value="{{block_reason}}" /> -->
+
+                  <input type="text" id="input-reason" class="form-control form-control-alternative"
+                  placeholder="Reason" [readonly]="true" formControlName="block_reason" value="{{block_reason}}"
+                  />
+
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+
+              <a href="#!" class="btn btn-info" [hidden]="true">Submit</a>
+
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="card bg-secondary shadow col-lg-6" style="margin-top:20px;" [hidden]="true">
+      <div class="card-header bg-white border-0">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0">Upload CSV File </h3>
+          </div>
+          <div class="col-4 text-right">
+            <!-- <a href="#!" class="btn btn-sm btn-primary">Settings</a> -->
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form>
+          <!-- <h6 class="heading-small text-muted mb-4">Night Hour 1</h6> -->
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <form>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="Select_file" lang="en">
+                      <label class="custom-file-label" for="Select_file">Select file</label>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="row">
+              <div class="col-lg-12">
+
+                <a href="#!" class="btn btn-info">Import</a>
+
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card bg-secondary shadow " style="margin-top:20px;" [hidden] = true>
+      <div class="card-header bg-white border-0">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <!--<h3 class="mb-0">Documents :</h3>-->
+          </div>
+          <div class="col-4 text-right">
+            <!-- <a href="#!" class="btn btn-sm btn-primary">Settings</a> -->
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <!-- <h6 class="heading-small text-muted mb-4">Night Hour 1</h6> -->
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-lg-6">
+              
+             <!--<label>Upload Licence :</label>
+              <div class="m-5 form-group">
+                <label class="edit-div">
+                  <!-- *ngIf="paramsval != 3 && paramsval != 2" -->
+                  <!--<input type="file" id="Ins-file" formControlName="licence_docu" (change)="onFileChange($event,1)" 
+                    accept=".png,jpeg,jpg,jif,svg" [ngClass]="{ 'is-invalid': submitted && f.licence_docu.errors }" />
+                  <img *ngIf="(filepath != undefined && filepath != '' ? filepath.length === 0? true: false:true)" class=" img-pointer" width="100" height="100"
+                    src="../../../../dist/assets/img/upload.png" />
+                  <img *ngIf="(filepath ? filepath.length > 0? true: false:false)" class="rounded border" src="{{siteURL}}/{{filepath}}"
+                    width="150" height="200" />
+                </label>
+                <div class="hide">
+                  <!-- *ngIf="paramsval != 3 && paramsval != 2" -->
+                  <!--<p class="m-0 font-weight-bold" id="spnFileName">Edit Licenece</p>
+                </div>
+
+                <div *ngIf="submitted && f.licence_docu.errors" class="invalid-feedback">
+                  <div *ngIf="f.licence_docu.errors?.required">Driving licence is required</div>
+                </div>
+                <!-- *ngIf="paramsval != 3 && paramsval != 2" -->
+                <!--<p style="margin-top:20px;"> <a (click)="uploadFileToActivity(driverDetails.id,'lic')"
+                    class="btn btn-orange">Upload</a>
+                </p>
+
+              </div>-->
+              <!--<label>Licence Documents :</label>-->
+              <!--<div class="m-5 form-group" >
+                <label class="edit-div">
+                  <!-- *ngIf="paramsval != 3 && paramsval != 2" -->
+                  <!--<input type="file" id="Ins-file" accept=".pdf,.doc,.docx,.png,jpg,.jpeg,.tiff" 
+                    formControlName="other_docu" (change)="onFileChange($event,2)"
+                    [ngClass]="{ 'is-invalid': submitted && f.other_docu.errors }" />
+                  <img *ngIf="(filepathother != undefined && filepathother != '' ? filepathother.length === 0? true: false:true)" class="img-pointer" width="100" height="100"
+                    src="../../../../dist/assets/img/upload.png" />
+                  <img *ngIf="(filepathother != undefined? filepathother.length > 0? true: false:false)" class="rounded border"
+                    src="{{siteURL}}/{{filepathother}}" width="150" height="200" />
+                </label>
+                <div class="hide">
+                  <!-- *ngIf="paramsval != 3 && paramsval != 2" -->
+                  <!--<p class="m-0 font-weight-bold" id="spnFileNameOth" >Edit Documents</p>
+                </div>
+
+                <div *ngIf="submitted && f.other_docu.errors" class="invalid-feedback">
+                  <div *ngIf="f.other_docu.errors?.required">Document is required</div>
+                </div>
+                <!-- *ngIf="paramsval != 3 && paramsval != 2" -->
+                <!--<p style="margin-top:20px;" ><a (click)="uploadFileToActivity(driverDetails.id,'oth')"
+                    class="btn btn-orange">Upload</a>
+                </p>
+              </div>-->
+            </div>
+            <div class="col-lg-6">
+
+
+              <!--<label>Upload Insurance :</label>{{filepathIns}}
+              <!--<div class="m-5 form-group">
+                <label class="edit-div">
+                  <!-- *ngIf="paramsval != 3 && paramsval != 2" -->
+                  <!--<input type="file" id="Ins-file" accept=".pdf,.doc,.docx,.png,jpg,.jpeg,.tiff" 
+                    formControlName="insurance_docu" (change)="onFileChange($event,0)"
+                    [ngClass]="{ 'is-invalid': submitted && f.insurance_docu.errors }" />
+                  <img *ngIf="(filepathIns != undefined && filepathIns != '' ? filepathIns.length === 0? true: false:true)" class="img-pointer" width="100" height="100"
+                    src="../../../../dist/assets/img/upload.png" />
+                  <img *ngIf="(filepathIns != undefined? filepathIns.length > 0? true: false:false)" class="rounded border"
+                    src="{{siteURL}}/{{filepathIns}}" width="150" height="200" />
+                </label>
+                <div class="hide">
+                  <!-- *ngIf="paramsval != 3 && paramsval != 2" -->
+                  <!--<p class="m-0 font-weight-bold" id="spnFileNameIns" >Edit Insurance</p>
+                </div>
+
+                <div *ngIf="submitted && f.insurance_docu.errors" class="invalid-feedback">
+                  <div *ngIf="f.insurance_docu.errors?.required">Insurance is required</div>
+                </div>
+                <!-- *ngIf="paramsval != 3 && paramsval != 2" -->
+               <!-- <p style="margin-top:20px;" ><a (click)="uploadFileToActivity(driverDetails.id,'ins')"
+                    class="btn btn-orange">Upload</a>
+                </p>
+              </div>-->
+<!--<label>Other Document:</label>
+<div class="m-5 form-group">
+  
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+         
+          <div class="col-md-2 productAddfromImages multUpld" *ngFor='let url of imageurls; let i = index'>
+            <span *ngIf="(filepathmulti != undefined && filepathmulti != '' ? filepathmulti.length === 0? true: false:true)">
+            <img class="img-fluid" [src]="url.base64String">           
+            <a (click)="removeImage(i)" class="btn btn-xs btn-danger">Remove </a></span>
+          </div>
+          
+          <div class="col-md-6 productAddfromImages multUpld" *ngFor='let url of filepathmulti; let i = index'>            
+            <span *ngIf="(filepathmulti != undefined? filepathmulti.length > 0? true: false:false)" >
+            <img class="rounded border"
+            src="{{siteURL}}/{{url}}" width="100" height="120" />
+            <a (click)="removeImage(i)" class="btn btn-xs btn-danger">Remove </a></span>
+          </div>
+
+        </div>
+      </div>
+      <div class="card main-title">
+        <div class="col-md-12">
+          <div class="form-group">
+            <br>
+            <label class="form-label">Add Images</label>
+            <input type="file"
+                   class="form-control"
+                   (change)="onSelectFile($event,3)"
+                   multiple accept="image/*" />
+                   <a (click)="uploadMultipleOtherD(driverDetails.id,'mul')"
+                    class="btn btn-orange">Upload</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</div>-->
+
+
+            </div>
+            <div class="col-lg-6 d-none">
+              <div class="form-group" [hidden]="true">
+
+                <label class="form-control-label" for="">Passing</label>
+                <p>Passing not found</p>
+                <p>Image</p>
+                <div class="custom-file">
+
+                  <input type="file" class="custom-file-input" id="Passing" lang="en"
+                    (change)="handleFileInput($event.target.files)">
+                  <label class="custom-file-label" for="Passing">Select file</label>
+                </div>
+                <p style="margin-top:20px;"><a href="#!" class="btn btn-info" [hidden]="true">Submit</a></p>
+
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="row">
+            <!--<div class="col-lg-12 text-right">
+              <!--<a class="btn btn-info" *ngIf="driverDetails.id == 0" (click)="addDriver()">Add</a>
+              <a (click)="approveDriver(driverDetails.id,1)" *ngIf="driverDetails.id != 0 && paramsval != 1"
+                class="btn btn-success">Approve</a>
+              <a (click)="approveDriver(driverDetails.id,2)" *ngIf="driverDetails.id != 3 && paramsval != undefined && paramsval != 3 && paramsval != 1 "
+                class="btn btn-danger">Reject</a>
+              <a (click)="approveDriver(driverDetails.id,5)" *ngIf="driverDetails.id != 0 && paramsval == 1"
+                class="btn btn-danger">Active/Inactive</a>
+
+              <a class="btn btn-info" *ngIf="driverDetails.id != 0" (click)="updateDriver(driverDetails.id)">Update</a>
+              <!-- <a (click)="approveDriver(driverDetails.id,2)" class="btn btn-info">Delete</a> 
+              <a (click)="driverForm.reset();cancel()" class="btn btn-dark" (click)="changetoView()">Cancel</a>--
+
+            </div>-->
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </form>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Reason for Block</h4>
+      <button id="closeBtn" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <!-- <button id="btnHideClose" [hidden]="true" ></button> -->
+    </div>
+    <div class="modal-body map-detail-pop-up">         
+        <div class="form-group">            
+          <div class="input-group">              
+            <input type="text" id="txtreason" class="form-control" (keyup)="clearError()"
+              placeholder="Block Reason" />    
+             
+            
+          </div>
+          <div *ngIf="errorMessage != ''" class="divclass">
+            <div class="help-block">
+              <div class="invalid-feedback">{{errorMessage}}</div>
+            </div>
+          </div>
+          <div class="input-group-append" style="float: right;">
+            <span class="text-right p-2">
+              <button id="btnReason" class="btn btn-primary" (click)="saveReason()">Save</button></span>
+          </div>
+        </div>         
+    </div>
+  
+  </ng-template>
+  <button id="btnModelPopup" [hidden]="true" class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+
+</div>

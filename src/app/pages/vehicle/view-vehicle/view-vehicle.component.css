@@ -1,0 +1,7 @@
+.card .table td, .card .table th {
+        white-space: normal;
+}
+
+.expBtn{
+        padding: 22px 0.5rem!important;
+}

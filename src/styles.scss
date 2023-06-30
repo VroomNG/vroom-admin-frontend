@@ -1,0 +1,112 @@
+// date and time picker
+
+
+/* You can add global styles to this file, and also import other style files */
+body{overflow-x: hidden;}
+
+.btn-dark{
+    background-color: #525252!important;
+    border-color: #525252!important;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.btn-orange{
+    background-color: #28094f !important;
+    border-color: #28094f !important;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+
+.bg-default {
+    background-color: #28094f  !important;
+}
+.fill-default {
+    fill: #28094f;
+}
+.btn-primary {
+    background-color: #28094f !important;
+    border-color: #6b40a2 !important}
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle,.btn-primary:hover {
+      background-color: #1fbffd !important;
+      border-color: #1fbffd !important;
+    }  
+.copyright a {color:#fff;}   
+.copyright a:hover{color: #219cdb;}
+.nav-link i.ni{ color: #219cdb !important;}
+
+.page-item.active .page-link {
+    background-color: #28094f !important;
+    border-color: #28094f !important;
+}
+.nav-item p{margin-bottom:0;}
+@media (min-width: 768px){
+.navbar-vertical.navbar-expand-md .navbar-nav .nav .nav-link {
+    padding-left: 2.5rem !important;
+}}
+
+.invalid-feedback {
+    display: inline-block !important;
+    color: red;
+  }
+  .nav-item p {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.pagination {
+    float:right;
+    flex-wrap: wrap;
+}
+.pagination .page-item.first-item .page-link,.pagination .page-item.previous-item .page-link,
+.pagination .page-item.next-item .page-link,.pagination .page-item.last-item .page-link {
+    color:transparent;
+    position: relative; 
+}
+.pagination .page-item.first-item .page-link::before, .pagination .page-item.first-item.disabled .page-link::before {
+    content: "«";
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: initial;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
+.pagination .page-item.last-item .page-link::before, .pagination .page-item.last-item.disabled .page-link::before {
+    content: "»";
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: initial;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
+.pagination .page-item.next-item .page-link::before, .pagination .page-item.next-item.disabled .page-link::before {
+    content: ">";
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: initial;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
+.pagination .page-item.previous-item .page-link::before, .pagination .page-item.previous-item.disabled .page-link::before {
+    content: "<";
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: initial;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
+.expBtn{
+    position: absolute;
+    top: 0;
+    right: 0;
+}

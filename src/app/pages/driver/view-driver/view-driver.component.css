@@ -1,0 +1,14 @@
+.drpFilter{
+    width: 10%;
+    display: inline-block;
+}
+.spnFilter{
+    margin-left: 90px;
+}
+.daysFil{
+    width: 8% !important;
+}
+
+.card-header {
+    padding: 3.25rem 1.5rem !important;
+}

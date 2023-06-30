@@ -1,0 +1,27 @@
+.drpFilter{
+    width: 10% !important;
+    display: inline-block;
+}
+.spnFilter{
+    margin-left: 90px;
+}
+.daysFil{
+    width: 8% !important;
+}
+.mt--7, .my--7 {
+    margin-top: -2rem !important;
+}
+.expbtnfixed{
+    position: initial !important;
+}
+
+
+@media (max-width: 768px){
+    .drpFilter[_ngcontent-qxf-c162] {
+        width: 29% !important;       
+        margin-left: 11px;
+    }
+    .spnFilter[_ngcontent-qxf-c162] {
+        margin-left: 26px !important;
+    }
+}

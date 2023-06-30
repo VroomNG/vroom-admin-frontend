@@ -1,0 +1,8 @@
+a:not([href]):not([tabindex]) {
+    color: #fff;
+    text-decoration: none;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    color: #fff;
+}

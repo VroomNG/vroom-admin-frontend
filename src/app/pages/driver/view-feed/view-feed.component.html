@@ -1,0 +1,53 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0 d-inline-block">Feeds</h3>
+          <span class="text-right p-2 ">
+            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" />
+          </span>
+         <span class="text-right p-2 expBtn">
+            <button class="btn btn-primary" (click)="exportTrips()">Export</button>
+          </span>
+
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col" >Content</th>
+                <th scope="col">Image Url</th>
+                <th scope="col">Publish Date</th>
+                             
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.title}}</td>
+                <!--<td>{{item.trip_date | date:'MM/dd/yyyy'}}<br>{{item.trip_date | date:'HH:mm'}}</td>-->
+                <td>{{item.content}}</td>
+                <td>{{item.imageurl}}</td>
+                <td>{{item.publishedOn | date }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <div class="card-footer pb-0 pt-3">
+            <jw-pagination [items]="feedList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>

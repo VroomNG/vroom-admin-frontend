@@ -1,0 +1,107 @@
+#map {
+  height: 100%;
+}
+
+* {
+  font-family: Lato;
+}
+
+a {
+  color: darkblue;
+}
+
+.btn-white{
+  font-family: 'Roboto';
+
+}
+
+.btn-white:hover{
+  background-color: #2fbcfa;
+  color: white;
+}
+
+.refresh_btn .btn{
+  position: absolute;
+  top: 34.8rem;
+  right: 4rem;
+  z-index: 100;
+ }
+
+.map-status {
+  list-style: none;
+  padding-left: 0;
+  margin: auto;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  }
+.map-status li {
+  display: inline-block;
+  padding: 2% 2%;
+  width: 100%;
+  font-family: Open Sans, sans-serif;
+  border: 2px solid #e9ecef;
+  height: 175px;
+  vertical-align: top;
+  max-width: 12.29rem;
+  }
+
+.map-status li a{
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  max-width: 10rem;
+  text-align: center;
+}
+
+.map-status li p strong{
+  font-family: Open Sans, sans-serif;
+  color: #32325d;
+  font-weight: 600;
+  font-size:13px;
+  }
+.map-status li p {margin-bottom: 0;}
+.active-status{
+  /*// padding: 37px 25px !important; */
+  vertical-align: top;
+  }
+.map-status li.green span,.map-status li.red span,.map-status li.yellow span,.map-status li.yellow-orange span,
+.map-status li.orange span,.map-status li.blue span {
+  color:#fff;
+  text-shadow: 2px 2px 4px #000000;
+  }
+.red { background: #ee9997;}
+.green { background: #9bee97;}
+.yellow{ background: #f3f38a;}
+.yellow-orange{ background: #efdb9e;}
+.orange{  background: #ecc58c;}
+.blue { background:#b4d5f1;}
+.map-status li.green p strong,.map-status li.red p strong,
+.map-status li.yellow p strong,.map-status li.orange p strong,
+.map-status li.yellow-orange p strong,.map-status li.blue p strong {color:#fff;
+  text-shadow: 2px 2px 4px #000000;
+  }
+
+.margin_size{
+  margin-top: 9rem;
+}
+
+
+.map-detail-pop-up .card .table td,.map-detail-pop-up  .card .table th {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+// @media only screen and (max-width: 991px) {
+//     .map-status li {
+//         max-width:33.33px;
+//         width: 100%;
+//     }
+// }
+
+// @media only screen and (max-width: 500px) {
+//     .map-status li {
+//         width:50%;
+//     }
+// }
+

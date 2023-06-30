@@ -1,0 +1,79 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<div class="container-fluid mt--7">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">Edit Surge Parameters</h3>
+                </div>
+                <div class="col-4 text-right">
+                    <!-- <a href="#!" class="btn btn-sm btn-primary">Settings</a> -->
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form >
+                <div class="pl-lg-4">
+                	<div class = "row">
+                		<div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-last-name" style="margin-right:25px;">Heat Map Radius(m)*</label>
+                               
+                                <input type="text" name = "hmr" class="form-control" (keyup)="chargeErrMsg()"
+                                    placeholder="Heat map radius"  [(ngModel)] = "radius" required [ngClass]="{ 'is-invalid': submitted && f.charge.errors }" />
+                                   <div *ngIf="submitted && f.charge.errors" class="invalid-feedback">
+                                    <div *ngIf="f.charge.errors?.required">Heat Map Radius is required</div>
+                                    <div *ngIf="f.charge.errors?.pattern">Invalid input</div>
+                                   
+                                </div>
+                                <div *ngIf="errorMessage != ''" class="divclass">
+                                    <div class="help-block">
+                                        <div class="invalid-feedback">{{errorMessage}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-last-name" style="margin-right:25px;">Heat Spot Visibility Threshold*</label>
+                               
+                                <input type="text" class="form-control" (keyup)="chargeErrMsg()" name = "hsvr"
+                                    placeholder="Heat Spot Visibility Threshold"  [(ngModel)] = "req_threshold"
+                                    required [ngClass]="{ 'is-invalid': submitted && f.charge.errors }" />
+                                   <div *ngIf="submitted && f.charge.errors" class="invalid-feedback">
+                                    <div *ngIf="f.charge.errors?.required">Visibility threshold is required</div>
+                                    <div *ngIf="f.charge.errors?.pattern">Invalid input</div>
+                                   
+                                </div>
+                                <div *ngIf="errorMessage != ''" class="divclass">
+                                    <div class="help-block">
+                                        <div class="invalid-feedback">{{errorMessage}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                	</div>
+                	 <div class="row">
+                        <div class="col-lg-12">
+                            
+                            <a class="btn btn-info text-white" (click) = "updateValues()">Update</a>
+                            <!--[[a class="btn btn-dark text-white" *ngIf="settingData.id == 0" (click)="surgeForm.reset()"
+                                (click)="changePathUrl()">Cancel</a-->
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
