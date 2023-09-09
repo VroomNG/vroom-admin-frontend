@@ -7,10 +7,9 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
@@ -50,7 +49,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
+              // "extractCss": true,
               "namedChunks": false,
               "aot": false,
               "extractLicenses": true,
@@ -136,10 +135,10 @@
       }
     }
   },
-  "defaultProject": "argon-dashboard-angular",
+  // "defaultProject": "argon-dashboard-angular",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "scss"
+      // "styleext": "scss"
     }
   },
   "cli": {
