@@ -10,8 +10,11 @@
         <div class="card-header border-0">
           <h3 class="mb-0 d-inline-block">Discount Code Use</h3>
          <span class="text-right p-2 ">
-            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+            <!-- <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" /> -->
+            <input type="search" class="form-control w-25 d-inline-block" 
               placeholder="search" />
+
           </span>
          
 
@@ -35,14 +38,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
-                <th scope="row">{{item.userid}}</th>
+              <!-- <tr *ngFor="let item of (selectedMembers  | search: FilterName)"> -->
+              <tr  *ngFor="let item of" > <th scope="row">{{item.userid}}</th>
                 <td>{{item.firstname}}</td>
-                
                 <td>{{item.lastname}}</td>
                 <td>{{item.discount_code}}</td>
                 <td>{{item.description}}</td>
-                <td>{{item.date_applied | date}}</td>
+                <!-- <td>{{item.date_applied | date}}</td> -->
                 <!--<td *ngIf  = "item.paid == 1"><button [disabled]="item.paid == 1 ? true : false" id="btnAdminPaid" class="btn btn-primary paidalgn" (click)="setPaid(item.id)">Paid</button></td>
                 <td *ngIf = "item.paid == 0"><button  id="btnAdminPaid" class="btn btn-primary paidalgn" (click)="setPaid(item.id)">Open</button></td>
                 <td *ngIf = "item.pay_date != 'Pending'">{{item.pay_date | date }}</td>
@@ -52,10 +54,9 @@
           </table>
         </div>
         <div class="card-footer py-4">
-          <div class="card-footer pb-0 pt-3">
+          <!-- <div class="card-footer pb-0 pt-3">
             <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
-          </div>
-          
+          </div> -->   
         </div>
       </div>
     </div>

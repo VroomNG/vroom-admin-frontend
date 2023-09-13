@@ -12,8 +12,9 @@
           <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '2'? 'Upcoming Trips': '' ">Upcoming Trips</h3>
           <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '3'? 'Past Trips': ''  ">Past Trips</h3>
           <span class="text-right p-2 ">
-            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
-              placeholder="search" />
+            <!-- <input type="search" class="form-control w-25 d-inline-block"
+             [(ngModel)]="FilterName"
+              placeholder="search" /> -->
           </span>
          
 
@@ -35,12 +36,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
+              <!-- <tr *ngFor="let item of (selectedMembers  | search: FilterName)"> -->
+              <tr *ngFor="let item">
                 <th scope="row">{{item.id}}</th>
                 <td>{{item.title}}</td>
                 <!--<td>{{item.trip_date | date:'MM/dd/yyyy'}}<br>{{item.trip_date | date:'HH:mm'}}</td>-->
                 <td>{{item.description}}</td>
-                <td>{{item.schedule_date | date }}</td>
+                <!-- <td>{{item.schedule_date | date }}</td> -->
                                
                 <td>{{item.target}}</td>
                 
@@ -50,7 +52,7 @@
         </div>
         <div class="card-footer py-4">
           <div class="card-footer pb-0 pt-3">
-            <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+            <!-- <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination> -->
           </div>
           
         </div>

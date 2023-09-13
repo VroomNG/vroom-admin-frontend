@@ -18,7 +18,7 @@ export class EditSettingsComponent implements OnInit {
   FilterName = '';
   token: any;
   surgechargeList = [];
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,8 +29,8 @@ export class EditSettingsComponent implements OnInit {
     private service1:exportService,
     private loginService: LoginService
   ) {
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -61,7 +61,7 @@ export class EditSettingsComponent implements OnInit {
   }
 
 
-  editSurcharge(id) {
+  editSurcharge(id:any) {
     debugger;
     if (id != undefined && id != 0){
       console.log(id)

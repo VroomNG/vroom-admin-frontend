@@ -13,14 +13,14 @@ import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng
   styleUrls: ['./driver-bank-transaction-detail.component.css']
 })
 export class DriverBankTransactionDetailComponent implements OnInit {
-  driverDetails: driverInfo;
+  driverDetails!: driverInfo;
   token: any;
   paramsval: any;
   paramsName: any;
   driverPaymentList: any;
   tripId: any;
   TotalDriverPay: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   errorMessage : any;
   closeResult = '';
   startDate:any;
@@ -39,8 +39,8 @@ export class DriverBankTransactionDetailComponent implements OnInit {
        // this.paramsName = params['name'];
       });
       console.log("this.paramsval==>", this.paramsval);
-      if (localStorage.token != "" || localStorage.token != undefined) {
-        this.token = localStorage.token;
+      if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+        this.token = localStorage['token'];
       }
       else
         this.route.navigate(['/login']);
@@ -76,7 +76,7 @@ export class DriverBankTransactionDetailComponent implements OnInit {
 
     this.pageOfItems = pageOfItems;
   }
-  tripType(val) {
+  tripType(val: number) {
     var ret = "";
     if (val == 1)
       ret = "Private";
@@ -90,7 +90,7 @@ export class DriverBankTransactionDetailComponent implements OnInit {
     var btnModelPopup = (<HTMLInputElement>document.getElementById("btnModelPopup"));
     btnModelPopup.click();
   }
-  open(content) {
+  open(content: any) {
     this.errorMessage = "";
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',

@@ -20,7 +20,7 @@ export class adminService {
 //     const params = serializer.serialize(paramSerializer);
 //     return this.http.post(this.config.newEntryUser + params, JSON.stringify(userInput), this.httpOptions);
 //   }
-getAdminList(inputParameter) {
+getAdminList(inputParameter: { [x: string]: any; token?: any; }) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -29,12 +29,12 @@ getAdminList(inputParameter) {
     return this.http.get(this.config.getAdminDetail + params, this.httpOptions);        
   }
 
-  getInformedUsers(id) {
+  getInformedUsers(id: string | number | null) {
     debugger;
     return this.http.get(this.config.getUserDetail+ '/' + id);          
   }
 
-  updateUser(inputParameter,id) {
+  updateUser(inputParameter: { firstname: any; lastname: any; email: any; city: string; phone_no: any; address: any; postal_code: any; about_me: any; profile_url: any; },id: string) {
     debugger;     
     return this.http.put(this.config.updateUserProfile + '/' + id , JSON.stringify(inputParameter), this.httpOptions);
    

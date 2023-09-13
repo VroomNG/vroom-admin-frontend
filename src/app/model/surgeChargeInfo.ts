@@ -1,7 +1,7 @@
 export class SettingInfo {
     
-    id: number;
-    charge: number;
+    id!: number;
+    charge!: number;
     endTime: any;
     fromDate: any;
     startTime: any;

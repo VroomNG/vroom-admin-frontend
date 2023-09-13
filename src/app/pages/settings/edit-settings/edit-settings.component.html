@@ -10,8 +10,8 @@
         <div class="card-header border-0">
           <h3 class="mb-0 d-inline-block">View Surge charge</h3>
           <span class="text-right p-2 ">
-            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
-              placeholder="search" />
+            <!-- <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" /> -->
           </span>
           <span class="text-right p-2 expBtn" [hidden]="true">
             <button class="btn btn-primary" (click)="exportSurCharge()">Export</button>
@@ -32,6 +32,7 @@
             </tr>
           </thead>
           <tbody>
+            <!-- <tr *ngFor="let item of (pageOfItems | search: FilterName)"> -->
             <tr *ngFor="let item of (pageOfItems | search: FilterName)">
               <th scope="row">
                 {{item.id}}
@@ -46,7 +47,7 @@
                 {{item.to_address}}
               </td>
               <td>
-                {{item.trip_start_time | date:'MM/dd/yyyy'}}
+                <!-- {{item.trip_start_time | date:'MM/dd/yyyy'}} -->
               </td>
               <td>
                 {{item.total_surge.toFixed(2)}}
@@ -67,8 +68,8 @@
         <!-- </div> -->
         <div class="card-footer py-4">
           <div class="card-footer pb-0 pt-3">
-            <jw-pagination [items]="surgechargeList  | search: FilterName" (changePage)="onChangePage($event)">
-            </jw-pagination>
+            <!-- <jw-pagination [items]="surgechargeList  | search: FilterName" (changePage)="onChangePage($event)">
+            </jw-pagination> -->
           </div>
 
         </div>

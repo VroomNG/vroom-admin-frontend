@@ -32,13 +32,13 @@ export class ReportComponent implements OnInit {
   ) {
 
 
-    history.pushState(null, null, window.location.href);
+    history.pushState(null, window.location.href);
     this.location.onPopState(() => {
-      history.pushState(null, null, window.location.href);
+      history.pushState(null, window.location.href);
     });
 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else {
       this.route.navigate(['/login']);

@@ -138,8 +138,8 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Total Trip Payment</h5>
-                  <span class="h2 font-weight-bold mb-0">&#x20A6;{{dashboardList.trip_payment | number:'1.2-2' }}</span>
-                </div>
+                  <!-- <span class="h2 font-weight-bold mb-0">&#x20A6;{{dashboardList.trip_payment | number:'1.2-2' }}</span>
+                </div> -->
                 <!-- <div class="col-auto">
                   <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
                     <i class="fas fa-chart-bar"></i>
@@ -163,8 +163,8 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Total Trip Commission</h5>
-                  <span class="h2 font-weight-bold mb-0"> &#x20A6;{{dashboardList.total_adminShared | number:'1.2-2'
-                    }}</span>
+                  <!-- <span class="h2 font-weight-bold mb-0"> &#x20A6;{{dashboardList.total_adminShared | number:'1.2-2'
+                    }}</span> -->
                 </div>
                 <!-- <div class="col-auto">
                   <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -189,8 +189,8 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Total Driver Earned</h5>
-                  <span class="h2 font-weight-bold mb-0">&#x20A6;{{dashboardList.total_driverShared |
-                    number:'1.2-2'}}</span>
+                  <!-- <span class="h2 font-weight-bold mb-0">&#x20A6;{{dashboardList.total_driverShared |
+                    number:'1.2-2'}}</span> -->
                 </div>
                 <!-- <div class="col-auto">
                   <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -228,19 +228,22 @@
               <ul class="nav nav-pills justify-content-end">
                 <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"
                   (click)="data=datasets[0];updateOptions()">
-                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}"
+                  <!-- <a href="javascript:void(0)" class="nav-link py-2 px-3" 
+                  [ngClass]="{'active':clicked===true}" -->
                     data-toggle="tab" (click)="clicked=true;clicked1=false">
                     <span class="d-none d-md-block">Month</span>
                     <span class="d-md-none">M</span>
                   </a>
                 </li>
                 <li class="nav-item" data-toggle="chart" data-target="#chart-sales"
-                  (click)="data=datasets[1];updateOptions()">
-                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}"
+                  
+                  >
+                  <!-- (click)="data=datasets[1];updateOptions()" -->
+                  <!-- <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}"
                     data-toggle="tab" (click)="clicked=false;clicked1=true">
                     <span class="d-none d-md-block">Week</span>
                     <span class="d-md-none">W</span>
-                  </a>
+                  </a> -->
                 </li>
               </ul>
             </div>

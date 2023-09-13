@@ -32,7 +32,7 @@ export class LoginService {
   // }
 
 
-  AuthorizeUser(userRequest) {
+  AuthorizeUser(userRequest: { email: any; password: any; }) {
     debugger;
     // var userInput = {
     //   userName: userRequest.userName,
@@ -55,7 +55,7 @@ export class LoginService {
   public get loggedIn(): boolean {
     return (localStorage.getItem('token') !== null);
   }
-  addInteraction(userid,op)
+  addInteraction(userid: string | null,op: string)
   {
     var userInput = {
       login:userid,

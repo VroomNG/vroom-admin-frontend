@@ -12,21 +12,21 @@
       	  		<div class = "form-group">
       	  			<h3 style = "margin-top:50px;">Title</h3>
             <div class="input-group">                            
-              <input type="text" id="txtTitle" class = "form-control title" 
-                placeholder="Title" [(ngModel)] = "title" required  #tit = "ngModel"/>
+              <!-- <input type="text" id="txtTitle" class = "form-control title" 
+                placeholder="Title" [(ngModel)] = "title" required  #tit = "ngModel"/> -->
             </div>
              <h3 style = "margin-top:50px">Content</h3>
             <div class="input-group">                          
                 
-                <textarea type="text" id="txtMessage" placeholder="Message" class="md-textarea form-control"  mdbInput style="height: 100px;"  [(ngModel)] = "content" required></textarea> 
+                <!-- <textarea type="text" id="txtMessage" placeholder="Message" class="md-textarea form-control"  mdbInput style="height: 100px;"  [(ngModel)] = "content" required></textarea>  -->
             </div>
             <h3 style = "margin-top:50px">Upload Image</h3>
             <form>
             <div class="input-group">                          
                 
                 <!--input type="text" id="txtImage" placeholder="Image Link" class="form-control" (keyup)="clearError2()"   [(ngModel)] = "imageurl" required /-->
-              <input type="file"  id="upload" lang="en"  accept=".png,.jpeg,.jpg,.gif,.svg"
-                    (change)="uploadImage($event.target.files)" name = "photo">
+              <!-- <input type="file"  id="upload" lang="en"  accept=".png,.jpeg,.jpg,.gif,.svg"
+                    (change)="uploadImage($event.target.files)" name = "photo"> -->
 
             </div>
           </form>
@@ -38,13 +38,12 @@
 
               <label>Check to expire message&nbsp;&nbsp;&nbsp;<input type="checkbox" (change) = "setExpires()"></label>
               <span style = "margin-left:40px">
-              <input placeholder=" Expiration Date" class="form-control d-inline-block" style = "width:85%"  type="text" data-date-format="MM/DD/YYYY" 
-                 onfocus="(this.type='datetime-local')" onblur="(this.type='text')" id="date" [(ngModel)] = "expiryDate" required #dt = "ngModel" /></span>
-            </div>
+              <!-- <input placeholder=" Expiration Date" class="form-control d-inline-block" style = "width:85%"  type="text" data-date-format="MM/DD/YYYY" 
+                 onfocus="(this.type='datetime-local')" onblur="(this.type='text')" id="date" [(ngModel)] = "expiryDate" required #dt = "ngModel" /></span> -->
+            <!-- </div> -->
             <div class = "input-group" style = "margin-top:50px">
             	<button class="btn btn-info" (click) = "send()">Send</button>
             </div>
-      	  		</div>
       	  	</div>
       	  </div>
          </div>

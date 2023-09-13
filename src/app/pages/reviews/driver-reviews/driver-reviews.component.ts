@@ -14,7 +14,7 @@ export class DriverReviewsComponent implements OnInit {
   token: any;
   driverList = [];
   driverStatus: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   constructor(
     private formBuilder: FormBuilder,
     // private toastr: ToastrService,    
@@ -23,8 +23,8 @@ export class DriverReviewsComponent implements OnInit {
     private service: driverService,
     private service1: exportService,private loginService: LoginService
   ) {
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -61,7 +61,7 @@ export class DriverReviewsComponent implements OnInit {
     })
   }
 
-  deleteDriverRating(id) {
+  deleteDriverRating(id:any) {
     debugger;
     if (id != undefined && id != 0) {
       const inputRequest = {

@@ -112,7 +112,9 @@
   <!-- map data -->
   <div>
     <ul class="map-status" *ngIf="isFormReady">
-      <li class="active-status green" (click)="onlineDrivers($event, 1, '1', 'driver')">
+      <li class="active-status green">
+      <!-- (click)="onlineDrivers(event, 1, '1', 'driver')" -->
+      
         <a class="btn">
           <!-- <div><img src="/dist/assets/img/online.png" style="width:45px;" /></div> -->
           <div><img src="/dist/assets/img/online.png" style="width:45px;" /></div>
@@ -120,7 +122,8 @@
           <span>{{driverData[0].online_drivers}}</span>
         </a>
       </li>
-      <li class="active-status red" (click)="onlineDrivers($event, 2, '0', 'driver')">
+      <li class="active-status red" >
+      <!-- (click)="onlineDrivers(event, 2, '0', 'driver')"> -->
         <a class="btn">
           <!-- <div> <img src="/dist/assets/img/offline.png" /></div> -->
           <div> <img src="/dist/assets/img/offline.png" /></div>
@@ -128,7 +131,8 @@
           <span>{{driverData[0].InTrip}}</span>
         </a>
       </li>
-      <li class="active-status yellow" (click)="onlineDrivers($event, 3, '1', 'trip')">
+      <li class="active-status yellow">
+       <!-- (click)="onlineDrivers(event, 3, '1', 'trip')"> -->
         <a class="btn">
 
           <!-- <div><img src="/dist/assets/img/Accepted.png" style="width:45px;" /></div> -->
@@ -153,7 +157,8 @@
           <span>{{driverData[0].Arrived}}</span>
         </a>
       </li> -->
-      <li i class="active-status blue" (click)="onlineDrivers($event, 6, '4', 'trip')">
+      <li i class="active-status blue">
+       <!-- (click)="onlineDrivers(event, 6, '4', 'trip')"> -->
         <a class="btn">
 
           <!-- <div><img src="/dist/assets/img/inactive.svg" style="width:45px;" /></div> -->
@@ -187,7 +192,7 @@
 
             <div class="card bg-secondary shadow">
               <div class="card-header bg-white border-0" style="padding-bottom:0;">
-                <h5>Your Trip : On {{item.trip_date | date: 'MM/dd/yyyy HH:mm'}}</h5>
+                <!-- <h5>Your Trip : On {{item.trip_date | date: 'MM/dd/yyyy HH:mm'}}</h5> -->
               </div>
               <div class="card-body" style="padding-top:0;">
                 <!-- <iframe

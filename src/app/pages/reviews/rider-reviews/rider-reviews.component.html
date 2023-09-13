@@ -10,7 +10,7 @@
       <div class="card-header border-0">
         <h3 class="mb-0 d-inline-block">Trip Reviews From Rider</h3>
         <span class="text-right p-2 ">
-          <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName" placeholder="search" /> 
+          <!-- <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName" placeholder="search" />  -->
         </span>
         <span class="text-right p-2 expBtn">
           <button class="btn btn-primary" (click)="exportRiderReview()">Export</button></span>
@@ -30,7 +30,7 @@
              </tr>
           </thead>
           <tbody>
-            <tr *ngFor = "let item of (pageOfItems | search: FilterName)">
+            <!-- <tr *ngFor = "let item of (pageOfItems | search: FilterName)">
               <th scope="row">VRM{{item.trip_id}}</th>
               <td> {{item.riderName | titlecase}}</td>
               <td>{{item.driverName | titlecase}}</td>
@@ -41,11 +41,9 @@
               <td class="text-left">
                <div  class="dropdown-menu-arrow">
                     <button class="btn btn-danger px-2 py-1" (click)="deleteRiderRating(item.id)">Delete</button>
-                    <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                    <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
                   </div>
              </td>
-            </tr>
+            </tr> -->
             <!-- <tr>
                 <th scope="row">1174</th>
                 <td>asiii</td>
@@ -91,7 +89,7 @@
       </div>
       <div class="card-footer py-4">
         <div class="card-footer pb-0 pt-3">         
-          <jw-pagination [items]="riderList | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+          <!-- <jw-pagination [items]="riderList | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination> -->
       </div>
         <!-- <nav aria-label="...">
           <ul class="pagination justify-content-end mb-0">

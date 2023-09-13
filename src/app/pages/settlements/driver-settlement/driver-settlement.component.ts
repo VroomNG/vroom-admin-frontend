@@ -18,7 +18,7 @@ export class DriverSettlementComponent implements OnInit {
   driverList = [];
   driverStatus: any;
   selectedArrayBts: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   errorMessage: any;
   closeResult = '';
   settlementList=[];
@@ -36,13 +36,13 @@ export class DriverSettlementComponent implements OnInit {
     private modalService: NgbModal,
     private loginService: LoginService
   ) {
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
       for(var j=1;j<=30;j++){
-        this.settingdays.push({"id":j, "value":j})
+        // this.settingdays.push({"id":j, "value":j})
       }
   }
 
@@ -83,7 +83,7 @@ export class DriverSettlementComponent implements OnInit {
   //       this.route.navigate(['settlements/driver-settlement/driver-wallet-details/' + id], { queryParams: { amount: amount, name: name, cash: cash } });
   //   }
   // }
-  viewDriverPayments(id,amount) {
+  viewDriverPayments(id: string | number | undefined,amount: any) {
     debugger;    
     if (id != undefined && id != 0) {     
         this.route.navigate(['settlements/driver-settlement/transaction-details-driver/' + id], { queryParams: { amount: amount} });
@@ -111,7 +111,7 @@ export class DriverSettlementComponent implements OnInit {
     var btnModelPopup = (<HTMLInputElement>document.getElementById("btnModelPopup"));
     btnModelPopup.click();
   }
-  open(content) {
+  open(content: any) {
     this.errorMessage = "";
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -143,8 +143,8 @@ export class DriverSettlementComponent implements OnInit {
     }
     else {
       this.selectedArrayBts = Array.from(paidStatusUpdt);
-      let tmparry = [];
-      this.selectedArrayBts.forEach(element => {
+      let tmparry: any[] = [];
+      this.selectedArrayBts.forEach((element: { checked: boolean; id: any; }) => {
         if (element.checked == true) {
           const fomValue = element.id;
           tmparry.push(fomValue);
@@ -166,7 +166,7 @@ export class DriverSettlementComponent implements OnInit {
     }
   }
  
-  openSettings(content) {
+  openSettings(content: any) {
     this.errorMessage = "";
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -196,7 +196,7 @@ export class DriverSettlementComponent implements OnInit {
     var settings = (<HTMLInputElement>document.getElementById("btnModelPopupSettings"));
     settings.click();
   }
-  saveSettings(event) {    
+  saveSettings(event: { target: any; }) {    
     debugger;
     var target = event.target;
     var id = target.id.split('_')[1];
@@ -229,7 +229,7 @@ export class DriverSettlementComponent implements OnInit {
     }
   }
 
-  viewCashSettHistory(id,amount) {
+  viewCashSettHistory(id: string | number | undefined,amount: any) {
     debugger;    
     if (id != undefined && id != 0) {     
         this.route.navigate(['settlements/driver-settlement/settlement-list-edit/' + id], { queryParams: { amount: amount} });

@@ -11,14 +11,14 @@ import { LoginService } from '../../../../service/login.service';
   styleUrls: ['./driver-wallet-details.component.css']
 })
 export class DriverWalletDetailsComponent implements OnInit {
-  driverDetails: driverInfo;
+  driverDetails!: driverInfo;
   token: any;
   paramsval: any;
   paramsName: any; paramsCash:any;
   driverPaymentList: any;
   tripId: any;
   TotalDriverPay: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   constructor(
     private service: passengerService,
     private route: Router,
@@ -34,8 +34,8 @@ export class DriverWalletDetailsComponent implements OnInit {
       // this.paramsCash = params['cash'];
     });
     console.log("this.paramsval==>", this.paramsval);
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -70,7 +70,7 @@ export class DriverWalletDetailsComponent implements OnInit {
     });
   }
 
-  UpdatePaidOrPennding(i) {
+  UpdatePaidOrPennding(i:any) {
     this.tripId = i.target.value;
     console.log("payment details --->", this.tripId);
     debugger;

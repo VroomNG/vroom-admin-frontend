@@ -9,13 +9,13 @@
     <div class="card shadow">
       <div class="card-header border-0">
         <h3 class="mb-0 d-inline-block">Vehicle Type</h3>
-        <span class="text-right p-2 ">
+        <!-- <span class="text-right p-2 ">
           <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName" placeholder="search" /> 
-        </span>
+        </span> -->
         <span style="margin-left: 16px;">
           <h4 class="mb-0 d-inline-block">Searchable Vehicle Radius</h4>
-          <input id="vehicleRadius" type="number" value="{{settlementList != undefined? settlementList.radius:0}}" class="form-control w-25 d-inline-block" placeholder="Radius" style="width: 10% !important; margin-left: 10px;text-align: center;" /> 
-          <button class="btn btn-primary" (click)="changeRadius(settlementList.id)" style="margin-left: 10px;">Change</button>
+          <!-- <input id="vehicleRadius" type="number" value="{{settlementList != undefined? settlementList:0}}" class="form-control w-25 d-inline-block" placeholder="Radius" style="width: 10% !important; margin-left: 10px;text-align: center;" /> 
+          <button class="btn btn-primary" (click)="changeRadius(settlementList.id)" style="margin-left: 10px;">Change</button> -->
         </span>
         <span class="text-right expBtn">
           <button class="btn btn-primary" (click)="exportVehicles()">Export</button></span>
@@ -51,14 +51,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor = "let item of pageOfItems | search: FilterName">
+            <!-- <tr *ngFor = "let item of pageOfItems | search: FilterName"> -->
                 <!-- <th scope="row"> <a  href="#/distancefareview/distancefareview"><i class="ni ni-fat-add"></i></a></th> -->
-              
-              <td>{{item.vehicle_type}}</td>
+              <tr>
+              <!-- <td>{{item.vehicle_type}}</td> -->
               <!-- <td>{{item.make}}</td>
               <td>{{item.model}}</td> -->
-              <td>{{item.trip_type}}</td>
-              <td class="text-right">{{item.per_km_rate | number:'1.2-2'}}</td>
+              <!-- <td>{{item.trip_type}}</td> -->
+
+              <!-- <td class="text-right">{{item.per_km_rate | number:'1.2-2'}}</td>
               <td class="text-right">{{item.minimum_fare | number:'1.2-2'}}</td>
               <td class="text-right">{{item.commission}}</td>
               <td>{{item.available_seat}}</td>
@@ -66,22 +67,23 @@
               <td class="text-right">{{item.base_fare | number:'1.2-2'}}</td>
               <td class="text-right">{{item.tolls_fees | number:'1.2-2'}}</td>
               <td class="text-right">{{item.per_minute_rate | number:'1.2-2'}}</td>
-              <td class="text-right">{{item.tax_percent}}</td>
+              <td class="text-right">{{item.tax_percent}}</td> -->
               
-              <td class="text-right">{{item.cancel_charge_driver | number:'1.2-2'}}</td>
+              <!-- <td class="text-right">{{item.cancel_charge_driver | number:'1.2-2'}}</td>
               <td class="text-right"> {{item.cancel_charge_rider | number:'1.2-2'}} </td>
               <td class="text-right">{{item.per_km_rate_share | number:'1.2-2'}}</td>
               <td class="text-right">{{item.per_minute_rate_share | number:'1.2-2'}}</td>
               <td class="text-right">{{item.minimum_fare_share | number:'1.2-2'}}</td>
-              <td class="text-right">{{item.base_fare_share | number:'1.2-2'}}</td>
+              <td class="text-right">{{item.base_fare_share | number:'1.2-2'}}</td> -->
               <!-- <td><img src="assets/img/car.png" style="width: 20px;" /></td> -->
+              
               <td class="text-center">
                 <!-- <div ngbDropdown placement="bottom-right">
                   <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
                     <i class="fas fa-ellipsis-v"></i>
                   </a> -->
                   <div  class=" dropdown-menu-right dropdown-menu-arrow">
-                    <a class="dropdown-item1" (click)="viewVehicleDetails(item.id)" style="color: #5e72e4; cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
+                    <!-- <a class="dropdown-item1" (click)="viewVehicleDetails(item.id)" style="color: #5e72e4; cursor: pointer;"><i class="fas fa-pencil-alt"></i></a> -->
                     <!-- <a class="dropdown-item" href="javascript:void(0)">Another action</a>
                     <a class="dropdown-item" href="javascript:void(0)">Something else here</a> -->
                   </div>
@@ -184,9 +186,10 @@
         </table>
       </div>
       <div class="card-footer py-4">
-        <div class="card-footer pb-0 pt-3">         
-          <jw-pagination [items]="vehicleList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
-      </div>
+        <!-- <div class="card-footer pb-0 pt-3">         
+          <jw-pagination [items]="vehicleList  | search: FilterName" 
+          (changePage)="onChangePage(event)"></jw-pagination>
+      </div> -->
         <!-- <nav aria-label="...">
           <ul class="pagination justify-content-end mb-0">
             <li class="page-item disabled">

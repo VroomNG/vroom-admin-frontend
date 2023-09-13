@@ -63,7 +63,7 @@ import { SettlementListEditComponent } from '../../pages/settlements/driver-sett
 import {WithdrawListviewComponent} from '../../pages/settlements/driver-settlement/withdraw-listview/withdraw-listview.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { JwPaginationComponent } from 'jw-angular-pagination';
+// import { JwPaginationComponent } from 'jw-angular-pagination';
 import { ToastrModule } from 'ngx-toastr';
 import { SearchPipe } from '../../pipe_filter/search.pipe';
 import { TrustUrlPipe } from '../../pipe_filter/trusturl';
@@ -96,7 +96,7 @@ import { AuthGuard } from '../../helpers/auth.guard';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule,
+    // ClipboardModule,
     //NgScrollbarModule,
     //PerfectScrollbarModule,
     ReactiveFormsModule
@@ -142,7 +142,7 @@ import { AuthGuard } from '../../helpers/auth.guard';
     DriverWalletDetailsComponent,
     DriverBankTransactionComponent,
     DriverBankTransactionDetailComponent,
-    JwPaginationComponent,
+    // JwPaginationComponent,
     SearchPipe,
     TrustUrlPipe,
     ReportComponent,
@@ -150,7 +150,7 @@ import { AuthGuard } from '../../helpers/auth.guard';
     EditSettingsComponent,
     AddDiscountComponent,
     EditDiscountComponent,
-    ReportListComponent,
+    // ReportListComponent,
     ReportTripsComponent,
     ReportDriverComponent,
     ReportRidersComponent,

@@ -16,7 +16,7 @@ export class DriverBankTransactionComponent implements OnInit {
   token: any;
   driverList = [];
   tripStatusId: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
@@ -24,8 +24,8 @@ export class DriverBankTransactionComponent implements OnInit {
     private service: passengerService,
     private service1: exportService
   ) { 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -66,13 +66,13 @@ export class DriverBankTransactionComponent implements OnInit {
 this.service1.exportExcel(this.driverList, 'driverBankSettlement');    
        
   }
-  viewWithdrawReq(id,amount) {
+  viewWithdrawReq(id: string | number | undefined,amount: any) {
     debugger;    
     if (id != undefined && id != 0) {     
         this.route.navigate(['settlements/driver-settlement/driver-bank-transaction-detail/' + id], { queryParams: { amount: amount} });
     }
   }
-  viewWithdrawHistory(id,amount) {
+  viewWithdrawHistory(id: string | number | undefined,amount: any) {
     debugger;    
     if (id != undefined && id != 0) {     
         this.route.navigate(['settlements/driver-settlement/driver-wallet-details/' + id], { queryParams: { amount: amount} });

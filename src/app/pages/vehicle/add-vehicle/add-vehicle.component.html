@@ -3,13 +3,14 @@
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--7">
-  <form [formGroup]="vehicleForm" *ngIf="isFormReady">
+  <!-- <form [formGroup]="vehicleForm" *ngIf="isFormReady"> -->
+  <form>
     <div class="card bg-secondary shadow">
       <div class="card-header bg-white border-0">
         <div class="row align-items-center">
           <div class="col-8">
             <!-- <h3 class="mb-0">Edit Vehicle and Fare Details</h3> -->
-            <h3 class="mb-0" *ngIf="vehicleDetails.id === 0 ">Add Vehicle and Fare Details</h3>
+            <!-- <h3 class="mb-0" *ngIf="vehicleDetails.id === 0 ">Add Vehicle and Fare Details</h3> -->
             <h3 class="mb-0" *ngIf="vehicleDetails.id != 0">Edit Vehicle and Fare Details</h3>
 
           </div>
@@ -28,13 +29,13 @@
               <div class="form-group">
                 <label class="form-control-label" for="input-Vehicle-name">Vehicle Type *</label>
               
-                <select id="input-Vehicle-name" class="form-control form-control-alternative" formControlName="type"
+                <!-- <select id="input-Vehicle-name" class="form-control form-control-alternative" formControlName="type"
                 (change)="selectedEvent($event)"  
                 [ngClass]="{ 'is-invalid': submitted && f.type.errors }" >
                 <option disabled selected value="">Select a Vehicle Type</option>
                 <option *ngFor="let level of vehicleCategory" 
                     value="{{level.value}}">{{level.name}}</option>
-            </select>
+            </select> -->
 
 
                 <!-- <input type="text" id="input-Vehicle-name" class="form-control form-control-alternative"
@@ -49,10 +50,10 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-Minimum">Minimum Fare *</label>
-                <input type="number" id="input-Minimum" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-Minimum" class="form-control form-control-alternative"
                   placeholder="Minimum Fare" formControlName="minimum_fare" value="{{vehicleDetails.minimum_fare}}"
                   [ngClass]="{ 'is-invalid': submitted && f.type.errors }" min="0"
-                  oninput="this.value = Math.abs(this.value)" />
+                  oninput="this.value = Math.abs(this.value)" /> -->
                 <!-- Min fare -->
                 <div *ngIf="submitted && f.minimum_fare.errors" class="invalid-feedback">
                   <div *ngIf="f.minimum_fare.errors?.required">Minimum Fare is required</div>
@@ -65,13 +66,13 @@
               <div class="form-group">
                 <label class="form-control-label" for="input-Vehicle-make">Vehicle Make *</label>
               
-                <select id="input-Vehicle-make" class="form-control form-control-alternative" formControlName="make"
+                <!-- <select id="input-Vehicle-make" class="form-control form-control-alternative" formControlName="make"
                 (change)="selectedModel($event)"  [(ngModel)]="vehicleDetails.make"
                 [ngClass]="{ 'is-invalid': submitted && f.make.errors }" >
                 <option disabled selected value="">Select a Vehicle Make</option>
                 <option *ngFor="let level of vehicleMake"                    
                     value="{{level.value}}">{{level.name}}</option>
-            </select>
+            </select> -->
 
           
                 <div *ngIf="submitted && f.make.errors" class="invalid-feedback">
@@ -83,13 +84,14 @@
               <div class="form-group">
                 <label class="form-control-label" for="input-Vehicle-model">Vehicle Model *</label>
               
-                <select id="input-Vehicle-model" class="form-control form-control-alternative" formControlName="model"
+                <!-- <select id="input-Vehicle-model" class="form-control form-control-alternative" formControlName="model"
                   [(ngModel)]="vehicleDetails.model"
                 [ngClass]="{ 'is-invalid': submitted && f.model.errors }" >
                 <option disabled selected value="">Select a Vehicle Model</option>
-                <option *ngFor="let level of vehicleModelChange" name="{{level.name}}"                   
-                    value="{{level.value}}">{{level.value}}</option>
-            </select>
+                <option *ngFor="let level of vehicleModelChange" name=[level.name]                   
+                    value="{{level.value}}">{{level.value}}
+                </option>
+            </select> -->
 
           
                 <div *ngIf="submitted && f.model.errors" class="invalid-feedback">
@@ -103,13 +105,13 @@
               <div class="form-group">
                 <label class="form-control-label" for="input-email">Trip Type *</label>
 
-                <select id="selTripType" class="form-control form-control-alternative"
+                <!-- <select id="selTripType" class="form-control form-control-alternative"
                   [ngClass]="{ 'is-invalid': submitted && f.trip_type.errors }" formControlName="trip_type"
                   [(ngModel)]="vehicleDetails.trip_type">
                   <option disabled selected value="">Select a Trip type</option>
                   <option *ngFor="let level of tripType" value="{{level.value}}">
                     {{level.name}}</option>
-                </select>
+                </select> -->
 
                 <!-- Trip Type -->
                 <div *ngIf="submitted && f.trip_type.errors" class="invalid-feedback">
@@ -120,10 +122,10 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-Commission">Commission (%) *</label>
-                <input type="number" id="input-Commission" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-Commission" class="form-control form-control-alternative"
                   placeholder="Commission %" formControlName="commission" value="{{vehicleDetails.commission}}"
                   [ngClass]="{ 'is-invalid': submitted && f.commission.errors }" min="0"
-                  oninput="this.value = Math.abs(this.value)" />
+                  oninput="this.value = Math.abs(this.value)" /> -->
                 <!-- Commission-->
                 <div *ngIf="submitted && f.commission.errors" class="invalid-feedback">
                   <div *ngIf="f.commission.errors?.required">Commission is required</div>
@@ -152,10 +154,10 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-Per-KM-Rate">Per KM Rate *</label>
-                <input type="number" id="input-Per-KM-Rate" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-Per-KM-Rate" class="form-control form-control-alternative"
                   placeholder="Per KM Rate" formControlName="per_km_rate" value="{{vehicleDetails.per_km_rate}}"
                   [ngClass]="{ 'is-invalid': submitted && f.per_km_rate.errors }" min="0"
-                  oninput="this.value = Math.abs(this.value)" />
+                  oninput="this.value = Math.abs(this.value)" /> -->
                 <!-- Per KM Rate -->
                 <div *ngIf="submitted && f.per_km_rate.errors" class="invalid-feedback">
                   <div *ngIf="f.per_km_rate.errors?.required">Per KM Rate is required</div>
@@ -178,13 +180,13 @@
 
 
 
-                <select id="vehicleAvai" class="form-control form-control-alternative"
+                <!-- <select id="vehicleAvai" class="form-control form-control-alternative"
                   [ngClass]="{ 'is-invalid': submitted && f.isactive.errors }" formControlName="isactive"
                   [(ngModel)]="vehicleDetails.isactive">
                   <option disabled selected value="">Please Select Vehicle is Available / Not</option>
                   <option *ngFor="let level of vechicleActive" value="{{level.value}}">
                     {{level.name}}</option>
-                </select>
+                </select> -->
 
 
                 <!-- <option value="1">Yes</option>
@@ -221,11 +223,11 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-Minute">Rate Per Minute *</label>
-                <input type="number" id="input-Minute" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-Minute" class="form-control form-control-alternative"
                   placeholder="Per Time Fare" formControlName="per_minute_rate"
                   value="{{vehicleDetails.per_minute_rate}}"
-                  [ngClass]="{ 'is-invalid': submitted && f.per_minute_rate.errors }" min="0"
-                  oninput="this.value = Math.abs(this.value)" />
+                  [ngClass.ngClass]="{ 'is-invalid': submitted && f.per_minute_rate.errors }" min="0"
+                  oninput="this.value = Math.abs(this.value)" /> -->
                 <div *ngIf="submitted && f.per_minute_rate.errors" class="invalid-feedback">
                   <div *ngIf="f.per_minute_rate.errors?.required">Rate per Minute is required</div>
                 </div>
@@ -248,10 +250,10 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-Minute">Base Fare *</label>
-                <input type="number" id="input-Minute" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-Minute" class="form-control form-control-alternative"
                   placeholder="Base Fare" formControlName="base_fare" value="{{vehicleDetails.base_fare}}"
                   [ngClass]="{ 'is-invalid': submitted && f.base_fare.errors }" min="0"
-                  oninput="this.value = Math.abs(this.value)" />
+                  oninput="this.value = Math.abs(this.value)" /> -->
                 <div *ngIf="submitted && f.base_fare.errors" class="invalid-feedback">
                   <div *ngIf="f.base_fare.errors?.required">Base Fare is required</div>
                 </div>
@@ -275,10 +277,10 @@
               <div class="form-group">
                 <label class="form-control-label" for="input-email">Lagos Road Development Fund Levy</label>
                
-                <input type="number" id="input-tax_percent" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-tax_percent" class="form-control form-control-alternative"
                 placeholder="Lagos Road Development Fund Levy" formControlName="tax_percent" value="{{vehicleDetails.tax_percent}}"
                 [ngClass]="{ 'is-invalid': submitted && f.tax_percent.errors }" min="0"
-                oninput="this.value = Math.abs(this.value)" />
+                oninput="this.value = Math.abs(this.value)" /> -->
                                 
                 <div *ngIf="submitted && f.tax_percent.errors" class="invalid-feedback">
                   <div *ngIf="f.tax_percent.errors?.required">Lagos Road Development Fund Levy is required</div>
@@ -289,10 +291,10 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-Minute">Toll Fees *</label>
-                <input type="number" id="input-Minute" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-Minute" class="form-control form-control-alternative"
                   placeholder="Toll Fees" formControlName="tolls_fees" value="{{vehicleDetails.tolls_fees}}"
                   [ngClass]="{ 'is-invalid': submitted && f.tolls_fees.errors }" min="0"
-                  oninput="this.value = Math.abs(this.value)" />
+                  oninput="this.value = Math.abs(this.value)" /> -->
                 <div *ngIf="submitted && f.tolls_fees.errors" class="invalid-feedback">
                   <div *ngIf="f.tolls_fees.errors?.required">Toll Fees is required</div>
                 </div>
@@ -311,10 +313,10 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-Per-KM-Rate">Available Seats/Person capacity *</label>
-                <input type="number" id="input-capacity-Rate" class="form-control form-control-alternative" min="0"
+                <!-- <input type="number" id="input-capacity-Rate" class="form-control form-control-alternative" min="0"
                   formControlName="available_seat" value="{{vehicleDetails.available_seat}}"
                   placeholder="Total of Available Seats"
-                  [ngClass]="{ 'is-invalid': submitted && f.available_seat.errors }">
+                  [ngClass]="{ 'is-invalid': submitted && f.available_seat.errors }"> -->
                 <!-- Available Seats -->
                 <div *ngIf="submitted && f.available_seat.errors" class="invalid-feedback">
                   <div *ngIf="f.available_seat.errors?.required">Available Seats is required</div>
@@ -325,9 +327,9 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-email">Description</label>
-                <textarea class="form-control form-control-alternative" rows="2" placeholder="Description"
+                <!-- <textarea class="form-control form-control-alternative" rows="2" placeholder="Description"
                   formControlName="description" value="{{vehicleDetails.description}}"
-                  [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+                  [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea> -->
                 <!-- Description -->
                 <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                   <div *ngIf="f.description.errors?.required">Description is required</div>
@@ -339,13 +341,13 @@
               <div class="form-group">
                 <label class="form-control-label" for="input-Vehicle-year">Vehicle Year *</label>
                 
-                <select id="input-Vehicle-year" class="form-control form-control-alternative" formControlName="year"
+                <!-- <select id="input-Vehicle-year" class="form-control form-control-alternative" formControlName="year"
                 [(ngModel)]="vehicleDetails.year"
                 [ngClass]="{ 'is-invalid': submitted && f.year.errors }" >
                 <option disabled selected value="">Select a Vehicle Year</option>
                 <option *ngFor="let level of vehicleYear"                    
                     value="{{level.value}}">{{level.name}}</option>
-            </select>
+            </select> -->
                 <!-- Available Seats -->
                 <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
                   <div *ngIf="f.year.errors?.required">Vechile Year is required</div>
@@ -355,10 +357,10 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-Per-KM-Rate-share">(share) Per KM Rate *</label>
-                <input type="number" id="input-Per-KM-Rate-share" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-Per-KM-Rate-share" class="form-control form-control-alternative"
                   placeholder="(share) Per KM Rate" formControlName="per_km_rate_share" value="{{vehicleDetails.per_km_rate_share}}"
                   [ngClass]="{ 'is-invalid': submitted && f.per_km_rate_share.errors }" min="0"
-                  oninput="this.value = Math.abs(this.value)" />
+                  oninput="this.value = Math.abs(this.value)" /> -->
                 <!-- Per KM Rate -->
                 <div *ngIf="submitted && f.per_km_rate_share.errors" class="invalid-feedback">
                   <div *ngIf="f.per_km_rate_share.errors?.required">(share) Per KM Rate is required</div>
@@ -370,10 +372,10 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label" for="input-Per-Minute-Rate-share">(share) Per Minute Rate *</label>
-                  <input type="number" id="input-Per-Minute-Rate-share" class="form-control form-control-alternative"
+                  <!-- <input type="number" id="input-Per-Minute-Rate-share" class="form-control form-control-alternative"
                     placeholder="(share) Per Minute Rate" formControlName="per_minute_rate_share" value="{{vehicleDetails.per_minute_rate_share}}"
                     [ngClass]="{ 'is-invalid': submitted && f.per_minute_rate_share.errors }" min="0"
-                    oninput="this.value = Math.abs(this.value)" />
+                    oninput="this.value = Math.abs(this.value)" /> -->
                   <!-- Per KM Rate -->
                   <div *ngIf="submitted && f.per_minute_rate_share.errors" class="invalid-feedback">
                     <div *ngIf="f.per_minute_rate_share.errors?.required">(share) Per Minute Rate is required</div>
@@ -384,10 +386,10 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label" for="input-Minimum-Fare-share">(share) Minimum Fare *</label>
-                  <input type="number" id="input-Minimum-Fare-share" class="form-control form-control-alternative"
+                  <!-- <input type="number" id="input-Minimum-Fare-share" class="form-control form-control-alternative"
                     placeholder="(share) Minimum Fare" formControlName="minimum_fare_share" value="{{vehicleDetails.minimum_fare_share}}"
                     [ngClass]="{ 'is-invalid': submitted && f.minimum_fare_share.errors }" min="0"
-                    oninput="this.value = Math.abs(this.value)" />
+                    oninput="this.value = Math.abs(this.value)" /> -->
                   <!-- Per KM Rate -->
                   <div *ngIf="submitted && f.minimum_fare_share.errors" class="invalid-feedback">
                     <div *ngIf="f.minimum_fare_share.errors?.required">(share) Minimum Fare is required</div>
@@ -399,10 +401,10 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label" for="input-Base-Fare-share">(share) Base Fare *</label>
-                  <input type="number" id="input-Base-Fare-share" class="form-control form-control-alternative"
+                  <!-- <input type="number" id="input-Base-Fare-share" class="form-control form-control-alternative"
                     placeholder="(share) Base Fare" formControlName="base_fare_share" value="{{vehicleDetails.base_fare_share}}"
                     [ngClass]="{ 'is-invalid': submitted && f.base_fare_share.errors }" min="0"
-                    oninput="this.value = Math.abs(this.value)" />
+                    oninput="this.value = Math.abs(this.value)" /> -->
                   <!-- Per KM Rate -->
                   <div *ngIf="submitted && f.base_fare_share.errors" class="invalid-feedback">
                     <div *ngIf="f.base_fare_share.errors?.required">(share) Base Fare is required</div>
@@ -421,13 +423,13 @@
               <div class="form-group">
                 <label class="form-control-label" for="input-toggle-flat">Toggle Flat Rate Fee </label>
               
-                <select id="input-toggle-flat" class="form-control form-control-alternative" formControlName = "toggleFlatRate"
+                <!-- <select id="input-toggle-flat" class="form-control form-control-alternative" formControlName = "toggleFlatRate"
                 (change)="selectedSwitchState($event)"  
                 [ngClass]="{ 'is-invalid': submitted && f.type.errors }" >
                 <option disabled selected value="">Select</option>
                 <option value = "0" [selected] = "vehicleDetails.promo_status == 0">Off</option>
                 <option value = "1" [selected] = "vehicleDetails.promo_status == 1">On</option>
-            </select>
+            </select> -->
 
 
                 <!-- <input type="text" id="input-Vehicle-name" class="form-control form-control-alternative"
@@ -442,10 +444,10 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-flat-rate">Flat Rate </label>
-                <input type="number" id="input-flat-rate" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-flat-rate" class="form-control form-control-alternative"
                   placeholder="Flat Rate" formControlName="flatRate" value="{{vehicleDetails.promo_amount}}"
                   [ngClass]="{ 'is-invalid': submitted && f.type.errors }" min="0"
-                  oninput="this.value = Math.abs(this.value)" />
+                  oninput="this.value = Math.abs(this.value)" /> -->
                 <!-- Min fare 
                 <div *ngIf="submitted && f.minimum_fare.errors" class="invalid-feedback">
                   <div *ngIf="f.minimum_fare.errors?.required">Flat Rate is required</div>
@@ -525,11 +527,11 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-Cancellation-Rider">Cancellation Charge for Rider</label>
-                <input type="number" id="input-Cancellation-Rider" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-Cancellation-Rider" class="form-control form-control-alternative"
                   formControlName="cancel_charge_rider" value="{{vehicleDetails.cancel_charge_rider }}"
                   placeholder="Cancellation Charge for Rider"
                   [ngClass]="{ 'is-invalid': submitted && f.cancel_charge_rider.errors }" min="0"
-                  oninput="this.value = Math.abs(this.value)" />
+                  oninput="this.value = Math.abs(this.value)" /> -->
                 <!-- Cancellation charge for riders -->
                 <div *ngIf="submitted && f.cancel_charge_rider.errors" class="invalid-feedback">
                   <div *ngIf="f.cancel_charge_rider.errors?.required">Rider Cancellation Charge is required</div>
@@ -539,11 +541,11 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-Cancellation-driver">Cancellation Charge for Driver</label>
-                <input type="number" id="input-Cancellation-driver" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-Cancellation-driver" class="form-control form-control-alternative"
                   formControlName="cancel_charge_driver" value="{{vehicleDetails.cancel_charge_driver}}"
                   placeholder="Cancellation Charge for Driver"
                   [ngClass]="{ 'is-invalid': submitted && f.cancel_charge_driver.errors }" min="0"
-                  oninput="this.value = Math.abs(this.value)" />
+                  oninput="this.value = Math.abs(this.value)" /> -->
                 <!-- Cancellation charge for Drivers -->
                 <div *ngIf="submitted && f.cancel_charge_driver.errors" class="invalid-feedback">
                   <div *ngIf="f.cancel_charge_driver.errors?.required">Driver Cancellation Charge is required</div>

@@ -21,16 +21,17 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="input-last-name" style="margin-right:25px;">Heat Map Radius(m)*</label>
                                
-                                <input type="text" name = "hmr" class="form-control" (keyup)="chargeErrMsg()"
-                                    placeholder="Heat map radius"  [(ngModel)] = "radius" required [ngClass]="{ 'is-invalid': submitted && f.charge.errors }" />
+                                <!-- <input type="text" name = "hmr" class="form-control" (keyup)="chargeErrMsg()"
+                                    placeholder="Heat map radius"  [(ngModel)] = "radius" required [ngClass]="{ 'is-invalid': submitted && f.charge.errors }" /> -->
                                    <div *ngIf="submitted && f.charge.errors" class="invalid-feedback">
-                                    <div *ngIf="f.charge.errors?.required">Heat Map Radius is required</div>
-                                    <div *ngIf="f.charge.errors?.pattern">Invalid input</div>
+                                    <div *ngIf="charge.errors?['required']">Heat Map Radius is required</div>
+                                    <div *ngIf="charge.errors?['pattern']">Invalid input</div>
                                    
                                 </div>
-                                <div *ngIf="errorMessage != ''" class="divclass">
+                                <div class="divclass">
+                                    <!-- *ngIf="errorMessage != ''" -->
                                     <div class="help-block">
-                                        <div class="invalid-feedback">{{errorMessage}}</div>
+                                        <!-- <div class="invalid-feedback">{{errorMessage}}</div> -->
                                     </div>
                                 </div>
 
@@ -43,17 +44,18 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="input-last-name" style="margin-right:25px;">Heat Spot Visibility Threshold*</label>
                                
-                                <input type="text" class="form-control" (keyup)="chargeErrMsg()" name = "hsvr"
+                                <!-- <input type="text" class="form-control" (keyup)="chargeErrMsg()" name = "hsvr"
                                     placeholder="Heat Spot Visibility Threshold"  [(ngModel)] = "req_threshold"
-                                    required [ngClass]="{ 'is-invalid': submitted && f.charge.errors }" />
-                                   <div *ngIf="submitted && f.charge.errors" class="invalid-feedback">
-                                    <div *ngIf="f.charge.errors?.required">Visibility threshold is required</div>
-                                    <div *ngIf="f.charge.errors?.pattern">Invalid input</div>
+                                    required [ngClass]="{ 'is-invalid': submitted && f.charge.errors }" /> -->
+                                   <!-- <div *ngIf="submitted && f.charge.errors" class="invalid-feedback"> -->
+                                    <!-- <div *ngIf="f.charge.errors?.required">Visibility threshold is required</div>
+                                    <div *ngIf="f.charge.errors?.pattern">Invalid input</div> -->
                                    
                                 </div>
-                                <div *ngIf="errorMessage != ''" class="divclass">
+                                <div  class="divclass">
+                                    <!-- *ngIf="errorMessage != ''" -->
                                     <div class="help-block">
-                                        <div class="invalid-feedback">{{errorMessage}}</div>
+                                        <!-- <div class="invalid-feedback">{{errorMessage}}</div> -->
                                     </div>
                                 </div>
 
@@ -73,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            <!-- </form> -->
         </div>
         </div>
     </div>

@@ -27,7 +27,7 @@
                      
                         <div class="card bg-secondary shadow" style = "margin-bottom: 10px;">
                             <div class="card-header bg-white border-0" style="padding-bottom:0;">
-                                <h5>Your Trip : On {{item.trip_date | date: 'MM/dd/yyyy HH:mm'}}</h5>
+                                <!-- <h5>Your Trip : On {{item.trip_date | date: 'MM/dd/yyyy HH:mm'}}</h5> -->
                             </div>
                             <div class="card-body" style="padding-top:0;">
                              
@@ -69,20 +69,20 @@
                                   <div class="row show-grid">
                                     <div class="col-4 col-md-4">
                                       <p style="margin-bottom: 0;text-align: center;">Vehicle Type</p>
-                                      <p style="margin-bottom: 0;text-align: center;"> <b>{{item.vehicle_type}}</b></p></div>
+                                      <!-- <p style="margin-bottom: 0;text-align: center;"> <b>{{item.vehicle_type}}</b></p></div> -->
                                       <div class="col-4 col-md-4 ng-star-inserted">
                                         <p style="margin-bottom: 0;text-align: center;">Distance</p>
-                                        <p style="margin-bottom: 0;text-align: center;"><b>({{item.distance}} KM)</b></p> </div>
+                                        <!-- <p style="margin-bottom: 0;text-align: center;"><b>({{item.distance}} KM)</b></p> </div> -->
                                       <div class="col-4 col-md-4">
                                         <p style="margin-bottom: 0;text-align: center;">Estimated Trip time (Min)</p>
                                         <p style="margin-bottom: 0;text-align: center;">
-                                          <b>{{item.copy_travel_time}}</b></p>
+                                          <!-- <b>{{item.copy_travel_time}}</b></p> -->
 
                                          
                                         </div>
                                           <div class="col-4 col-md-4">
                                             <p style="margin-bottom: 0;text-align: center;padding-top: 10px;">OTP</p>
-                                            <p style="margin-bottom: 0;text-align: center;"><b>{{item.security_code}}</b></p>
+                                            <!-- <p style="margin-bottom: 0;text-align: center;"><b>{{item.security_code}}</b></p> -->
                                            
                                           </div>
                                           <div class="col-4 col-md-4">
@@ -93,7 +93,7 @@
                                             <div class="col-4 col-md-4">
                                             <p style="margin-bottom: 0;text-align: center; padding-top:10px;">Actual Trip Time (Mins)</p>
                                             <p style="margin-bottom: 0;text-align: center;">
-                                              <b>{{item.trip_time}}</b></p>
+                                              <!-- <b>{{item.trip_time}}</b></p> -->
                                             </div>
                                             </div>
                                               </div>
@@ -101,18 +101,28 @@
                                              
                                               <div class="form-group">
                                                 <table class="table trip-loc">
-                                                  <tbody><tr>
-                                                    <td width="25%" style="border-top: transparent;">
-                                                      <img  alt="img" class="user-picture image" height="42" src="assets/img/driver.png" style="margin-top: 10px;" width="42"></td>
-                                                      <td style="border-right: 1px solid #dee2e6 !important;border-top: transparent;" width="25%">
-                                                        <div style="text-align: left;">Driver</div><div >
-                                                          <p style="text-align: left;"><b>{{item.driverName | titlecase}}</b></p>
-                                                          <span>{{item.driverPhone_no}}</span></div></td>
-                                                          <td width="25%" style="border-top: transparent;"><img _ngcontent-c3=""  alt="img" class="user-picture image" height="42" src="assets/img/rider.png" style="margin-top: 10px;" width="42"></td>
-                                                          <td width="25%" style="border-top: transparent;word-wrap: break-word;"><div style="text-align: left;">Rider</div><div ><p style="text-align: left;"><b>{{item.riderName | titlecase}}</b></p><span>{{item.riderPhone_no}}</span>
-                                                          </div>
-                                                        </td>
-                                                      </tr></tbody></table></div></div></div>
+                                                  <tbody>
+                                                    <tr>
+                                                      <td width="25%" style="border-top: transparent;">
+                                                        <img  alt="img" class="user-picture image" height="42" 
+                                                        src="assets/img/driver.png" style="margin-top: 10px;" width="42">
+                                                      </td>
+                                                      <td style="border-right: 1px solid #dee2e6 !important;border-top:
+                                                       transparent;" width="25%">
+                                                        <div style="text-align: left;">Driver</div>
+                                                        <!-- <span>{{item.driverPhone_no}}</span> -->
+                                                      </td>
+                                                      <td width="25%" style="border-top: transparent;">
+                                                        <img _ngcontent-c3=""  alt="img" class="user-picture image"
+                                                         height="42" src="assets/img/rider.png" style="margin-top: 10px;" 
+                                                         width="42">
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+
+                                              </div>
+                              
 
 
 
@@ -122,7 +132,8 @@
                                                       <div class="form-group">
                                                       
                                                       <table class = "table trip-loc"><tbody>
-                                                      <tr *ngIf = "(item.user_canceled_reason != undefined && item.user_canceled_reason != '') || (item.driver_canceled_reason != undefined && item.driver_canceled_reason != '') || (appCancel != undefined && appCancel != '')">
+                                                      <!-- <tr *ngIf = "(item.user_canceled_reason != undefined && item.user_canceled_reason != '') || (item.driver_canceled_reason != undefined && item.driver_canceled_reason != '') || (appCancel != undefined && appCancel != '')"> -->
+                                                      <tr> 
                                                         <td style="border-right: 1px solid #dee2e6 !important;border-top: transparent;" colspan = '2'>
                                                         <div style="text-align: left;"><b>Cancelling Actor</b></div>
                                                         <!--<div ><p style="text-align: left;"><b>{{item.user_canceled_reason}}</b></p>
@@ -131,22 +142,24 @@
                                                         <div style="text-align: left;"><b>Cancellation Reason</b></div><!--<div ><p style="text-align: left;"><b>{{item.driver_canceled_reason}}</b></p>
                                                           </div>--></td>
                                                       </tr>
-                                                      <tr *ngIf = "item.user_canceled_reason != undefined && item.user_canceled_reason != ''">
+                                                      <!-- <tr *ngIf = "item.user_canceled_reason != undefined && item.user_canceled_reason != ''"> -->
+                                                       <tr>
                                                         <td style="border-right: 1px solid #dee2e6 !important;border-top: transparent;" colspan = '2'>
                                                         <div style="text-align: left;">Rider</div>
                                                         </td>
                                                         <td style="border-right:transparent;border-top: transparent;" colspan = '2'>
-                                                        <div ><div style="text-align: left;">{{item.user_canceled_reason}}</div>
-                                                          </div></td>
+                                                        <!-- <div ><div style="text-align: left;">{{item.user_canceled_reason}}</div> -->
+                                                          <!-- </div> -->
+                                                        </td>
                                                       </tr>
-                                                      <tr *ngIf = "item.driver_canceled_reason != undefined && item.driver_canceled_reason != ''">
+                                                      <!-- <tr *ngIf = "item.driver_canceled_reason != undefined && item.driver_canceled_reason != ''">
                                                         <td style="border-right: 1px solid #dee2e6 !important;border-top: transparent;" colspan = '2'>
                                                         <div style="text-align: left;">Driver</div>
                                                         </td>
                                                         <td style="border-right:transparent;border-top: transparent;" colspan = '2'>
                                                         <div ><div style="text-align: left;">{{item.driver_canceled_reason}}</div>
                                                           </div></td>
-                                                      </tr>
+                                                      </tr> -->
                                                       <tr *ngIf = "appCancel != undefined && appCancel != ''">
                                                         <td style="border-right: 1px solid #dee2e6 !important;border-top: transparent;" colspan = '2'>
                                                         <div style="text-align: left;">App</div>
@@ -155,7 +168,8 @@
                                                         <div ><div style="text-align: left;">{{appCancel}}</div>
                                                           </div></td>
                                                       </tr>
-                                                      <tr *ngIf = "number_of_declining_drivers > 0">
+                                                      <tr 
+                                                        *ngIf = "number_of_declining_drivers > 0">
                                                         <td style="border-right: 1px solid #dee2e6 !important;border-top: transparent;" colspan = '4'>
                                                           <table class="table trip-loc"><tbody><tr>
                                                             <td style = "width:20%">
@@ -167,9 +181,9 @@
                                                         </td>
                                                       </tr>
                                                       <tr *ngFor = "let data of decline_drivers">
-                                                        <td>{{data.serial}}</td>
-                                                        <td>{{data.driver}}</td>
-                                                        <td>{{data.reason}}</td>
+                                                        <!-- <td>{{data.serial}}</td> -->
+                                                        <!-- <td>{{data.driver}}</td> -->
+                                                        <!-- <td>{{data.reason}}</td> -->
                                                       </tr>
                                                     </tbody></table>
                                                         </td>
@@ -181,13 +195,11 @@
                                                   </div>
                                             </div>  </div>
 
-
-
-                      </div>
+                      <!-- </div> -->
                       <div class="col-lg-6">
                         <div class="card bg-secondary shadow">
                             <div class="card-header bg-white border-0" style="padding-bottom: 0;">
-                                <h4> Fare Breakdown For Ride No : {{item.id}}</h4>
+                                <!-- <h4> Fare Breakdown For Ride No : {{item.id}}</h4> -->
                             </div>
                             <div class="card-body" style="padding-top: 0;">
                               <table class="table table-bordered fare-det trip-locpick " style="text-align: left">
@@ -198,7 +210,7 @@
                                   </tr> -->
                                   <tr>
                                     <td>Actual Cost</td>
-                                    <td>{{item.trip_amount}}</td>
+                                    <!-- <td>{{item.trip_amount}}</td> -->
                                   </tr>
                                   <!-- <tr>
                                     <td>Distance Fare (0 KM)</td>
@@ -234,7 +246,7 @@
                                   </tr> -->
                                   <tr>
                                     <th class="totalFare" scope="row">Total Fare (Payment Mode: cash)</th>
-                                    <th class="totalFare" scope="row">{{item.trip_amount}}</th>
+                                    <!-- <th class="totalFare" scope="row">{{item.trip_amount}}</th> -->
                                   </tr>
                                 </tbody>
                               </table>
@@ -266,11 +278,11 @@
                                    <tbody>
                                       <tr>
                                          <th scope="row" width="7%">Pickup:</th>
-                                         <td width="93%" style="white-space: normal;"><b>{{item.from_address}}</b></td>
+                                         <!-- <td width="93%" style="white-space: normal;"><b>{{item.from_address}}</b></td> -->
                                       </tr>
                                       <tr>
                                          <th scope="row" width="7%">Drop:</th>
-                                         <td width="93%" style="white-space: normal;"><b>{{item.to_address}}</b></td>
+                                         <!-- <td width="93%" style="white-space: normal;"><b>{{item.to_address}}</b></td> -->
                                       </tr>
                                    </tbody>
                                 </table>
@@ -280,12 +292,12 @@
                               <table class="table trip-loc">
                                 <tbody><tr>
                                   <td width="20%" style="border-top: transparent;border-right: 1px solid #dee2e6;padding-left: 5px;">
-                                    Trip Accepted Date<br> <b>{{item.trip_accept_time | date: 'MM/dd/yyyy HH:mm'}}</b></td>
+                                    <!-- Trip Accepted Date<br> <b>{{item.trip_accept_time | date: 'MM/dd/yyyy HH:mm'}}</b></td> -->
                                   <td width="20%" style="border-top: transparent;border-right: 1px solid #dee2e6;padding-left: 5px">
-                                    Trip Start Date<br> <b>{{item.trip_start_time | date: 'MM/dd/yyyy HH:mm'}}</b></td>
+                                    <!-- Trip Start Date<br> <b>{{item.trip_start_time | date: 'MM/dd/yyyy HH:mm'}}</b></td> -->
                                     <!--<td style="border-right: 1px solid #dee2e6 !important;border-top: transparent;" width="10%">
                                       </td>-->
-                                        <td width="20%" style="border-top: transparent;padding-left: 5px">Trip Complete Date<br><b>{{item.trip_complete_time | date: 'MM/dd/yyyy HH:mm'}}</b> </td>
+                                        <!-- <td width="20%" style="border-top: transparent;padding-left: 5px">Trip Complete Date<br><b>{{item.trip_complete_time | date: 'MM/dd/yyyy HH:mm'}}</b> </td> -->
                                         
                                     </tr>
                                   </tbody
@@ -319,14 +331,14 @@
                              <!--bindings={
                                 "ng-reflect-ng-for-of": "[object Object]"
                                 }-->
-                             <tr border="1" class="ng-star-inserted">
+                             <tr class="ng-star-inserted">
                                 <td>DRV496</td>
-                                <td>{{item.driverName}}</td>
-                                <td>{{item.riderPhone_no}}</td>
-                                <td>{{item.trip_type == '1' ? 'Individual':item.trip_type == '2'?'Share':item.trip_type =='3'?'Split-Fare':''}}</td>
-                                <td>{{tripStatus(item.trip_status)}}</td>
-                                <td>{{item.payment_type}}</td>
-                                <td>{{item.distance}}</td>
+                                <!-- <td>{{item.driverName}}</td> -->
+                                <!-- <td>{{item.riderPhone_no}}</td> -->
+                                <!-- <td>{{item.trip_type == '1' ? 'Individual':item.trip_type == '2'?'Share':item.trip_type =='3'?'Split-Fare':''}}</td> -->
+                                <!-- <td>{{tripStatus(item.trip_status)}}</td> -->
+                                <!-- <td>{{item.payment_type}}</td> -->
+                                <!-- <td>{{item.distance}}</td> -->
                              </tr>
                              <!--bindings={
                                 "ng-reflect-ng-if": "false"
@@ -337,7 +349,7 @@
                         </div>
                       </div>
 
-                    </span>
+                    <!-- </span> -->
               <!-- <div class="row">
                 <div class="col-lg-12">
                     <a href="#!" class="btn btn-info">Add</a> -->
@@ -346,11 +358,11 @@
                 <!-- </div>
               </div> -->
             
-            </form>
-            </div>
-           </div> 
+            <!-- </form> -->
+            <!-- </div> -->
+           <!-- </div>  -->
    
-</div>
+<!-- </div> -->
   
 
   

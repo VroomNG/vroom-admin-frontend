@@ -18,8 +18,8 @@ export class TripsComponent implements OnInit {
   currentDate = new Date();
   dateFormat = 'MM/dd/yyyy';
 
-  endDate;
-  startDate;
+  endDate!: string | number;
+  startDate!: string | number;
   selectedMembers: any;
   getAlldata: any;
   show: boolean = true;
@@ -30,7 +30,7 @@ export class TripsComponent implements OnInit {
   token: any;
   tripsList = [];
   tripStatusId: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
@@ -40,8 +40,8 @@ export class TripsComponent implements OnInit {
     private loginService:LoginService
     //public dateFilter:DateFilterPipe
   ) {
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -61,7 +61,7 @@ export class TripsComponent implements OnInit {
     $('#main').floatingScroll();
     
   }
-  getTripsView(fromDate,toDate) {
+  getTripsView(fromDate: string,toDate: string) {
     debugger; 
     this.tripsList = [];
     const inputRequest = {
@@ -89,22 +89,22 @@ export class TripsComponent implements OnInit {
               else if (result.data[i].trip_type == '3')
                 tripType = 'Split-Fare';
 
-              this.tripsList.push({
-                "id": result.data[i].id,
-                "driverName": result.data[i].driverName,
-                "trip_amount": result.data[i].trip_amount,
-                // "actual_amount":JSON.parse(result.data[i].trip_fare_data).original_max_fare != undefined ? JSON.parse(result.data[i].trip_fare_data).original_max_fare:'',
-                "actual_amount":(result.data[i].trip_fare_data) != undefined ? JSON.parse(result.data[i].trip_fare_data).original_max_fare != undefined?JSON.parse(result.data[i].trip_fare_data).original_max_fare:'':'',
-                "riderName": result.data[i].riderName,
-                "trip_date": result.data[i].trip_date,
-                "trip_status": (result.data[i].trip_status == '0' ? 'Schedule' : (result.data[i].trip_status) == '1' ? 'Accepted' : result.data[i].trip_status == '2' ? 'Completed' : result.data[i].trip_status == '3' ? 'Cancelled' : result.data[i].trip_status == '4' ? 'Started' : result.data[i].trip_status == '5' ? 'Completed' : result.data[i].trip_status == '6' ? 'Completed' : ''),
-                "trip_time": result.data[i].trip_time,
-                "trip_type": tripType,
-                "payment_type": result.data[i].payment_type,
-                "user_id": result.data[i].user_id,
-                "vehicle_type": result.data[i].vehicle_type,
-                "Trips_sts": (result.data[i].trip_status == '0' || result.data[i].trip_status == '1' || result.data[i].trip_status == '4'?'Upcoming':'Past')
-              })
+          //     this.tripsList.push({
+          //       "id": result.data[i].id,
+          //       "driverName": result.data[i].driverName,
+          //       "trip_amount": result.data[i].trip_amount,
+          //       // "actual_amount":JSON.parse(result.data[i].trip_fare_data).original_max_fare != undefined ? JSON.parse(result.data[i].trip_fare_data).original_max_fare:'',
+          //       "actual_amount":(result.data[i].trip_fare_data) != undefined ? JSON.parse(result.data[i].trip_fare_data).original_max_fare != undefined?JSON.parse(result.data[i].trip_fare_data).original_max_fare:'':'',
+          //       "riderName": result.data[i].riderName,
+          //       "trip_date": result.data[i].trip_date,
+          //       "trip_status": (result.data[i].trip_status == '0' ? 'Schedule' : (result.data[i].trip_status) == '1' ? 'Accepted' : result.data[i].trip_status == '2' ? 'Completed' : result.data[i].trip_status == '3' ? 'Cancelled' : result.data[i].trip_status == '4' ? 'Started' : result.data[i].trip_status == '5' ? 'Completed' : result.data[i].trip_status == '6' ? 'Completed' : ''),
+          //       "trip_time": result.data[i].trip_time,
+          //       "trip_type": tripType,
+          //       "payment_type": result.data[i].payment_type,
+          //       "user_id": result.data[i].user_id,
+          //       "vehicle_type": result.data[i].vehicle_type,
+          //       "Trips_sts": (result.data[i].trip_status == '0' || result.data[i].trip_status == '1' || result.data[i].trip_status == '4'?'Upcoming':'Past')
+          //     })
             }
           }
           // this.tripsList = result.data;
@@ -115,7 +115,7 @@ export class TripsComponent implements OnInit {
 
   }
 
-  editTrips(id) {
+  editTrips(id: string | number | undefined) {
     debugger;
     if (id != undefined && id != 0)
       this.route.navigate(['trips/trips-detail/' + id]);
@@ -135,7 +135,7 @@ export class TripsComponent implements OnInit {
   dateFilter() {
     debugger;
     var tripdate=[]; this.tripsList=[];
-    tripdate = this.getAlldata.filter((m) => m.trip_date > this.startDate && m.trip_date < this.endDate);
+    tripdate = this.getAlldata.filter((m: { trip_date: any; }) => m.trip_date > this.startDate && m.trip_date < this.endDate);
     if (tripdate != undefined) {
       var tripType = '';
       for (let i = 0; i < tripdate.length; i++) {
@@ -147,19 +147,19 @@ export class TripsComponent implements OnInit {
         else if (tripdate[i].trip_type == '3')
           tripType = 'Split-Fare';
 
-        this.tripsList.push({
-          "id": tripdate[i].id,
-          "driverName": tripdate[i].driverName,
-          "trip_amount": tripdate[i].trip_amount,
-          "riderName": tripdate[i].riderName,
-          "trip_date": tripdate[i].trip_date,
-          "trip_status": (tripdate[i].trip_status == '0' ? 'Schedule' : (tripdate[i].trip_status) == '1' ? 'Accepted' : tripdate[i].trip_status == '2' ? 'Completed' : tripdate[i].trip_status == '3' ? 'Cancelled' : tripdate[i].trip_status == '4' ? 'Started' : tripdate[i].trip_status == '5' ? 'Completed' : tripdate[i].trip_status == '6' ? 'Completed' : ''),
-          "trip_time": tripdate[i].trip_time,
-          "trip_type": tripType,
-          "payment_type": tripdate[i].payment_type,
-          "user_id": tripdate[i].user_id,
-          "vehicle_type": tripdate[i].vehicle_type,
-        })
+      //   this.tripsList.push({
+      //     "id": tripdate[i].id,
+      //     "driverName": tripdate[i].driverName,
+      //     "trip_amount": tripdate[i].trip_amount,
+      //     "riderName": tripdate[i].riderName,
+      //     "trip_date": tripdate[i].trip_date,
+      //     "trip_status": (tripdate[i].trip_status == '0' ? 'Schedule' : (tripdate[i].trip_status) == '1' ? 'Accepted' : tripdate[i].trip_status == '2' ? 'Completed' : tripdate[i].trip_status == '3' ? 'Cancelled' : tripdate[i].trip_status == '4' ? 'Started' : tripdate[i].trip_status == '5' ? 'Completed' : tripdate[i].trip_status == '6' ? 'Completed' : ''),
+      //     "trip_time": tripdate[i].trip_time,
+      //     "trip_type": tripType,
+      //     "payment_type": tripdate[i].payment_type,
+      //     "user_id": tripdate[i].user_id,
+      //     "vehicle_type": tripdate[i].vehicle_type,
+      //   })
       }
     }
 
@@ -168,14 +168,16 @@ export class TripsComponent implements OnInit {
     this.hide = true;
   }
 
-  CanceldateFilter() {
-    this.hide = false;
-    this.show = true;
-    this.startDate = '';
-    this.endDate = '';
-    this.getTripsView('','');
+  // CanceldateFilter() {
+  //   this.hide = false;
+  //   this.show = true;
+  //   this.startDate = '';
+  //   this.endDate = '';
+  //   this.getTripsView('','');
 
-  }
+  // }
+
+
   // submitDateFilter(){
   //   debugger;
   //   var fromDate = (<HTMLInputElement>document.getElementById("fromDate"));

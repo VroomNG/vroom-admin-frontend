@@ -13,18 +13,18 @@ import { LocationStrategy } from '@angular/common';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   loginDetails: loginInfo;
   isFormReady = false;
   submitted = false;
   isUserNameCount = false;
   errorMessages: any;
-  returnUrl: string;
+  returnUrl!: string;
   error = '';
   emailValid: boolean = false;
   token: any;
 
-  status: string;
+  status!: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -141,12 +141,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       emailInput = (<HTMLInputElement>document.getElementById("email")),
       password = (<HTMLInputElement>document.getElementById("password"));
 
-    if (localStorage.email && localStorage.email !== "") {
+    if (localStorage['email'] && localStorage['email'] !== "") {
       rmCheck.setAttribute("checked", "checked");
-      emailInput.value = localStorage.email;
-      password.value = localStorage.password;
-      this.loginDetails.email = localStorage.email;
-      this.loginDetails.password = localStorage.password;
+      emailInput.value = localStorage['email'];
+      password.value = localStorage['password'];
+      this.loginDetails.email = localStorage['email'];
+      this.loginDetails.password = localStorage['password'];
       this.loginDetails.isRemberMeChecked = true;
     } else {
       rmCheck.removeAttribute("checked");

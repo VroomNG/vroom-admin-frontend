@@ -15,8 +15,9 @@
           <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '3'? 'Inactive Drivers': ''  ">Rejected Drivers</h3>
 
           <span class="text-right p-2 ">
-            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
-              placeholder="search" />
+            <!-- <input type="search" class="form-control w-25 d-inline-block" 
+            [(ngModel)]="FilterName"
+              placeholder="search" /> -->
           </span>
           <span class="spnFilter" *ngIf="pagePath === '1'">Status 
             <select id="selDriverFilter" class="form-control form-control-alternative drpFilter" (change)="driverFilter($event)">            
@@ -24,7 +25,8 @@
               {{level.value}}
             </option>
           </select>
-          <span style="margin-left: 25px;">Days <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span>
+          <!-- <span style="margin-left: 25px;">Days 
+          <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span> -->
        
           <select style="margin-left: 30px;" id="selOnlineFilter" class="form-control form-control-alternative drpFilter" (change)="OnlineFilter($event)">            
             <option *ngFor="let level of driverOnline" value="{{level.id}}">
@@ -61,18 +63,18 @@
             <tbody>
               <tr *ngFor="let item of (pageOfItems | search: FilterName)">
                 <th scope="row">DRV00{{item.id}}</th>
-                <td>{{item.firstname | titlecase}} {{item.lastname | titlecase}}</td>
-                <td>{{item.city | titlecase}}</td>
+                <!-- <td>{{item.firstname | titlecase}} {{item.lastname | titlecase}}</td> -->
+                <!-- <td>{{item.city | titlecase}}</td> -->
                 <td>{{item.vehicle_type}}</td>
                 <td>{{item.email}}</td>
                 <td>{{item.phone_no}}</td>
-                <td>{{item.created_at| date:'mediumDate'}}</td>
+                <!-- <td>{{item.created_at| date:'mediumDate'}}</td> -->
                 <td>{{item.balance}}</td>
                 <!-- <td>Default</td> -->
                 <!-- <td></td> -->
                 <td *ngIf="pagePath === '1'">{{item.is_active == 1?'Approved':'Pending'}}</td>
                 <td *ngIf="pagePath === '1'">{{item.current_status == '0'?'Off':'On'}}</td>
-                <td *ngIf="pagePath === '1'">{{item.last_trip_date | date:'mediumDate'}}</td>                
+                <!-- <td *ngIf="pagePath === '1'">{{item.last_trip_date | date:'mediumDate'}}</td>                 -->
                 <td class="text-center">
                   <!-- <div ngbDropdown placement="bottom-right">
                   <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
@@ -101,8 +103,8 @@
                   <!-- </div>
                 </div> -->
                 </td>
-                <td *ngIf="pagePath === '1'"><input type="checkbox" id="chkBlock" (change)="setDriverBlock($event,item.id)" [checked]="(item.isBlock === '1' ? true: false)"></td>
-                <td><input type="checkbox" class="notifycheck" id="{{item.id}}" (change)="showNotifyBtn($event,item.id)"></td>
+                <!-- <td *ngIf="pagePath === '1'"><input type="checkbox" id="chkBlock" (change)="setDriverBlock($event,item.id)" [checked]="(item.isBlock === '1' ? true: false)"></td> -->
+                <!-- <td><input type="checkbox" class="notifycheck" id="{{item.id}}" (change)="showNotifyBtn($event,item.id)"></td> -->
               </tr>
 
             </tbody>
@@ -110,8 +112,8 @@
         </div>
         <div class="card-footer py-4">
           <div class="card-footer pb-0 pt-3">
-            <jw-pagination [items]="driverList | search: FilterName" (changePage)="onChangePage($event)">
-            </jw-pagination>
+            <!-- <jw-pagination [items]="driverList | search: FilterName" (changePage)="onChangePage($event)">
+            </jw-pagination> -->
           </div>
          
         </div>

@@ -15,8 +15,8 @@ export class ViewScheduleComponent implements OnInit {
   currentDate = new Date();
   dateFormat = 'MM/dd/yyyy';
 
-  endDate;
-  startDate;
+  endDate:any;
+  startDate:any;
   selectedMembers: any;
   getAlldata: any;
   show: boolean = true;
@@ -27,7 +27,7 @@ export class ViewScheduleComponent implements OnInit {
   token: any;
   tripsList = [];
   tripStatusId: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
@@ -36,8 +36,8 @@ export class ViewScheduleComponent implements OnInit {
     private service1: exportService,
     //public dateFilter:DateFilterPipe
   ) {
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -55,7 +55,7 @@ export class ViewScheduleComponent implements OnInit {
     this.pagePath = this.pagePath[this.pagePath.length - 1];
     
   }
-  getTripsView(fromDate,toDate) {
+  getTripsView(fromDate: string,toDate: string) {
     debugger; 
     this.tripsList = [];
     const inputRequest = {
@@ -89,13 +89,13 @@ export class ViewScheduleComponent implements OnInit {
                 target = "Approved Drivers";
                 else if (result.data[i].udrivers == 1)
                   target = "Unapproved Drivers";
-              this.tripsList.push({
-                "id":result.data[i].id,
-                "title": result.data[i].title,
-                "description": result.data[i].description,
-                "schedule_date": result.data[i].sendDate,
-                "target": target
-              })
+              // this.tripsList.push({
+              //   "id":result.data[i].id,
+              //   "title": result.data[i].title,
+              //   "description": result.data[i].description,
+              //   "schedule_date": result.data[i].sendDate,
+              //   "target": target
+              // })
             }
           }
           // this.tripsList = result.data;
@@ -106,7 +106,7 @@ export class ViewScheduleComponent implements OnInit {
 
   }
 
-  editTrips(id) {
+  editTrips(id:any) {
     debugger;
     if (id != undefined && id != 0)
       this.route.navigate(['trips/trips-detail/' + id]);
@@ -126,7 +126,7 @@ export class ViewScheduleComponent implements OnInit {
   dateFilter() {
     debugger;
     var tripdate=[]; this.tripsList=[];
-    tripdate = this.getAlldata.filter((m) => m.trip_date > this.startDate && m.trip_date < this.endDate);
+    tripdate = this.getAlldata.filter((m: { trip_date: number; }) => m.trip_date > this.startDate && m.trip_date < this.endDate);
     if (tripdate != undefined) {
       var tripType = '';
       for (let i = 0; i < tripdate.length; i++) {
@@ -138,19 +138,19 @@ export class ViewScheduleComponent implements OnInit {
         else if (tripdate[i].trip_type == '3')
           tripType = 'Split-Fare';
 
-        this.tripsList.push({
-          "id": tripdate[i].id,
-          "driverName": tripdate[i].driverName,
-          "trip_amount": tripdate[i].trip_amount,
-          "riderName": tripdate[i].riderName,
-          "trip_date": tripdate[i].trip_date,
-          "trip_status": (tripdate[i].trip_status == '0' ? 'Schedule' : (tripdate[i].trip_status) == '1' ? 'Accepted' : tripdate[i].trip_status == '2' ? 'Completed' : tripdate[i].trip_status == '3' ? 'Cancelled' : tripdate[i].trip_status == '4' ? 'Started' : tripdate[i].trip_status == '5' ? 'Completed' : tripdate[i].trip_status == '6' ? 'Completed' : ''),
-          "trip_time": tripdate[i].trip_time,
-          "trip_type": tripType,
-          "payment_type": tripdate[i].payment_type,
-          "user_id": tripdate[i].user_id,
-          "vehicle_type": tripdate[i].vehicle_type,
-        })
+        // this.tripsList.push({
+        //   "id": tripdate[i].id,
+        //   "driverName": tripdate[i].driverName,
+        //   "trip_amount": tripdate[i].trip_amount,
+        //   "riderName": tripdate[i].riderName,
+        //   "trip_date": tripdate[i].trip_date,
+        //   "trip_status": (tripdate[i].trip_status == '0' ? 'Schedule' : (tripdate[i].trip_status) == '1' ? 'Accepted' : tripdate[i].trip_status == '2' ? 'Completed' : tripdate[i].trip_status == '3' ? 'Cancelled' : tripdate[i].trip_status == '4' ? 'Started' : tripdate[i].trip_status == '5' ? 'Completed' : tripdate[i].trip_status == '6' ? 'Completed' : ''),
+        //   "trip_time": tripdate[i].trip_time,
+        //   "trip_type": tripType,
+        //   "payment_type": tripdate[i].payment_type,
+        //   "user_id": tripdate[i].user_id,
+        //   "vehicle_type": tripdate[i].vehicle_type,
+        // })
       }
     }
 
@@ -167,7 +167,7 @@ export class ViewScheduleComponent implements OnInit {
     this.getTripsView('','');
 
   }
-  viewPartnerDetails(id) {
+  viewPartnerDetails(id:any) {
     debugger;
     if (id != undefined && id != 0)
       this.route.navigate(['partner/add-partner/' + id]);

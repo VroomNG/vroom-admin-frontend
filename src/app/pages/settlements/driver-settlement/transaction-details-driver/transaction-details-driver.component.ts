@@ -12,14 +12,14 @@ import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng
   styleUrls: ['./transaction-details-driver.component.css']
 })
 export class TransactionDetailsDriverComponent implements OnInit {
-  driverDetails: driverInfo;
+  driverDetails!: driverInfo;
   token: any;
   paramsval: any;
   paramsName: any;
   driverPaymentList: any;
   tripId: any;
   TotalDriverPay: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   errorMessage : any;
   closeResult = '';
   startDate:any;
@@ -42,9 +42,10 @@ export class TransactionDetailsDriverComponent implements OnInit {
      // this.paramsName = params['name'];
     });
     console.log("this.paramsval==>", this.paramsval);
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
+    
     else
       this.route.navigate(['/login']);
     this.router.params.subscribe((response: any) => {
@@ -99,7 +100,7 @@ export class TransactionDetailsDriverComponent implements OnInit {
     });
   }
 
-  UpdatePaidOrPennding(i) {
+  UpdatePaidOrPennding(i: { target: { value: any; }; }) {
     this.tripId = i.target.value;
     console.log("payment details --->", this.tripId);
     // debugger;
@@ -120,7 +121,7 @@ export class TransactionDetailsDriverComponent implements OnInit {
 
     this.pageOfItems = pageOfItems;
   }
-  tripType(val) {
+  tripType(val: number) {
     var ret = "";
     if (val == 1)
       ret = "Private";
@@ -135,7 +136,7 @@ export class TransactionDetailsDriverComponent implements OnInit {
     var btnModelPopup = (<HTMLInputElement>document.getElementById("btnModelPopup"));
     btnModelPopup.click();
   }
-  open(content) {
+  open(content: any) {
     this.errorMessage = "";
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',

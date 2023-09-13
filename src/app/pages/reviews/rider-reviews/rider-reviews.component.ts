@@ -13,7 +13,7 @@ export class RiderReviewsComponent implements OnInit {
   FilterName: any = '';
   token: any;
   riderList = []; 
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   constructor(
     private formBuilder: FormBuilder,
     // private toastr: ToastrService,    
@@ -22,8 +22,8 @@ export class RiderReviewsComponent implements OnInit {
     private service: driverService,
     private service1:exportService,private loginService:LoginService
   ) { 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);   
@@ -50,7 +50,7 @@ export class RiderReviewsComponent implements OnInit {
     })
   }
 
-  deleteRiderRating(id) {
+  deleteRiderRating(id:any) {
     // console.log('deleted id', id)
     if (id != undefined && id != 0) {
       const inputRequest = {

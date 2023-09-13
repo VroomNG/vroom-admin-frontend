@@ -10,13 +10,13 @@ import {DateFilterPipe} from '../../pipe_filter/date-filter.pipe';
 })
 export class NotifyScheduleComponent implements OnInit {
 
-  selectedDate;
-  title;
-  description;
+  selectedDate: any;
+  title:any;
+  description:any;
   forRiders = 0;
   forDrivers = 0;
   forUd = 0;
-  noteLabel;
+  noteLabel:any;
   token: any;
 
 
@@ -25,8 +25,8 @@ export class NotifyScheduleComponent implements OnInit {
     private router: ActivatedRoute,
     private service: passengerService) 
   { 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);

@@ -1,6 +1,6 @@
 export class discountInfo {
     
-    id: number;
+    id!: number;
     discount_code: any;
     title: any;
     description: any;

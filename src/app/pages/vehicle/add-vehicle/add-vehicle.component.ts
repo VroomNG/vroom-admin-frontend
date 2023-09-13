@@ -13,8 +13,9 @@ import { LoginService } from '../../../service/login.service';
   styleUrls: ['./add-vehicle.component.css']
 })
 export class AddVehicleComponent implements OnInit {
+  
   vehicleForm: any;
-  vehicleDetails: vehicleInfo;
+  vehicleDetails!: vehicleInfo;
   submitted = false;
   token: any;
   isFormReady = false;
@@ -115,8 +116,8 @@ vehicleYear=[{value: "1990", name: "1990"},{value: "1991", name: "1991"},{value:
       return false;
     };
 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
       //this.flag_admin = localStorage.flag_admin;
 
     }
@@ -219,7 +220,7 @@ vehicleYear=[{value: "1990", name: "1990"},{value: "1991", name: "1991"},{value:
       // console.log('Document get exception: ' + error.message);
     });
   }
-  updateVehicle(id) {
+  updateVehicle(id: any) {
     debugger;
     var selTripType = (<HTMLInputElement>document.getElementById("selTripType"));
     var vehicleAvai = (<HTMLInputElement>document.getElementById("vehicleAvai"));
@@ -311,7 +312,7 @@ vehicleYear=[{value: "1990", name: "1990"},{value: "1991", name: "1991"},{value:
     }
 
   }
-  deleteVehicle(id) {
+  deleteVehicle(id: any) {
     this.service.deleteVehicle(id).subscribe((result: any) => {
       if (result) {
         this.route.navigate(['admin/view-admin']);
@@ -326,13 +327,13 @@ vehicleYear=[{value: "1990", name: "1990"},{value: "1991", name: "1991"},{value:
   changetoAddMenu(){
     this.location.back();
   }
-  selectedModel(event){
+  selectedModel(event: { target: any; }){
 debugger;
 var target = event.target;
 this.vehicleModelChange = this.vehicleModel.filter(item => item.name === target.value);
 // this.vehicleModel.filter(item=>this.vehicleModel.name = target.value).map(item)
   }
-  selectedSwitchState(event)
+  selectedSwitchState(event: { target: any; })
   {
     var target = event.target;
     this.flatRateSwitch = target.value;

@@ -13,9 +13,9 @@ import { LoginService } from '../../../service/login.service';
 })
 export class AddEditRidersComponent implements OnInit {
   @ViewChild("search")
-  public searchElementRef: ElementRef;
+  public searchElementRef!: ElementRef;
   ridersForm: any;
-  ridersDetails: driverInfo;
+  ridersDetails!: driverInfo;
   token: any;
   isFormReady = false;
   submitted = false;
@@ -42,8 +42,8 @@ export class AddEditRidersComponent implements OnInit {
       return false;
     };
 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
       //this.flag_admin = localStorage.flag_admin;
 
     }
@@ -127,7 +127,7 @@ export class AddEditRidersComponent implements OnInit {
     });
   }
 
-  updatePassenger(id) {
+  updatePassenger(id:any) {
     debugger;
     this.submitted = true;
     var selCity = (<HTMLInputElement>document.getElementById("selCity"));
@@ -184,7 +184,7 @@ export class AddEditRidersComponent implements OnInit {
       });
     }
   }
-  deletePassenger(id) {
+  deletePassenger(id:any) {
     debugger;
     this.service.delete(id).subscribe((result: any) => {
       if (result) {

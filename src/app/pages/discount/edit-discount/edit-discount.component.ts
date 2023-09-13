@@ -14,7 +14,7 @@ export class EditDiscountComponent implements OnInit {
   FilterName = '';
   token: any;
   discountList = [];
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   constructor(  private formBuilder: FormBuilder,
     // private toastr: ToastrService,    
     private route: Router,
@@ -22,8 +22,8 @@ export class EditDiscountComponent implements OnInit {
     private service: chartService,
     private service1:exportService) {
       debugger;
-      if (localStorage.token != "" || localStorage.token != undefined) {
-        this.token = localStorage.token;
+      if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+        this.token = localStorage['token'];
       }
       else
         this.route.navigate(['/login']);
@@ -52,7 +52,7 @@ export class EditDiscountComponent implements OnInit {
   }
 
 
-  editDiscount(id) {
+  editDiscount(id:any) {
     debugger;
     if (id != undefined && id != 0){
       console.log(id)

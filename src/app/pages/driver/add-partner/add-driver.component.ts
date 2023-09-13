@@ -22,10 +22,10 @@ import { LoginService } from '../../../service/login.service';
 export class AddPartnerComponent implements OnInit {
   // global declartions
   @ViewChild("search")
-  public searchElementRef: ElementRef;
+  public searchElementRef!: ElementRef;
   driverForm: any;
   partnerForm:any;
-  driverDetails: driverInfo;
+  driverDetails!: driverInfo;
   token: any;
   submitted = false;
   filetype: any;
@@ -38,11 +38,11 @@ export class AddPartnerComponent implements OnInit {
   filepathIns: any = ''; filepathother: any = ''; filepathmulti: any = []; filemulti: any = '';
   siteURLIns: any;
   filenameIns: any; filenameOther: any; filenameMul: any;
-  vehicletypeList: [];
+  vehicletypeList!: [];
   isFormReady: boolean = false;
   paramsval: any;
-  fileToUpload: File = null;
-  fileToUploadIns: File = null;
+  fileToUpload!: File;
+  fileToUploadIns!: File;
   License: any; Insurance: any;
   fileListAsArray: any; fileDataSource: any;
   isBlock: any;
@@ -60,11 +60,11 @@ export class AddPartnerComponent implements OnInit {
     { value: "Island", id: "5", name: "Island" }
   ];
   // New multi uploads
-  imageDeleteFrom: FormGroup;
+  imageDeleteFrom!: FormGroup;
   imageurls = [];
-  base64String: string;
-  name: string;
-  imagePath: string;
+  base64String!: string;
+  name!: string;
+  imagePath!: string;
   // End
   myForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -96,8 +96,8 @@ export class AddPartnerComponent implements OnInit {
       console.log(this.paramsval, 'form status')
 
     });
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
       //this.flag_admin = localStorage.flag_admin;
     }
     else
@@ -308,7 +308,7 @@ export class AddPartnerComponent implements OnInit {
     }
   }
   
- updateDriver(id) {
+ updateDriver(id:any) {
     debugger;
     this.submitted = true;
     // if (this.paramsval == 2 || this.paramsval == 3) {
@@ -380,7 +380,7 @@ export class AddPartnerComponent implements OnInit {
     this.route.navigate(['partner/view-partner']);
   }
 
-  approveDriver(id, status) {
+  approveDriver(id: string, status: string | number) {
     debugger;
     this.isFormReady = true;
     var inputRequest;
@@ -418,7 +418,7 @@ export class AddPartnerComponent implements OnInit {
       else {
         var btnModelPopup = (<HTMLInputElement>document.getElementById("btnModelPopup"));
         btnModelPopup.setAttribute("name", id);
-        btnModelPopup.setAttribute("data-label", status);
+        // btnModelPopup.setAttribute("data-label", status);
         btnModelPopup.click();
       }
     }
@@ -434,12 +434,12 @@ export class AddPartnerComponent implements OnInit {
     }
   }
 
-  handleFileInput(files: FileList) {
-    debugger;
-    this.fileToUpload = files.item(0);
-  }
+  // handleFileInput(files: FileList) {
+  //   debugger;
+  //   this.fileToUpload = files.item(0);
+  // }
 
-  uploadFileToActivity(id, filename) {
+  uploadFileToActivity(id: number, filename: string) {
     debugger;
     var fileurl = filename == 'lic' ? this.filepath : filename == 'ins' ? this.filepathIns : this.filepathother;
     if (fileurl != undefined && fileurl != '' && fileurl != null) {
@@ -478,12 +478,12 @@ export class AddPartnerComponent implements OnInit {
   //   this.Insurance = this.fileToUploadIns.name;
   // }
 
-  handleFileInputIns(event) {
+  handleFileInputIns(event:any) {
     debugger;
     const fileList = event.target.files;
     this.fileListAsArray = Array.from(fileList);
-    const tempArray = [];
-    this.fileListAsArray.forEach(element => {
+    const tempArray: { filename: any; }[] = [];
+    this.fileListAsArray.forEach((element: { name: any; }) => {
       // console.log('element file upload', element);
       const obj = {
         filename: element.name
@@ -494,7 +494,7 @@ export class AddPartnerComponent implements OnInit {
     this.uploadFile(1);
     // this.fileToUploadIns = files.item(0);
   }
-  uploadFile(leaveId) {
+  uploadFile(leaveId: number) {
     // this.commonservice.UploadFile(this.formData, this.staffID, 'Leaves', leaveId);
     for (let i = 0; i < this.fileListAsArray.length; i++) {
       this.uploadFileToServer(i, this.fileListAsArray[i], leaveId);
@@ -502,7 +502,7 @@ export class AddPartnerComponent implements OnInit {
   }
 
   // File Upload to server.
-  uploadFileToServer(idx, file, leaveId) {
+  uploadFileToServer(idx: number, file: File, leaveId: number) {
     this.service1.uploadFiletoServer(file, this.driverDetails.id, 'Leaves', leaveId).subscribe(
       event => {
       }, err => {
@@ -510,7 +510,7 @@ export class AddPartnerComponent implements OnInit {
       });
   }
 
-  onFileChange(event, filename) {
+  onFileChange(event: { target: { files: string | any[]; }; }, filename: number) {
     debugger;
     if (event.target.files.length > 0) {
       const rawfile = event.target.files[0];
@@ -525,69 +525,69 @@ export class AddPartnerComponent implements OnInit {
         this.filenameOther = 'oth';
       else if (filename == 3)
         this.filenameMul = 'mul';
-      this.update(filename)
+      // this.update(filename)
     }
   }
 
-  update(filename) {
-    debugger;
-    if (this.myForm.get('fileSource').value.name != undefined && this.myForm.get('fileSource').value.name != "") {
-      var exten = this.myForm.get('fileSource').value.name.split('.')[1];
-      console.log('insurance formate', exten)
-      if (exten == "png" || exten == "PNG" || exten == "jpeg" || exten == "JPEG" || exten == "jif" || exten == "JIF" || exten == "svg" || exten == "jpg" || exten == "SVG" || exten == "pdf" || exten == "PDF") {
-        var spnFileName = (<HTMLInputElement>document.getElementById("spnFileName"));
-        var spnFileNameIns = (<HTMLInputElement>document.getElementById("spnFileNameIns"));
-        var spnFileNameOth = (<HTMLInputElement>document.getElementById("spnFileNameOth"));
+  // update(filename: number) {
+  //   debugger;
+  //   if (this.myForm.get('fileSource').value.name != undefined && this.myForm.get('fileSource').value.name != "") {
+  //     var exten = this.myForm.get('fileSource').value.name.split('.')[1];
+  //     console.log('insurance formate', exten)
+  //     if (exten == "png" || exten == "PNG" || exten == "jpeg" || exten == "JPEG" || exten == "jif" || exten == "JIF" || exten == "svg" || exten == "jpg" || exten == "SVG" || exten == "pdf" || exten == "PDF") {
+  //       var spnFileName = (<HTMLInputElement>document.getElementById("spnFileName"));
+  //       var spnFileNameIns = (<HTMLInputElement>document.getElementById("spnFileNameIns"));
+  //       var spnFileNameOth = (<HTMLInputElement>document.getElementById("spnFileNameOth"));
 
-        const formData = new FormData();
-        formData.append('rawfile', this.myForm.get('fileSource').value);
+  //       const formData = new FormData();
+  //       formData.append('rawfile', this.myForm.get('fileSource').value);
 
-        this.http.post(this.config.uploadLogo, formData).subscribe(res => {
-          if (filename == 1) {
-            this.filepath = res;
-            spnFileName.innerText = this.myForm.get('fileSource').value.name;
-            this.filepath = this.filepath.file_path;
-            if (this.driverDetails.id != 0) {
-              this.uploadFileToActivity(this.driverDetails.id, 'lic');
-            }
-          }
-          else if (filename == 0) {
-            this.filepathIns = res;
-            spnFileNameIns.innerText = this.myForm.get('fileSource').value.name;
-            this.filepathIns = this.filepathIns.file_path;
-            console.log(this.filepathIns, 'insure');
-            if (this.driverDetails.id != 0) {
-              this.uploadFileToActivity(this.driverDetails.id, 'ins');
-            }
-          }
-          else if (filename == 2) {
-            this.filepathother = res;
-            spnFileNameOth.innerText = this.myForm.get('fileSource').value.name;
-            this.filepathother = this.filepathother.file_path;
-            // console.log(this.filepathother, 'insure')
-            if (this.driverDetails.id != 0) {
-              this.uploadFileToActivity(this.driverDetails.id, 'oth');
-            }
-          }
-          else {
-            this.filemulti = res;
-            // spnFileNameOth.innerText = this.myForm.get('fileSource').value.name;
-            this.filepathmulti.push(this.filemulti.file_path);
-            // console.log(this.filepathother, 'insure')
-            if (this.driverDetails.id != 0) {
-              this.uploadFileMultipleOther(this.driverDetails.id, 'mul');
-            }
-          }
-          // alert('Uploaded Successfully.');
-        }, (err) => {
-          if (err.status == 400) { }
-        });
-      }
-      else {
-        this.toastr.warning("Upload only image file");
-      }
-    }
-  }
+  //       this.http.post(this.config.uploadLogo, formData).subscribe(res => {
+  //         if (filename == 1) {
+  //           this.filepath = res;
+  //           spnFileName.innerText = this.myForm.get('fileSource').value.name;
+  //           this.filepath = this.filepath.file_path;
+  //           if (this.driverDetails.id != 0) {
+  //             this.uploadFileToActivity(this.driverDetails.id, 'lic');
+  //           }
+  //         }
+  //         else if (filename == 0) {
+  //           this.filepathIns = res;
+  //           spnFileNameIns.innerText = this.myForm.get('fileSource').value.name;
+  //           this.filepathIns = this.filepathIns.file_path;
+  //           console.log(this.filepathIns, 'insure');
+  //           if (this.driverDetails.id != 0) {
+  //             this.uploadFileToActivity(this.driverDetails.id, 'ins');
+  //           }
+  //         }
+  //         else if (filename == 2) {
+  //           this.filepathother = res;
+  //           spnFileNameOth.innerText = this.myForm.get('fileSource').value.name;
+  //           this.filepathother = this.filepathother.file_path;
+  //           // console.log(this.filepathother, 'insure')
+  //           if (this.driverDetails.id != 0) {
+  //             this.uploadFileToActivity(this.driverDetails.id, 'oth');
+  //           }
+  //         }
+  //         else {
+  //           this.filemulti = res;
+  //           // spnFileNameOth.innerText = this.myForm.get('fileSource').value.name;
+  //           this.filepathmulti.push(this.filemulti.file_path);
+  //           // console.log(this.filepathother, 'insure')
+  //           if (this.driverDetails.id != 0) {
+  //             this.uploadFileMultipleOther(this.driverDetails.id, 'mul');
+  //           }
+  //         }
+  //         // alert('Uploaded Successfully.');
+  //       }, (err) => {
+  //         if (err.status == 400) { }
+  //       });
+  //     }
+  //     else {
+  //       this.toastr.warning("Upload only image file");
+  //     }
+  //   }
+  // }
 
   cancel(): void {
     window.scrollTo(0, 0);
@@ -616,19 +616,19 @@ export class AddPartnerComponent implements OnInit {
         // is_active: status,
         block_reason: txtreason.value
       }
-      if (status == '5')
-        inputRequest.isBlock = (this.paramsBlock == 1 ? '0' : '1');
+      // if (status == '5')
+      //   inputRequest.isBlock = (this.paramsBlock == 1 ? '0' : '1');
 
-      this.service.blockDriverStatus(inputToken, inputRequest, id).subscribe((result: any) => {
-        if (result.data) {
-          console.log("Reject status", result.data);
-        }
-        closeBtn.click();
-        this.location.back();
-      });
+      // this.service.blockDriverStatus(inputToken, inputRequest, id).subscribe((result: any) => {
+      //   if (result.data) {
+      //     console.log("Reject status", result.data);
+      //   }
+      //   closeBtn.click();
+      //   this.location.back();
+      // });
     }
   }
-  open(content) {
+  open(content: any) {
     this.errorMessage = "";
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -649,14 +649,14 @@ export class AddPartnerComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  onSelectFile(event, fname) {
+  onSelectFile(event: { target: { files: string | any[]; }; }, fname: any) {
     if (event.target.files.length > 0) {
       const rawfile = event.target.files[0];
       this.myForm.patchValue({
         fileSource: rawfile
       });
       this.filenameOther = 'mul';
-      this.update(fname)
+      // this.update(fname)
     }
 
     if (event.target.files && event.target.files[0]) {
@@ -664,31 +664,31 @@ export class AddPartnerComponent implements OnInit {
       for (let i = 0; i < filesAmount; i++) {
         var reader = new FileReader();
         reader.onload = (event: any) => {
-          this.imageurls.push({ base64String: event.target.result, });
+          // this.imageurls.push({ base64String: event.target.result, });
         }
         reader.readAsDataURL(event.target.files[i]);
       }
     }
   }
-  removeImage(i) {
+  removeImage(i: number) {
     debugger;
     this.imageurls.splice(i, 1);
     this.filepathmulti.splice(i, 1);
     if (this.driverDetails.id != 0)
       this.uploadFileMultipleOther(this.driverDetails.id, 'mul');
   }
-  removeImageEdit(i, imagepath) {
+  removeImageEdit(i: any, imagepath: any) {
     this.imageDeleteFrom.value.id = i;
     this.imageDeleteFrom.value.ImagePath = imagepath;
   }
-  uploadMultipleOtherD(id, doc) {
+  uploadMultipleOtherD(id: any) {
     debugger;
     var tt = this.imageurls; //this.imageDeleteFrom.get('imagePath').value.name
     var mul = this.filepathmulti;
     console.log("tt", tt);
     this.uploadFileMultipleOther(id, 'mul');
   }
-  uploadFileMultipleOther(id, filename) {
+  uploadFileMultipleOther(id: number, filename: string) {
     debugger;
 
     var fileurl = this.filepathmulti.toString();

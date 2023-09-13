@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+// import Chart from 'chart.js';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { driverService } from '../../service/driver.service';
@@ -9,12 +9,12 @@ import { LocationStrategy } from '@angular/common';
 
 
 // core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  //chartExample2
-} from "../../variables/charts";
+// import {
+//   chartOptions,
+//   parseOptions,
+//   chartExample1,
+//   //chartExample2
+// } from "../../variables/charts";
 
 @Component({
   selector: 'app-dashboard',
@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
         yAxes: [
           {
             ticks: {
-              callback: function (value) {
+              callback: function (value:any) {
                 if (!(value % 1)) {
                   //return '$' + value + 'k'
                   return value;
@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
       },
       tooltips: {
         callbacks: {
-          label: function (item, data) {
+          label: function (item:any, data:any) {
             var label = data.datasets[item.datasetIndex].label || "";
             var yLabel = item.yLabel;
             var content = "";
@@ -77,11 +77,11 @@ export class DashboardComponent implements OnInit {
   dashboardList: any;
   chartView: any;
 
-  sortedData: any[];
+  sortedData!: any[];
 
   public datasets: any;
   public data: any;
-  public salesChart;
+  public salesChart:any;
   public clicked: boolean = true;
   public clicked1: boolean = false;
   user_type:any;
@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels: string[];
+  public barChartLabels!: string[];
   public barChartType: string = 'bar';
   public barChartLegend: boolean = true;
 
@@ -110,19 +110,19 @@ export class DashboardComponent implements OnInit {
     private location: LocationStrategy,
   ) {
 
-    history.pushState(null, null, window.location.href);
+    history.pushState(null,  window.location.href);
     this.location.onPopState(() => {
-      history.pushState(null, null, window.location.href);
+      history.pushState(null, window.location.href);
     });
 
 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else{
       this.route.navigate(['/login']);
     }
-    this.user_type = (localStorage.user_type != undefined ? localStorage.user_type : '')
+    this.user_type = (localStorage['user_type'] != undefined ? localStorage['user_type'] : '')
 
   }
 
@@ -133,14 +133,14 @@ export class DashboardComponent implements OnInit {
       [0, 20, 5, 25, 10, 30, 15, 40, 40]
     ];
     this.data = this.datasets[0];
-    parseOptions(Chart, chartOptions());
-    var chartSales = document.getElementById('chart-sales');
-    // debugger;
-    this.salesChart = new Chart(chartSales, {
-      type: 'line',
-      options: chartExample1.options,
-      data: chartExample1.data,
-    });
+    // parseOptions(Chart, chartOptions());
+    // var chartSales = document.getElementById('chart-sales');
+    // // debugger;
+    // this.salesChart = new Chart(chartSales, {
+    //   type: 'line',
+    //   options: chartExample1.options,
+    //   data: chartExample1.data,
+    // });
 
     this.getDashboard();
     this.getCharts();
@@ -187,16 +187,16 @@ export class DashboardComponent implements OnInit {
           var x = Object.keys(this.chartView[0]);
           // var y = Object.values(this.chartView[0]);
           var y = Object.keys(this.chartView[0]).map((item) => this.chartView[0][item]);
-          this.chartExample2.data.labels = x;
-          this.chartExample2.data.datasets[0].data = y;
+          // this.chartExample2.data.labels = x;
+          // this.chartExample2.data.datasets[0].data = y;
           // console.log('data-x', y);
           // console.log('data-y', this.chartExample2.data.datasets[0].data);
           var chartOrders = document.getElementById('chart-orders');
-          var ordersChart = new Chart(chartOrders, {
-            type: 'bar',
-            options: this.chartExample2.options,
-            data: this.chartExample2.data,
-          });
+          // var ordersChart = new Chart(chartOrders, {
+          //   type: 'bar',
+          //   options: this.chartExample2.options,
+          //   data: this.chartExample2.data,
+          // });
 
         }
       }

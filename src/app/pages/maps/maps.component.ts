@@ -31,8 +31,8 @@ export class MapsComponent implements OnInit {
   // driverClickID:any;
   isFormReadyPop: boolean = false;
 
-  data: SafeHtml;
-  res: string;
+  data!: SafeHtml;
+  res!: string;
 
   maproute: any = "";
 
@@ -79,7 +79,7 @@ export class MapsComponent implements OnInit {
         if (result.data) {
           this.mapDataList = result.data;
           console.log("map data", this.mapDataList);
-          this.filterMapList = this.mapDataList.filter((item) => item.driverStatus == '1')
+          this.filterMapList = this.mapDataList.filter((item: { driverStatus: string; }) => item.driverStatus == '1')
           console.log("driver details ", this.filterMapList);
           if (sessionStorage.getItem('iindex') != undefined && sessionStorage.getItem('iindex') != '0')
             this.getMarkerImage(sessionStorage.getItem('iindex'));
@@ -91,7 +91,7 @@ export class MapsComponent implements OnInit {
 
   }
 
-  getMarkerImage(index) {
+  getMarkerImage(index: string | number | null) {
     debugger;
     var url = "";
     if (index == 1) {
@@ -122,7 +122,7 @@ export class MapsComponent implements OnInit {
     this.getMap(url);
   }
 
-  getMap(markerUrl) {
+  getMap(markerUrl: string) {
     
     // Creating a new map
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -175,7 +175,7 @@ export class MapsComponent implements OnInit {
             map.setCenter(marker.getPosition());
             map.panTo(marker.getPosition());
           }, 100);
-          if (sessionStorage.zoomSts == 'false') {
+          if (sessionStorage['zoomSts'] == 'false') {
             sessionStorage.setItem('zoomSts', 'true');
             map.setZoom(16);
           }
@@ -194,7 +194,7 @@ export class MapsComponent implements OnInit {
 
   }
 
-  onlineDrivers(e, i, value, data) {  
+  onlineDrivers(e: any, i: any, value: any, data: string) {  
     debugger;  
     // console.log(i,value,data)
     sessionStorage.setItem('ilat', '');
@@ -203,24 +203,25 @@ export class MapsComponent implements OnInit {
     sessionStorage.setItem('zoomSts', 'false');
     sessionStorage.setItem('iindex', i);
     if (data == 'driver') {
-      this.filterMapList = this.mapDataList.filter((item) => item.driverStatus == value);
+      const newLocal = this;
+      newLocal.filterMapList = this.mapDataList.filter((item: { driverStatus: any; }) => item.driverStatus == value);
       console.log("driver status", this.filterMapList);
       this.getMarkerImage(i);
     }
     else {
-      this.filterMapList = this.mapDataList.filter((item) => item.trip_status == value);
+      this.filterMapList = this.mapDataList.filter((item: { trip_status: any; }) => item.trip_status == value);
       console.log("Trip status", this.filterMapList);
       this.getMarkerImage(i);
 
     }
   }
-  chkDriverStatus(content) {
+  chkDriverStatus() {
     // Get Driver Trip details
     // if (i.driverStatus == 2) {
     const inputRequest = {
       token: this.token,
     };
-    this.driverService.getDriverCurrentStatus(inputRequest, sessionStorage.driverClickID).subscribe((result: any) => {
+    this.driverService.getDriverCurrentStatus(inputRequest, sessionStorage['driverClickID']).subscribe((result: any) => {
       if (result) {
         if (result.data.id != undefined)
           this.service.getSingleTrips(result.data.id).subscribe((resultval: any) => {
@@ -242,14 +243,14 @@ export class MapsComponent implements OnInit {
     var btnModelPopup = (<HTMLInputElement>document.getElementById("btnModelPopup"));
     btnModelPopup.click();
   }
-  open(content) {
+  open(content: any) {
     debugger;
     // Get Driver Trip details
     // if (i.driverStatus == 2) {
     const inputRequest = {
       token: this.token,
     };
-    this.driverService.getDriverCurrentStatus(inputRequest, sessionStorage.driverClickID).subscribe((result: any) => {
+    this.driverService.getDriverCurrentStatus(inputRequest, sessionStorage['driverClickID']).subscribe((result: any) => {
       if (result) {
         if (result.data[0] != undefined)
           this.service.getSingleTrips(result.data[0].id).subscribe((resultval: any) => {
@@ -295,7 +296,7 @@ export class MapsComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  tripStatus(status) {
+  tripStatus(status: string) {
     // debugger;
     var tripSts = '';
     if (status == '0')

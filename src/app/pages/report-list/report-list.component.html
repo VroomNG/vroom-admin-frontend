@@ -7,15 +7,10 @@
     <div class="col expbtnfixed">
       <h5 class="h3 mb-4 d-inline-block">New Registration:</h5>
       <span class="d-inline-block ml-3">
-        <select id="selUser" class="form-control w_135" (click)="selectedDropdown($event)" >
+        <!-- <select id="selUser" class="form-control w_135" (click)="selectedDropdown($event)" >
           <option value="2022">2022</option>
           <option value="2021">2021</option>
-         
-          <!-- <option value="2023">2023</option>
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
-          <option value="2026">2026</option> -->
-        </select>
+        </select> -->
       </span>
 
       <span class="d-inline-block ml-3">
@@ -33,7 +28,7 @@
           {{level.value}}
         </option>
       </select>
-      <span style="margin-left: 25px;" [hidden]="true">Days <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript:return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span>
+      <!-- <span style="margin-left: 25px;" [hidden]="true">Days <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript:return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span> -->
    
       <!-- <select style="margin-left: 30px;" id="selOnlineFilter" class="form-control form-control-alternative drpFilter" (change)="OnlineFilter($event)">            
         <option *ngFor="let level of driverOnline" value="{{level.id}}">
@@ -50,8 +45,8 @@
 
       <li class="nav-item px-3 text-center" *ngFor="let item of tempArray; let i of index">
         <p class="mb-0 text-uppercase ">{{item.name}}</p>
-        <p class="btn btn_primary py-0 px-3 text-white font-weight-bold" [ngStyle]="{'background-color': item.color}">
-          {{item.data}}</p>
+        <!-- <p class="btn btn_primary py-0 px-3 text-white font-weight-bold" [ngStyle]="{'background-color': item.color}">
+          {{item.data}}</p> -->
       </li>
     </ul>
   </div>
@@ -72,8 +67,8 @@
           <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '1'? 'Approved Drivers': '' ">Users</h3>
           
           <span class="text-right p-2 ">
-            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
-              placeholder="search" />
+            <!-- <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" /> -->
           </span>
          
          
@@ -93,7 +88,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of (pageOfItems | search: FilterName)">
+              <!-- <tr *ngFor="let item of (pageOfItems | search: FilterName)">
                 <th scope="row">UI0{{item.id}}</th>
                 <td>{{item.firstname | titlecase}} {{item.lastname | titlecase}}</td>
                 <td>{{item.city | titlecase}}</td>                
@@ -101,15 +96,15 @@
                 <td>{{item.phone_no}}</td>                                
                 <td *ngIf="pagePath === '1'">{{item.isBlock == '0'?'Active':'InActive'}}</td>
                 <td *ngIf="pagePath === '1'">{{item.created_at | date:'mediumDate'}}</td>                                
-              </tr>
+              </tr> -->
 
             </tbody>
           </table>
         </div>
         <div class="card text-center m-3 card-footer py-4">
           <div class="card-footer pb-0 pt-3">
-            <jw-pagination [items]="driverList | search: FilterName" (changePage)="onChangePage($event)">
-            </jw-pagination>
+            <!-- <jw-pagination [items]="driverList | search: FilterName" (changePage)="onChangePage($event)">
+            </jw-pagination> -->
           </div>
          
         </div>

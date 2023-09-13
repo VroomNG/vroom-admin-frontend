@@ -1,7 +1,7 @@
 export class forgotPasswordInfo {
-    id: number;
+    id!: number;
     password: any;
     confirmPassword: any;    
     isRemberMeChecked:any;   
-    display_timezone: string;
+    display_timezone!: string;
 }

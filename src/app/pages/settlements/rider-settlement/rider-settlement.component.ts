@@ -15,7 +15,7 @@ export class RiderSettlementComponent implements OnInit {
   FilterName = '';
   riderList = [];
   driverStatus: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   constructor(
     private formBuilder: FormBuilder,
     // private toastr: ToastrService,    
@@ -25,8 +25,8 @@ export class RiderSettlementComponent implements OnInit {
     private service1: exportService,
     private loginService:LoginService
   ) {
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);    
@@ -51,7 +51,7 @@ export class RiderSettlementComponent implements OnInit {
     })
   }
 
-  SinglRiderPayment(id,amount,fname,lname) {  
+  SinglRiderPayment(id: string | number | undefined,amount: any,fname: string,lname: string) {  
     var name = fname + " "+lname;      
     // if (id != undefined && id != 0)
     //   this.route.navigate(['settlements/rider-settlement/transaction-details-rider/' + id]);

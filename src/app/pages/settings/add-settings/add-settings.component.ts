@@ -32,8 +32,8 @@ const colors = [
 // declare const geolib: any;
 
 let colorIndex = 0;
-const place = null as google.maps.places.PlaceResult;
-type Components = typeof place.address_components;
+// const place = null as google.maps.places.PlaceResult;
+// type Components = typeof place.address_components;
 @Component({
   selector: 'app-add-settings',
   templateUrl: './add-settings.component.html',
@@ -41,17 +41,17 @@ type Components = typeof place.address_components;
 })
 export class AddSettingsComponent implements OnInit {
   @ViewChild("search")
-  public searchElementRef: ElementRef;
+  public searchElementRef!: ElementRef;
   @ViewChild("map")
-  public mapElementRef: ElementRef;
-  private map: google.maps.Map;
+  public mapElementRef!: ElementRef;
+  // private map!: google.maps.Map;
   public entries = [];
-  public place: google.maps.places.PlaceResult;
+  // public place!: google.maps.places.PlaceResult;
   mapLatitude: any;
   mapLongitude: any;
   numRegex = /^-?\d*[.,]?\d{0,2}$/;
-  surgeForm: FormGroup;
-  settingData: SettingInfo;
+  surgeForm!: FormGroup;
+  settingData!: SettingInfo;
   // declartion
   surgeSelected: any;
   token: any;
@@ -71,6 +71,7 @@ export class AddSettingsComponent implements OnInit {
     { value: 1, name: "Specific Day" },
     { value: 0, name: "All Days" }
   ];
+  map: any;
   // cities=[{value:"Lagos",name:"Lagos"},{value:"Onitsha",name:"Onitsha"},{value:"Kano",name:"Kano"},{value:"Ibadan",name:"Ibadan"},{value:"Owerri",name:"Owerri"},
   // {value:"Abuja",name:"Abuja"},{value:"Maiduguri",name:"Maiduguri"},{value:"Benin City",name:"Benin City"},{value:"Ikare",name:"Ikare"},{value:"Ogbomoso",name:"Ogbomoso"},
   // {value:"Zaria",name:"Zaria"},{value:"Abeokuta",name:"Abeokuta"},{value:"Jos",name:"Jos"},{value:"Ilorin",name:"Ilorin"},{value:"Warri",name:"Warri"},
@@ -88,8 +89,8 @@ export class AddSettingsComponent implements OnInit {
       return false;
     };
 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
       //this.flag_admin = localStorage.flag_admin;
 
     }
@@ -131,16 +132,16 @@ export class AddSettingsComponent implements OnInit {
     else
       this.surgeForm.value.SelectedDate = 0;
 
-      this.apiService.api.then(maps => {
-        this.initAutocomplete(maps);
-        this.initMap(maps);
-       this.map = new google.maps.Map(
-          document.getElementById("map") as HTMLElement,
-          {
-            center: { lat: 40.749933, lng: -73.98633 },
-            zoom: 13,
-          })
-      });
+      // this.apiService.api.then(maps => {
+      //   this.initAutocomplete(maps);
+      //   this.initMap(maps);
+      //  this.map = new google.maps.Map(
+      //     document.getElementById("map") as HTMLElement,
+      //     {
+      //       center: { lat: 40.749933, lng: -73.98633 },
+      //       zoom: 13,
+      //     })
+      // });
       this.loginService.addInteraction(sessionStorage.getItem('email'),"Added a setting ").subscribe((result:any) => {});
   
   }
@@ -231,7 +232,7 @@ export class AddSettingsComponent implements OnInit {
   }
 
   // update passanger
-  updateSettings(id) {
+  updateSettings(id:any) {
     debugger;
     this.errorMessage = ""; this.errorMessageDate = "";
     var amount = (<HTMLInputElement>document.getElementById("amount"));
@@ -293,7 +294,7 @@ export class AddSettingsComponent implements OnInit {
     });
   }
 
-  selectedEvent(i) {
+  selectedEvent(i:any) {
     debugger;
     this.errorMessageDate = "";
     this.surgeSelected = i.target.value;
@@ -312,7 +313,7 @@ export class AddSettingsComponent implements OnInit {
   }
 
   // delete surcharge
-  deleteSettings(id) {
+  deleteSettings(id:any) {
     this.surgeService.deleteSurge(id).subscribe((result: any) => {
       if (result) {
         this.route.navigate(['settings/view-settings']);
@@ -355,7 +356,11 @@ debugger;
         marker.setMap(this.map);
         marker.addListener("click", () => {
           this.map.setZoom(15);
-          this.map.setCenter(marker.getPosition() as google.maps.LatLng);
+          type NewType
+           = 0;
+          //  google.maps.LatLng;
+
+          this.map.setCenter(marker.getPosition() as NewType);
         });
         console.log("Bind map");
       }
@@ -368,104 +373,104 @@ debugger;
   chargeErrMsgDate() {
     this.errorMessageDate = "";
   }
-  initAutocomplete(maps: Maps) {
-    debugger;
-    if (this.searchElementRef != undefined) {
-      let autocomplete = new maps.places.Autocomplete(this.searchElementRef.nativeElement);
-      console.log("autocomplete ==>", autocomplete);
-      autocomplete.setComponentRestrictions({country:["NG"]});
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          this.onPlaceChange(autocomplete.getPlace());
-        });
-      });
-    }
-  }
-  initMap(maps: Maps) {
-    this.map = new maps.Map(this.mapElementRef.nativeElement, {
-      zoom: 7
-    });
-    this.map.addListener('click', event => {
+  // initAutocomplete(maps: Maps) {
+  //   debugger;
+  //   if (this.searchElementRef != undefined) {
+  //     let autocomplete = new maps.places.Autocomplete(this.searchElementRef.nativeElement);
+  //     console.log("autocomplete ==>", autocomplete);
+  //     autocomplete.setComponentRestrictions({country:["NG"]});
+  //     autocomplete.addListener("place_changed", () => {
+  //       this.ngZone.run(() => {
+  //         this.onPlaceChange(autocomplete.getPlace());
+  //       });
+  //     });
+  //   }
+  // }
+  // initMap(maps: Maps) {
+  //   this.map = new maps.Map(this.mapElementRef.nativeElement, {
+  //     zoom: 7
+  //   });
+  //   this.map.addListener('click', (event: { latLng: google.maps.LatLng; }) => {
 
-      const ellipsePoints = toEllipse(this.entries[0].location.bounds);
-      var line = turf.helpers.lineString(ellipsePoints.map(p => [p.longitude, p.latitude]));
+  //     const ellipsePoints = toEllipse(this.entries[0].location.bounds);
+  //     var line = turf.helpers.lineString(ellipsePoints.map(p => [p.longitude, p.latitude]));
 
-      const pointLatLng = event.latLng as google.maps.LatLng;
-      var point = turf.helpers.point([pointLatLng.lng(), pointLatLng.lat()]);
-      //point = turf.helpers.point([this.entries[0].location.coordinates.longitude, this.entries[0].location.coordinates.latitude]);
-      const isInside = geolib.isPointInside({ latitude: pointLatLng.lat(), longitude: pointLatLng.lng() }, ellipsePoints);
-      const distance = isInside ? 0 : turf.pointToLineDistance(point, line);
-      console.log('distance', distance * 1000);
-    });
-  }
+  //     const pointLatLng = event.latLng as google.maps.LatLng;
+  //     var point = turf.helpers.point([pointLatLng.lng(), pointLatLng.lat()]);
+  //     //point = turf.helpers.point([this.entries[0].location.coordinates.longitude, this.entries[0].location.coordinates.latitude]);
+  //     const isInside = geolib.isPointInside({ latitude: pointLatLng.lat(), longitude: pointLatLng.lng() }, ellipsePoints);
+  //     const distance = isInside ? 0 : turf.pointToLineDistance(point, line);
+  //     console.log('distance', distance * 1000);
+  //   });
+  // }
 
-  onPlaceChange(place: google.maps.places.PlaceResult) {
-    console.log("onplace change");
-    debugger;
-    var radius_val = (<HTMLInputElement>document.getElementById("radius"));
-console.log("radius_val",radius_val.value);
-    if (place.geometry != undefined)
-      this.map.setCenter(place.geometry.location);
-    console.log("Place =>", place.geometry.location.lat);
-    this.mapLatitude = place.geometry.viewport.toJSON().north;
-    this.mapLongitude = place.geometry.viewport.toJSON().east;
-    console.log("lati val =>", this.mapLatitude, this.mapLongitude);
-    const color = colors[(colorIndex++) % colors.length]
-    const pin = this.pin(color);
+//   onPlaceChange(place: google.maps.places.PlaceResult) {
+//     console.log("onplace change");
+//     debugger;
+//     var radius_val = (<HTMLInputElement>document.getElementById("radius"));
+// console.log("radius_val",radius_val.value);
+//     if (place.geometry != undefined)
+//       this.map.setCenter(place.geometry.location);
+//     console.log("Place =>", place.geometry.location.lat);
+//     this.mapLatitude = place.geometry.viewport.toJSON().north;
+//     this.mapLongitude = place.geometry.viewport.toJSON().east;
+//     console.log("lati val =>", this.mapLatitude, this.mapLongitude);
+//     const color = colors[(colorIndex++) % colors.length]
+//     const pin = this.pin(color);
 
-    const marker = new google.maps.Marker({
-      position: place.geometry.location,
-      animation: google.maps.Animation.DROP,
-      map: this.map,
-      icon: this.pin(color),
-    });
+//     const marker = new google.maps.Marker({
+//       position: place.geometry.location,
+//       animation: google.maps.Animation.DROP,
+//       map: this.map,
+//       icon: this.pin(color),
+//     });
 
-    const rectangle = new google.maps.Circle({
-      strokeColor: color,
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: color,
-      fillOpacity: 0.35,
-      map: this.map,
-      //bounds: place.geometry.viewport
-    });
+//     const rectangle = new google.maps.Circle({
+//       strokeColor: color,
+//       strokeOpacity: 0.8,
+//       strokeWeight: 2,
+//       fillColor: color,
+//       fillOpacity: 0.35,
+//       map: this.map,
+//       //bounds: place.geometry.viewport
+//     });
 
-    const expandedRectangle = new google.maps.Circle({
-      strokeColor: color,
-      strokeOpacity: 0.8,
-      strokeWeight: 0.5,
-      fillColor: color,
-      fillOpacity: 0.2,
-      map: this.map,
-     // bounds: expandBounds(place.geometry.viewport.toJSON(), 5000),
-    });
+//     const expandedRectangle = new google.maps.Circle({
+//       strokeColor: color,
+//       strokeOpacity: 0.8,
+//       strokeWeight: 0.5,
+//       fillColor: color,
+//       fillOpacity: 0.2,
+//       map: this.map,
+//      // bounds: expandBounds(place.geometry.viewport.toJSON(), 5000),
+//     });
 
-    const location = this.locationFromPlace(place);
+//     const location = this.locationFromPlace(place);
 
-    // const ellipse = new google.maps.Polygon({
-    //   paths: toEllipse(location.bounds).map(({ latitude, longitude }) => new google.maps.LatLng(latitude, longitude)),
-    //   strokeColor: color,
-    //   strokeOpacity: 1,
-    //   strokeWeight: 1,
-    //   fillColor: color,
-    //   fillOpacity: 0.3,
-    // });
-    // ellipse.setMap(this.map);
-    const ellipse = new google.maps.Circle({        
-      strokeColor: color,
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: color,
-      fillOpacity: 0.35,
-     map:this.map,
-     // center: citymap[city].center,
-      radius: (radius_val != undefined && radius_val != null ? parseInt(radius_val.value):100)
-    });
-ellipse.bindTo('center', marker, 'position');
+//     // const ellipse = new google.maps.Polygon({
+//     //   paths: toEllipse(location.bounds).map(({ latitude, longitude }) => new google.maps.LatLng(latitude, longitude)),
+//     //   strokeColor: color,
+//     //   strokeOpacity: 1,
+//     //   strokeWeight: 1,
+//     //   fillColor: color,
+//     //   fillOpacity: 0.3,
+//     // });
+//     // ellipse.setMap(this.map);
+//     const ellipse = new google.maps.Circle({        
+//       strokeColor: color,
+//       strokeOpacity: 0.8,
+//       strokeWeight: 2,
+//       fillColor: color,
+//       fillOpacity: 0.35,
+//      map:this.map,
+//      // center: citymap[city].center,
+//       radius: (radius_val != undefined && radius_val != null ? parseInt(radius_val.value):100)
+//     });
+// ellipse.bindTo('center', marker, 'position');
 
-    this.entries.unshift({ place, marker, rectangle, expandedRectangle, ellipse, color, location });
-  }
-  pin(color) {
+//     this.entries.unshift({ place, marker, rectangle, expandedRectangle, ellipse, color, location });
+//   }
+  pin(color:any) {
     return {
       path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
       fillColor: color,
@@ -475,45 +480,50 @@ ellipse.bindTo('center', marker, 'position');
       scale: 1,
     };
   }
-  public locationFromPlace(place: google.maps.places.PlaceResult) {
-    const components = place.address_components;
-    if (components === undefined) {
-      return null;
-    }
+  // public locationFromPlace(place: google.maps.places.PlaceResult) {
+  //   const components = place.address_components;
+  //   if (components === undefined) {
+  //     return null;
+  //   }
 
-    const areaLevel3 = getShort(components, 'administrative_area_level_3');
-    const locality = getLong(components, 'locality');
+    // const areaLevel3 = getShort(components, 'administrative_area_level_3');
+    // const locality = getLong(components, 'locality');
 
-    const cityName = locality || areaLevel3;
-    const countryName = getLong(components, 'country');
-    const countryCode = getShort(components, 'country');
-    const stateCode = getShort(components, 'administrative_area_level_1');
-    const name = place.name !== cityName ? place.name : null;
+    // const cityName = locality || areaLevel3;
+    // const countryName = getLong(components, 'country');
+    // const countryCode = getShort(components, 'country');
+    // const stateCode = getShort(components, 'administrative_area_level_1');
+    // const name = place.name !== cityName ? place.name : null;
 
-    const coordinates = {
-      latitude: place.geometry.location.lat(),
-      longitude: place.geometry.location.lng(),
-    };
+    // const coordinates = {
+    //   latitude: place.geometry.location.lat(),
+    //   longitude: place.geometry.location.lng(),
+    // };
 
-    const bounds = place.geometry.viewport.toJSON();
+    // const bounds = place.geometry.viewport.toJSON();
 
     // placeId is in place.place_id, if needed
-    return { name, cityName, countryName, countryCode, stateCode, bounds, coordinates };
+    // return { name,
+      //  cityName, countryName, countryCode, stateCode,
+      //  bounds, coordinates
+      //  };
   }
-}
-function getComponent(components: Components, name: string) {
-  return components.filter(component => component.types[0] === name)[0];
-}
+// }
+// function getComponent(components:
+//    Components,
+//    name: string) {
+//   return components.filter(component => component.types[0] === name)[0];
+// }
 
-function getLong(components: Components, name: string) {
-  const component = getComponent(components, name);
-  return component && component.long_name;
-}
+// function getLong(components: Components, name: string) {
+//   const component = getComponent(components, name);
+//   return component && component.long_name;
+// }
 
-function getShort(components: Components, name: string) {
-  const component = getComponent(components, name);
-  return component && component.short_name;
-}
+// function getShort(components: Components, name: string) {
+//   const component = getComponent(components, name);
+//   return component && component.short_name;
+// }
 function toEllipse({ north, south, east, west }: cosmos.LatLngBoundsLiteral) {
   const latitude = (north + south) / 2;
   const longitude = (east + west) / 2;

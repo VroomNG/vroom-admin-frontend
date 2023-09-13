@@ -19,7 +19,7 @@ export class ForgotPasswordService {
 // }
 
 
-    forgotPassword(inputParameter,id: any) {
+    forgotPassword(inputParameter: { password: any; confirmPassword: any; },id: any) {
       debugger;     
       return this.http.put(this.config.forgotPass + '/' + id , JSON.stringify(inputParameter), this.httpOptions);
   }

@@ -4,7 +4,7 @@ import { Sort } from '../util/sort';
   selector: '[appSort]'
 })
 export class SortDirective {
-  @Input() appSort: Array<any>;
+  @Input() appSort!: Array<any>;
 
   constructor(private renderer: Renderer2, private targetElement: ElementRef) { }
 

@@ -15,16 +15,19 @@
             </div>
         </div>
         <div class="card-body">
-            <form [formGroup]="discountForm">
+            <!-- <form 
+            [formGroup]="discountForm"
+            > -->
+            <form>
                 <div class="pl-lg-4">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Discount Code *</label>
                                 
-                                <input type="text" class="form-control" 
+                                <!-- <input type="text" class="form-control" 
                                 placeholder="Discount code" formControlName="discount_code" value="{{discountData.discount_code}}"
-                                required [ngClass]="{ 'is-invalid': submitted && f.discount_code.errors }" />
+                                required [ngClass]="{ 'is-invalid': submitted && f.discount_code.errors }" /> -->
                               
                                 <div *ngIf="submitted && f.discount_code.errors" class="invalid-feedback">
                                     <div *ngIf="f.discount_code.errors?.required">Discount code is required</div>
@@ -36,9 +39,9 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="input-last-name" style="margin-right:25px;">Title *</label>
                           
-                                <input type="text" class="form-control" 
+                                <!-- <input type="text" class="form-control" 
                                     placeholder="Title" formControlName="title" value="{{discountData.title}}"
-                                    required [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+                                    required [ngClass]="{ 'is-invalid': submitted && f.title.errors }" /> -->
                                
                                 <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
                                     <div *ngIf="f.title.errors?.required">Title is required</div>                                                                        
@@ -52,9 +55,9 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Description *</label>
-                                <input type="text" class="form-control" value="{{discountData.description}}"
+                                <!-- <input type="text" class="form-control" value="{{discountData.description}}"
                                     formControlName="description" placeholder="Description"
-                                    [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+                                    [ngClass]="{ 'is-invalid': submitted && f.description.errors }" /> -->
 
                                 <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                                     <div *ngIf="f.description.errors?.required">Description is required</div>
@@ -65,9 +68,9 @@
                         <div class="col-lg-6">
                             <div class="form-group">    
                                 <label class="form-control-label" for="input-last-name">Start Date *</label>
-                                <input type="date" class="form-control" formControlName="start_date" min="{{minDate}}"
+                                <!-- <input type="date" class="form-control" formControlName="start_date" min="{{minDate}}"
                                     [value]="discountData.start_date" placeholder="Start Date"
-                                    [ngClass]="{ 'is-invalid': submitted && f.start_date.errors }" />
+                                    [ngClass]="{ 'is-invalid': submitted && f.start_date.errors }" /> -->
                                    
 
                                 <div *ngIf="submitted && f.start_date.errors" class="invalid-feedback">
@@ -81,9 +84,9 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-last-name">End Date *</label>
-                                <input type="date" class="form-control" formControlName="end_date" min="{{minDate}}"
+                                <!-- <input type="date" class="form-control" formControlName="end_date" min="{{minDate}}"
                                     value="{{discountData.end_date}}" placeholder="End Date"
-                                    [ngClass]="{ 'is-invalid': submitted && f.end_date.errors }" />
+                                    [ngClass]="{ 'is-invalid': submitted && f.end_date.errors }" /> -->
 
                                 <div *ngIf="submitted && f.end_date.errors" class="invalid-feedback">
                                     <div *ngIf="f.end_date.errors?.required">End Date is required</div>
@@ -94,9 +97,9 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-last-name">Discount Percent *</label>
-                                <input type="text" class="form-control" formControlName="discount_percent"
+                                <!-- <input type="text" class="form-control" formControlName="discount_percent"
                                     value="{{discountData.discount_percent}}" max="{{minTime}}" placeholder="Discount Percent"
-                                    [ngClass]="{ 'is-invalid': submitted && f.discount_percent.errors }" />
+                                    [ngClass]="{ 'is-invalid': submitted && f.discount_percent.errors }" /> -->
 
                                 <div *ngIf="submitted && f.discount_percent.errors" class="invalid-feedback">
                                     <div *ngIf="f.discount_percent.errors?.required">Discount Percent is required</div>
@@ -111,9 +114,9 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Max Discount Amount </label>
-                                <input type="text" id="date" class="form-control" placeholder="Max Discount Amount"
+                                <!-- <input type="text" id="date" class="form-control" placeholder="Max Discount Amount"
                                     (click)="chargeErrMsgDate()" formControlName="max_discount_amount" value="{{discountData.max_discount_amount}}"
-                                  [ngClass]="{ 'is-invalid': submitted && f.max_discount_amount.errors }" />
+                                  [ngClass]="{ 'is-invalid': submitted && f.max_discount_amount.errors }" /> -->
                                 
                                   <div *ngIf="submitted && f.max_discount_amount.errors" class="invalid-feedback">                                  
                                     <div *ngIf="f.max_discount_amount.errors?.pattern">Invalid input</div>
@@ -125,9 +128,10 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="input-last-name1">Maximum number of users</label>
                                 
-                                <input placeholder="Maximum Number of Users"  formControlName="max_no_of_users" [value]="max_no_of_users"
+                                <!-- <input placeholder="Maximum Number of Users"  formControlName="max_no_of_users"
+                                 [value]="max_no_of_users"
                                     spellcheck="off" type="text" class="form-control auto" 
-                                    value="">
+                                    value=""> -->
 
                                     <div *ngIf="submitted && f.max_no_of_users.errors" class="invalid-feedback">                                  
                                         <div *ngIf="f.max_no_of_users.errors?.pattern">Invalid input</div>

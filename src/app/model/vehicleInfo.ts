@@ -1,5 +1,5 @@
 export class vehicleInfo {
-    id: number;
+    id!: number;
     type: any;
     trip_type: any;
     per_km_rate: any;

@@ -7,24 +7,21 @@
         <div class="col expbtnfixed">
           <h5 class="h3 mb-4 d-inline-block">Driver:</h5>
           <span class="d-inline-block ml-3">
-            <select id="tripRevenue" class="form-control w_135" (click)="selectedDropdownActiveDriver($event)">
+            <!-- <select id="tripRevenue" class="form-control w_135" (click)="selectedDropdownActiveDriver($event)">
               <option value="2022">2022</option>
               <option value="2021">2021</option>
               
-              <!-- <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option> -->
-            </select>
+           
+            </select> -->
           </span>
           <span class="d-inline-block ml-3">
-            <select id="DriverRevFilter" class="form-control w_135" (click)="selectedDropdownDriverFilter($event)">
+            <!-- <select id="DriverRevFilter" class="form-control w_135" (click)="selectedDropdownDriverFilter($event)">
               <option value="0">Select</option>
               <option value="7">Last 7 days</option>
               <option value="30">Last 30 days</option>
               <option value="1">This Month</option>
               <option value="2">Last 3 Month</option>
-            </select>
+            </select> -->
           </span>
           <select style="margin-left: 30px; display: none;" id="selOnlineFilter" class="form-control form-control-alternative drpFilter" (change)="OnlineFilter($event)">            
             <option *ngFor="let level of driverOnline" value="{{level.id}}">
@@ -57,16 +54,16 @@
           <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '3'? 'Inactive Drivers': ''  ">Rejected Drivers</h3> -->
 
           <span class="text-right p-2 ">
-            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
-              placeholder="search" />
+            <!-- <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" /> -->
           </span>
           <span class="spnFilter" *ngIf="pagePath === '1'">Status 
-            <select id="selDriverFilter" class="form-control form-control-alternative drpFilter" (change)="driverFilter($event)">            
+            <!-- <select id="selDriverFilter" class="form-control form-control-alternative drpFilter" (change)="driverFilter($event)">            
             <option *ngFor="let level of driverFil" value="{{level.id}}">
               {{level.value}}
             </option>
-          </select>
-          <span style="margin-left: 25px;">Days <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span>
+          </select> -->
+          <!-- <span style="margin-left: 25px;">Days <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span> -->
        
          
 
@@ -77,7 +74,7 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Code <i id="id" (click)="sortNumberColumn($event,booleanValue)" class="my-icon fa fa-chevron-up"></i></th>
+                <!-- <th scope="col">Code <i id="id" (click)="sortNumberColumn($event,booleanValue)" class="my-icon fa fa-chevron-up"></i></th> -->
                 <th scope="col">Driver Name </th>
                 <th scope="col">City</th>
                 <th scope="col">Vechile Type</th>
@@ -87,16 +84,17 @@
                 <!-- <th scope="col">Reference Code</th>   [style.display]="(isEdit ? 'inline-block':'none')"-->
                 <th scope="col" *ngIf="pagePath === '1'">Status</th>
                 <th scope="col" *ngIf="pagePath === '1'">Online Status</th>
-                <th scope="col" *ngIf="pagePath === '1'">Last Trip Date <i id="last_trip_date" (click)="sortNumberColumn($event,booleanValue)" class="my-icon fa fa-chevron-up"></i></th>
+                <!-- <th scope="col" *ngIf="pagePath === '1'">Last Trip Date <i id="last_trip_date" (click)="sortNumberColumn($event,booleanValue)" class="my-icon fa fa-chevron-up"></i></th> -->
                 <!-- <th scope="col">Action</th> -->
                 <th scope="col" *ngIf="pagePath === '1'">InActive</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of (pageOfItems | search: FilterName)">
+              <!-- <tr *ngFor="let item of (pageOfItems | search: FilterName)"> -->
+              <tr *ngFor="let item of pageOfItems ">
                 <th scope="row">DRV00{{item.id}}</th>
-                <td>{{item.firstname | titlecase}} {{item.lastname | titlecase}}</td>
-                <td>{{item.city | titlecase}}</td>
+                <!-- <td>{{item.firstname | titlecase}} {{item.lastname | titlecase}}</td> -->
+                <!-- <td>{{item.city | titlecase}}</td> -->
                 <td>{{item.vehicle_type}}</td>
                 <td>{{item.email}}</td>
                 <td>{{item.phone_no}}</td>
@@ -104,14 +102,14 @@
                 <!-- <td></td> -->
                 <td *ngIf="pagePath === '1'">{{item.is_active == 1?'Approved':'Pending'}}</td>
                 <td *ngIf="pagePath === '1'">{{item.current_status == '0'?'Off':'On'}}</td>
-                <td *ngIf="pagePath === '1'">{{item.last_trip_date | date:'mediumDate'}}</td>                
+                <!-- <td *ngIf="pagePath === '1'">{{item.last_trip_date | date:'mediumDate'}}</td>                 -->
                 <!-- <td class="text-center">                
                   <span class="p-1 mr-2" (click)="viewDriverDetails(item.id)">
                     <a class="dropdown-item1" style="color: #5e72e4; cursor: pointer;"><i
                         class="fas fa-pencil-alt"></i></a>
                   </span>                 
                 </td> -->
-                <td *ngIf="pagePath === '1'"><input type="checkbox" id="chkBlock" (change)="setDriverBlock($event,item.id)" [checked]="(item.isBlock === '1' ? true: false)"></td>
+                <!-- <td *ngIf="pagePath === '1'"><input type="checkbox" id="chkBlock" (change)="setDriverBlock($event,item.id)" [checked]="(item.isBlock === '1' ? true: false)"></td> -->
               </tr>
 
             </tbody>
@@ -119,8 +117,8 @@
         </div>
         <div class="card-footer py-4">
           <div class="card-footer pb-0 pt-3">
-            <jw-pagination [items]="driverList | search: FilterName" (changePage)="onChangePage($event)">
-            </jw-pagination>
+            <!-- <jw-pagination [items]="driverList | search: FilterName" (changePage)="onChangePage($event)">
+            </jw-pagination> -->
           </div>
          
         </div>
@@ -137,8 +135,8 @@
       <div class="modal-body map-detail-pop-up">         
           <div class="form-group">            
             <div class="input-group">              
-              <input type="text" id="txtreason" class="form-control" (keyup)="clearError()"
-                placeholder="Block Reason" />    
+              <!-- <input type="text" id="txtreason" class="form-control" (keyup)="clearError()"
+                placeholder="Block Reason" />     -->
                
               
             </div>
@@ -149,13 +147,16 @@
             </div>
             <div class="input-group-append" style="float: right;">
               <span class="text-right p-2">
-                <button id="btnReason" class="btn btn-primary" (click)="saveReason()">Save</button></span>
+                <button id="btnReason" class="btn btn-primary" >
+                <!-- (click)="saveReason()"
+                > -->
+                Save</button></span>
             </div>
           </div>         
       </div>
     
     </ng-template>
-    <button id="btnModelPopup" [hidden]="true" class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+    <!-- <button id="btnModelPopup" [hidden]="true" class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
   
   </div>
 

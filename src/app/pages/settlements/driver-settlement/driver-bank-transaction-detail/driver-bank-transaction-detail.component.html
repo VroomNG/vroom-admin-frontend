@@ -8,15 +8,10 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <span class="backicon" (click)="backscreen()"><i class="fas fa-backward" title="Back"></i></span> <h3 class="mb-0">Withdraw Request Details | Driver: {{(drivername != undefined ? drivername : '')}}
-            <!-- <span class="ml-4 float-right">
-              <button class="btn btn-danger px-4 py-1">Paid</button>
-             </span> -->
-            <!-- <span class="float-right">Wallet Balance :
-              {{TotalDriverPay | number :'1.2-2'}}
-            </span> -->
+          <!-- <span class="backicon" (click)="backscreen()"><i class="fas fa-backward" title="Back"></i></span> <h3 class="mb-0">Withdraw Request Details | Driver: {{(drivername != undefined ? drivername : '')}} -->
+           
             <button *ngIf="drivername != undefined" id="btnAdminPaid" class="btn btn-primary paidalgn" (click)="paidWithdrawRq()">Paid</button>
-          </h3>
+          <!-- </h3> -->
         </div>
 
 
@@ -35,7 +30,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of pageOfItems">
+              <!-- <tr *ngFor="let item of pageOfItems">
                 <td>{{item.trip_id}}</td>
                 <td>{{tripType(item.trip_type)}}</td>
                 <td>{{item.rider_name}}</td>
@@ -45,7 +40,7 @@
                 <td>{{item.driverShare | number :'1.2-2'}}</td>
                 <td>{{item.payment_type}}</td>
                
-              </tr>
+              </tr> -->
 
             </tbody>
           </table>
@@ -53,7 +48,7 @@
         <div class="card-footer py-4">
           <div class="card-footer pb-0 pt-3">
 
-            <jw-pagination [items]="driverPaymentList" (changePage)="onChangePage($event)"></jw-pagination>
+            <!-- <jw-pagination [items]="driverPaymentList" (changePage)="onChangePage($event)"></jw-pagination> -->
           </div>
         </div>
       </div>
@@ -75,8 +70,8 @@
             </div>
             <label class="form-control-label" for="input-password">Transaction Date</label>  
             <div class="input-group">  
-              <input placeholder="Transaction Date" class="form-control w-20 d-inline-block" type="text" data-date-format="MM/DD/YYYY"
-                [(ngModel)]="startDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
+              <!-- <input placeholder="Transaction Date" class="form-control w-20 d-inline-block" type="text" data-date-format="MM/DD/YYYY"
+                [(ngModel)]="startDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" /> -->
                           
               <!-- <input type="text" id="txtTransactionDate" class="form-control" 
                 placeholder="Transaction Date" />     -->

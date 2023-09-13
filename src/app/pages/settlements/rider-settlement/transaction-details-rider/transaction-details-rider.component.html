@@ -29,15 +29,15 @@
               <th scope="row">{{item.transactionId}}</th>
               <td>{{item.payment_type}}</td>
               <td>{{item.amount}}</td>
-              <td>{{item.created_at | date:'MMMM dd, yyyy'}}</td>              
+              <!-- <td>{{item.created_at | date:'MMMM dd, yyyy'}}</td>               -->
             </tr>         
           </tbody>
         </table>
       </div>
       <div class="card-footer py-4">
-        <div class="card-footer pb-0 pt-3">         
+        <!-- <div class="card-footer pb-0 pt-3">         
           <jw-pagination [items]="riderPaymentList" (changePage)="onChangePage($event)"></jw-pagination>
-      </div>
+      </div> -->
       </div>
     </div>
   </div>

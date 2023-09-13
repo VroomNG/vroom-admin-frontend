@@ -328,17 +328,18 @@
 <div class="container">
   <div class="tab-slider--nav">
     <ul class="tab-slider--tabs">
-      <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1"
-        (click)="viewMode ='tab1'; driverReports(currentYear)">Registration</li>
-      <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2"
+      <!-- <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1"
+        (click)="viewMode ='tab1'; driverReports(currentYear)">Registration</li> -->
+      <!-- <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2"
         (click)="viewMode ='tab2'; tripReports(currentYear)">Trips</li>
       <li class="tab-slider--trigger" [class.active]="viewMode == 'tab3'" rel="tab3"
         (click)="viewMode ='tab3'; getActiveDriver(currentYear)">Driver</li>
       <li class="tab-slider--trigger" [class.active]="viewMode == 'tab4'" rel="tab4"
-        (click)="viewMode ='tab4'; getActiveRider(currentYear)">Revenue</li>
+        (click)="viewMode ='tab4'; getActiveRider(currentYear)">Revenue</li> -->
     </ul>
   </div>
-  <div class="tab-slider--container" [ngSwitch]="viewMode">
+  <div class="tab-slider--container">
+     <!-- [ngSwitch]="viewMode"> -->
     <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
       <h2>Registration</h2>
 
@@ -348,7 +349,7 @@
         <!-- Card body -->      
         <div class="row">
           <!-- <app-view-driver style="margin-left: 60px;"></app-view-driver> -->
-          <app-report-list class="reportTemp"></app-report-list>
+          <!-- <app-report-list class="reportTemp"></app-report-list> -->
         </div>
 
       </div>
@@ -361,7 +362,7 @@
         </div>
         <!-- Card body -->       
         <div class="row">
-          <app-report-trips class="reportTemp"></app-report-trips>
+          <!-- <app-report-trips class="reportTemp"></app-report-trips> -->
         </div>
       </div>
 
@@ -374,7 +375,7 @@
         </div>
         <!-- Card body -->             
       <div class="row">
-      <app-report-driver class="reportTemp"></app-report-driver>
+      <!-- <app-report-driver class="reportTemp"></app-report-driver> -->
       </div></div>
     </div>
     <div id="tab4" class="tab-slider--body" *ngSwitchCase="'tab4'">
@@ -386,7 +387,7 @@
         <!-- Card body -->      
         <div class="row">
           <!-- <app-report-riders></app-report-riders> -->
-          <app-revenue-report class="reportTemp"></app-revenue-report>
+          <!-- <app-revenue-report class="reportTemp"></app-revenue-report> -->
         </div>
       </div>
      

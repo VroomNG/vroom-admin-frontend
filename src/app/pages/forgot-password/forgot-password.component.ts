@@ -15,7 +15,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   PasswordForm: any;
 
-  changePasswordForm: FormGroup;
+  changePasswordForm!: FormGroup;
   submitted = false;
   isFormReady = false;
   forgotPasswordInfo: forgotPasswordInfo;

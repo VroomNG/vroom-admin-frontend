@@ -8,15 +8,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../src/environments/environment';
 import { LoginService } from '../../service/login.service';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  styleUrls: ['./user-profile.component.scss'],
+
 })
 export class UserProfileComponent implements OnInit {
   profileForm: any;
-  profileDetails: driverInfo;
+  profileDetails!: driverInfo;
   token: any;
   isFormReady = false;
   isEdit: boolean = false;
@@ -24,7 +25,7 @@ export class UserProfileComponent implements OnInit {
 
   submitted: boolean = false;
   // UploadImage: any;
-  fileToUpload: File = null;
+  fileToUpload!: File;
 
   cityList = [
     { value: "New York", id: "1", name: "New York" },
@@ -60,8 +61,8 @@ export class UserProfileComponent implements OnInit {
       return false;
     };
 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
       //this.flag_admin = localStorage.flag_admin;
 
     }
@@ -70,8 +71,8 @@ export class UserProfileComponent implements OnInit {
     debugger;
     this.router.params.subscribe((response: any) => {
       this.profileDetails = new driverInfo();
-      this.profileDetails.id = localStorage.userId;
-      this.profileDetails.user_id = localStorage.userId // response.id == undefined ? 0 : Number(response.id);
+      this.profileDetails.id = localStorage['userId'];
+      this.profileDetails.user_id = localStorage['userId'] // response.id == undefined ? 0 : Number(response.id);
       // console.log("ID for Riders ==> ", this.profileDetails.id);
 
     });
@@ -164,7 +165,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   // file upload
-  handleFileInput(event) {
+  handleFileInput(event: { target: { files: string | any[]; }; }) {
     if (event.target.files.length > 0) {
       const rawfile = event.target.files[0];
       this.myForm.patchValue({
@@ -174,30 +175,31 @@ export class UserProfileComponent implements OnInit {
     }
     this.UploadImage();
   }
+  // 
 
   UploadImage() {
     debugger;
-    if (this.myForm.get('fileSource').value.name != undefined && this.myForm.get('fileSource').value.name != "") {
-      var exten = this.myForm.get('fileSource').value.name.split('.')[1];
-      if (exten == "png" || exten == "PNG" || exten == "jpeg" || exten == "JPEG" || exten == "jif" || exten == "JIF" || exten == "jpg" || exten == "JPG") {
+    // if (this.myForm.get('fileSource').value.name != undefined && this.myForm.get('fileSource').value.name != "") {
+      // var exten = this.myForm.get('fileSource').value.name.split('.')[1];
+      // if (exten == "png" || exten == "PNG" || exten == "jpeg" || exten == "JPEG" || exten == "jif" || exten == "JIF" || exten == "jpg" || exten == "JPG") {
 
-        const formData = new FormData();
-        formData.append('rawfile', this.myForm.get('fileSource').value);
-        // this.http.post(this.config.UploadAvatar, formData)
-        this.http.post(this.config.uploadLogo, formData)
-          .subscribe(res => {
-            this.filepath = res;
-            // this.filepath = '/' + this.filepath.file_path;
-            this.filepath = this.filepath.file_path;
-            this.toastr.success("Uploaded successfully");
-          }, (err) => {
-            if (err.status == 400) { }
-          });
-      }
-      else {
-        this.toastr.warning("Upload only image file");
-      }
-    }
+      //   const formData = new FormData();
+      //   // formData.append('rawfile', this.myForm.get('fileSource').value);
+      //   // this.http.post(this.config.UploadAvatar, formData)
+      //   this.http.post(this.config.uploadLogo, formData)
+      //     .subscribe(res => {
+      //       this.filepath = res;
+      //       // this.filepath = '/' + this.filepath.file_path;
+      //       this.filepath = this.filepath.file_path;
+      //       this.toastr.success("Uploaded successfully");
+      //     }, (err) => {
+      //       if (err.status == 400) { }
+      //     });
+      // }
+      // // // else {
+      // //   this.toastr.warning("Upload only image file");
+      // }
+    // }
 
   }
 }

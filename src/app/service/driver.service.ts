@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpRequest, HttpEvent } from '@angular/common/http';
 import { Configuration } from '../../configuration';
-import { DefaultUrlSerializer } from '@angular/router';
+import { DefaultUrlSerializer, Params } from '@angular/router';
 
 @Injectable()
 export class driverService {
@@ -20,7 +20,7 @@ export class driverService {
 //     const params = serializer.serialize(paramSerializer);
 //     return this.http.post(this.config.newEntryUser + params, JSON.stringify(userInput), this.httpOptions);
 //   }
-getDriverList(inputParameter,statusId) {
+getDriverList(inputParameter: { [x: string]: any; token?: any; isonline?: any; fil?: any; year?: any; filter?: any; },statusId: number) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -34,7 +34,7 @@ getDriverList(inputParameter,statusId) {
     return this.http.get(this.config.getDriverDetail + params, this.httpOptions);        
   }
 
-  getDriverReviewList(inputParameter,user) {
+  getDriverReviewList(inputParameter: { [x: string]: any; token?: any; },user: string | number) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -43,21 +43,21 @@ getDriverList(inputParameter,statusId) {
   
     return this.http.get(this.config.getDriverReviewDetail + '/' + user + params, this.httpOptions);        
   }
-  deleteDriverReview(inputParameter,id) {    
+  deleteDriverReview(inputParameter: { [x: string]: any; token?: any; },id: string) {    
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
     paramSerializer.queryParams = inputParameter;
     const params = serializer.serialize(paramSerializer);  
     return this.http.delete(this.config.deletedriverReview  + '/' + id + params, this.httpOptions);       
   }
-  getDashboardList(inputParameter) {    
+  getDashboardList(inputParameter: { [x: string]: any; token?: any; }) {    
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
     paramSerializer.queryParams = inputParameter;
     const params = serializer.serialize(paramSerializer);   
     return this.http.get(this.config.getDashboardDetail + params, this.httpOptions);        
   }
-  getDriverPayments(inputParameter) {
+  getDriverPayments(inputParameter: Params) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -65,7 +65,7 @@ getDriverList(inputParameter,statusId) {
     const params = serializer.serialize(paramSerializer);    
     return this.http.get(this.config.getDriverPayments + params, this.httpOptions);        
   }
-  getRiderPayments(inputParameter) {    
+  getRiderPayments(inputParameter: { [x: string]: any; token?: any; }) {    
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
     paramSerializer.queryParams = inputParameter;
@@ -73,7 +73,7 @@ getDriverList(inputParameter,statusId) {
     return this.http.get(this.config.getRiderPayments + params, this.httpOptions);        
   }
    
-  getDriverCurrentStatus(inputParameter,id) {
+  getDriverCurrentStatus(inputParameter: { [x: string]: any; token?: any; },id: string) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -82,7 +82,7 @@ getDriverList(inputParameter,statusId) {
   
     return this.http.get(this.config.getDriverCurrentStatus + '/' + id + params, this.httpOptions);        
   }
-  getDriverFilter(inputParameter,filt) {
+  getDriverFilter(inputParameter: { [x: string]: any; token?: any; isonline?: any; },filt: string) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -90,7 +90,7 @@ getDriverList(inputParameter,statusId) {
     const params = serializer.serialize(paramSerializer);    
     return this.http.get(this.config.getDriverFilter +'/'+filt + params, this.httpOptions);        
   }
-  getRiderReviewList(inputParameter,user) {
+  getRiderReviewList(inputParameter: { [x: string]: any; token?: any; },user: string | number) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -99,7 +99,7 @@ getDriverList(inputParameter,statusId) {
   
     return this.http.get(this.config.getRiderReviewDetail + '/' + user + params, this.httpOptions);        
   }
-  getDriverreportFilter(inputParameter,filt) {
+  getDriverreportFilter(inputParameter: { [x: string]: any; token?: any; isonline?: any; fil?: any; year?: any; },filt: string) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -107,7 +107,7 @@ getDriverList(inputParameter,statusId) {
     const params = serializer.serialize(paramSerializer);    
     return this.http.get(this.config.getDriverreportFilter +'/'+filt + params, this.httpOptions);        
   }
-  getDriverListReport(inputParameter,filt) {
+  getDriverListReport(inputParameter: { [x: string]: any; token?: any; isonline?: any; year?: any; filter?: any; },filt: string) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -115,11 +115,11 @@ getDriverList(inputParameter,statusId) {
     const params = serializer.serialize(paramSerializer);    
     return this.http.get(this.config.getDriverListReport +'/'+filt + params, this.httpOptions);        
   }
-  updateDriverPayments(inputParameter) {
+  updateDriverPayments(inputParameter: { user_id: any[]; admin_transactionid: string; }) {
     debugger;
     return this.http.put(this.config.updateAdminpaid, JSON.stringify(inputParameter), this.httpOptions);
   }
-  updateSettings(inputParameter,inputToken,id) {
+  updateSettings(inputParameter: { radius?: string; threshold_amount?: string; max_days?: string; },inputToken: { [x: string]: any; token?: any; },id: string) {
     debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -127,7 +127,7 @@ getDriverList(inputParameter,statusId) {
     const params = serializer.serialize(paramSerializer);  
     return this.http.put(this.config.updateSettings+'/'+id+params, JSON.stringify(inputParameter), this.httpOptions);
   }
-  getSettings(inputToken) {
+  getSettings(inputToken: { [x: string]: any; token?: any; }) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -135,7 +135,7 @@ getDriverList(inputParameter,statusId) {
     const params = serializer.serialize(paramSerializer);    
     return this.http.get(this.config.updateSettings + params, this.httpOptions);        
   }
-  getDriverPayableList(inputToken) {
+  getDriverPayableList(inputToken: { [x: string]: any; token?: any; }) {
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
     paramSerializer.queryParams = inputToken;

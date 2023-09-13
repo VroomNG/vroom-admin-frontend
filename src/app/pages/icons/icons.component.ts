@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IconsComponent implements OnInit {
 
-  public copy: string;
+  public copy!: string;
   constructor() { }
 
   ngOnInit() {

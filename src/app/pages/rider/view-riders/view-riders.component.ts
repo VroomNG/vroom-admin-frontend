@@ -7,7 +7,7 @@ import { exportService } from '../../../service/export.service';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../../service/login.service';
-import { customScrollBar } from 'floating-scrollbar-for-angular';
+// import { customScrollBar } from 'floating-scrollbar-for-angular';
 //import $ from 'jquery';
 
 declare var $:any;
@@ -22,7 +22,7 @@ export class ViewRidersComponent implements OnInit {
   token: any;
   ridersList = [];
   selectedArrayBts:any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   riderFil = [{ "id": 0, "value": "All" }, { "id": 1, "value": "Active" }, { "id": 2, "value": "InActive" }]
   dayDisable: boolean = false;
   closeResult = '';
@@ -41,8 +41,8 @@ export class ViewRidersComponent implements OnInit {
     private loginService: LoginService,
     private elemRef: ElementRef
   ) {
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -60,9 +60,9 @@ export class ViewRidersComponent implements OnInit {
       beautifyScroll:true // set to TRUE if you want a beautiful scrollbar
      // scrollBarColor:"", // scrollbar color for making it more beautiful, leave it blank or false
     }
-   customScrollBar.scroll(document.getElementById("main"),options);
+  //  customScrollBar.scroll(document.getElementById("main"),options);
  }
-  getRidersView(filt, days) {
+  getRidersView(filt:any, days:any) {
     debugger; this.ridersList = [];
 
     //var searchkey = (<HTMLInputElement>document.getElementById("search"));
@@ -82,7 +82,7 @@ export class ViewRidersComponent implements OnInit {
       }
     })
   }
-  editRiders(id) {
+  editRiders(id:any) {
     debugger;
     if (id != undefined && id != 0)
       this.route.navigate(['rider/add-edit-riders/' + id]);
@@ -98,7 +98,7 @@ export class ViewRidersComponent implements OnInit {
     else
     this.service1.exportExcel(this.ridersList, 'riderDetails');
   }
-  riderFilter(event) {
+  riderFilter(event:any) {
     debugger;
     var txtDays = (<HTMLInputElement>document.getElementById("txtDays"));
     var target = event.target.value;
@@ -107,13 +107,13 @@ export class ViewRidersComponent implements OnInit {
     else { txtDays.value = ""; this.dayDisable = false; }
     this.getRidersView(target, txtDays.value);
   }
-  filterDays(event) {
+  filterDays(event:any) {
     debugger;
     var target = event.target;
     var selRiderFilter = (<HTMLInputElement>document.getElementById("selRiderFilter"));
     this.getRidersView(selRiderFilter.value, target.value);
   }
-  setUserBlock(event, id) {
+  setUserBlock(event: { target: any; }, id: string) {
     debugger;
     var target = event.target;
     if (target.checked == true) {
@@ -137,7 +137,7 @@ export class ViewRidersComponent implements OnInit {
     }
   }
 
-  open(content) {
+  open(content: any) {
     this.errorMessage="";     
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -193,7 +193,7 @@ export class ViewRidersComponent implements OnInit {
     btnNotify.hidden = false;
 
     this.selectedArrayBts = Array.from(notifycheck);    
-    this.selectedArrayBts.forEach(element => {
+    this.selectedArrayBts.forEach((element: { checked: boolean; }) => {
       if (element.checked == true) {
         chkEnable = 1;     
       }
@@ -205,7 +205,7 @@ export class ViewRidersComponent implements OnInit {
     var btnModelPopupNotify = (<HTMLInputElement>document.getElementById("btnModelPopupNotify"));
     btnModelPopupNotify.click();
   }
-  open1(content) {
+  open1(content: any) {
     this.errorMessage = "";
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -235,8 +235,8 @@ export class ViewRidersComponent implements OnInit {
       return;
     else {
       this.selectedArrayBts = Array.from(notifycheck);
-      let tmparry = [];
-      this.selectedArrayBts.forEach(element => {
+      let tmparry: any[] = [];
+      this.selectedArrayBts.forEach((element: { checked: boolean; id: any; }) => {
         if (element.checked == true) {
           const fomValue = element.id;
           tmparry.push(fomValue);
@@ -257,7 +257,7 @@ export class ViewRidersComponent implements OnInit {
         this.toastr.success("Successfully send the Notification");
         closeBtnNotify.click();
 
-        this.selectedArrayBts.forEach(element => {
+        this.selectedArrayBts.forEach((element: { checked: boolean; }) => {
           if (element.checked == true) {
             element.checked = false;
           }

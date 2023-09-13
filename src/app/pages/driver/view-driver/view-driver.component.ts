@@ -8,7 +8,7 @@ import { passengerService } from '../../../service/passenger.service';
 import { LoginService } from '../../../service/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { customScrollBar } from 'floating-scrollbar-for-angular';
+// import { customScrollBar } from 'floating-scrollbar-for-angular';
 
 
 declare var $:any;
@@ -36,7 +36,7 @@ export class ViewDriverComponent implements OnInit {
   closeResult = '';
   errorMessage: any; selectedArrayBts: any; errorMessageTit: any; errorMessageDes: any;
   // items = [];
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
@@ -49,8 +49,8 @@ export class ViewDriverComponent implements OnInit {
     private loginService: LoginService
   ) {
     debugger;
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -84,9 +84,9 @@ export class ViewDriverComponent implements OnInit {
       beautifyScroll:true // set to TRUE if you want a beautiful scrollbar
      // scrollBarColor:"", // scrollbar color for making it more beautiful, leave it blank or false
     }
-   customScrollBar.scroll(document.getElementById("main"),options);
+  //  customScrollBar.scroll(document.getElementById("main"),options);
  }
-  getDriverView(filt, days, isOnline) {
+  getDriverView(filt: any, days: string, isOnline: string) {
     debugger;
     var inputRequest;
     debugger; this.driverList = [];
@@ -97,7 +97,7 @@ export class ViewDriverComponent implements OnInit {
     };
     // console.log("driverStatus ==> ", this.driverStatus);
     if (this.driverStatus == 1) {
-      inputRequest.days = days;
+      // inputRequest.days = days;
 
       this.service.getDriverFilter(inputRequest, filt).subscribe((result: any) => {
         debugger;
@@ -123,7 +123,7 @@ export class ViewDriverComponent implements OnInit {
     }
   }
 
-  viewDriverDetails(id, isBlock) {
+  viewDriverDetails(id: any, isBlock: any) {
     debugger;
     if (id != undefined && id != 0)
       this.route.navigate(['driver/add-driver/' + id], { queryParams: { status: this.driverStatus, isBlock: isBlock } });
@@ -146,7 +146,7 @@ export class ViewDriverComponent implements OnInit {
   }
 
   // inactive drivers
-  approveDriver(id, status) {
+  approveDriver(id:any, status:any) {
     debugger;
     this.isFormReady = true;
     var inputRequest;
@@ -176,7 +176,7 @@ export class ViewDriverComponent implements OnInit {
     });
   }
 
-  driverFilter(event) {
+  driverFilter(event:any) {
     debugger; var txtDays = (<HTMLInputElement>document.getElementById("txtDays"));
     var selOnlineFilter = (<HTMLInputElement>document.getElementById("selOnlineFilter"));
     var target = event.target.value;
@@ -185,14 +185,14 @@ export class ViewDriverComponent implements OnInit {
     else { txtDays.value = ""; this.dayDisable = false; }
     this.getDriverView(target, txtDays.value, selOnlineFilter.value);
   }
-  filterDays(event) {
+  filterDays(event:any) {
     debugger;
     var target = event.target;
     var selDriverFilter = (<HTMLInputElement>document.getElementById("selDriverFilter"));
     var selOnlineFilter = (<HTMLInputElement>document.getElementById("selOnlineFilter"));
     this.getDriverView(selDriverFilter.value, target.value, selOnlineFilter.value);
   }
-  setDriverBlock(event, id) {
+  setDriverBlock(event:any, id:any) {
     debugger;
     var target = event.target;
     if (target.checked == true) {
@@ -215,7 +215,7 @@ export class ViewDriverComponent implements OnInit {
       });
     }
   }
-  open(content) {
+  open(content:any) {
     this.errorMessage = "";
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -273,7 +273,7 @@ export class ViewDriverComponent implements OnInit {
   //   btnHideClose.click();
 
   // }
-  sortNumberColumn(event, boolean) {
+  sortNumberColumn(event:any, boolean:any) {
     debugger;
     var target = event.currentTarget,
       colName = target.id,
@@ -301,7 +301,7 @@ export class ViewDriverComponent implements OnInit {
     // return this.pageOfItems = this.driverList;
 
   }
-  OnlineFilter(event) {
+  OnlineFilter(event:any) {
     var target = event.target;
     var selDriverFilter = (<HTMLInputElement>document.getElementById("selDriverFilter"));
     var txtDays = (<HTMLInputElement>document.getElementById("txtDays"));
@@ -314,7 +314,7 @@ export class ViewDriverComponent implements OnInit {
     btnNotify.hidden = false;
 
     this.selectedArrayBts = Array.from(notifycheck);    
-    this.selectedArrayBts.forEach(element => {
+    this.selectedArrayBts.forEach((element: { checked: boolean; }) => {
       if (element.checked == true) {
         chkEnable = 1;     
       }
@@ -346,8 +346,8 @@ export class ViewDriverComponent implements OnInit {
       return;
     else {
       this.selectedArrayBts = Array.from(notifycheck);
-      let tmparry = [];
-      this.selectedArrayBts.forEach(element => {
+      let tmparry: any[] = [];
+      this.selectedArrayBts.forEach((element: { checked: boolean; id: any; }) => {
         if (element.checked == true) {
           const fomValue = element.id;
           tmparry.push(fomValue);
@@ -376,7 +376,7 @@ export class ViewDriverComponent implements OnInit {
         this.toastr.success("Successfully send the Notification");
         closeBtnNotify.click();
 
-        this.selectedArrayBts.forEach(element => {
+        this.selectedArrayBts.forEach((element: { checked: boolean; }) => {
           if (element.checked == true) {
             element.checked = false;
           }
@@ -385,7 +385,7 @@ export class ViewDriverComponent implements OnInit {
       });
     }
   }
-  open1(content) {
+  open1(content: any) {
     this.errorMessage = "";
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',

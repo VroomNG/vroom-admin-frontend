@@ -24,7 +24,7 @@ export class vehicleService {
   //     const params = serializer.serialize(paramSerializer);
   //     return this.http.post(this.config.newEntryUser + params, JSON.stringify(userInput), this.httpOptions);
   //   }
-  getVehicleList(inputParameter) {
+  getVehicleList(inputParameter: { [x: string]: any; token?: any; }) {
     // debugger;
     const serializer = new DefaultUrlSerializer();
     const paramSerializer = serializer.parse('');
@@ -33,7 +33,7 @@ export class vehicleService {
     return this.http.get(this.config.getVehicleDetail + params, this.httpOptions);
   }
 
-  getSingleVehicle(id) {
+  getSingleVehicle(id: string | number) {
     // debugger;
     // const serializer = new DefaultUrlSerializer();
     // const paramSerializer = serializer.parse('');
@@ -41,27 +41,41 @@ export class vehicleService {
     // const params = serializer.serialize(paramSerializer);
     return this.http.get(this.config.getSingleVehicleDetail + "/" + id, this.httpOptions);
   }
-  updateVehicle(inputParameter, id) {
+  updateVehicle(inputParameter: {
+      vehicle_type: any; trip_type: string; per_km_rate: any; minimum_fare: any; commission: any; available_seat: any; cancel_charge_driver: any; cancel_charge_rider: any; isactive: string; description: any; per_minute_rate: any; base_fare: any; tolls_fees: any; peek_hour_fare: any;
+      // import {RequestOptions} from '@angular/http';  
+      // import { map } from 'rxjs/operators'; 
+      make: any; model: any; year: any; tax_percent: any;
+      // import { map } from 'rxjs/operators'; 
+      per_km_rate_share: any; per_minute_rate_share: any; minimum_fare_share: any; base_fare_share: any; promo_status: any; max_fare_value: any;
+    }, id: string) {
     debugger;
     return this.http.put(this.config.updateVehicle + '/' + id, JSON.stringify(inputParameter), this.httpOptions);
 
   }
-  addVehicle(inputParameter) {
+  addVehicle(inputParameter: {
+      vehicle_type: any; trip_type: string; per_km_rate: any; minimum_fare: any; commission: any; available_seat: any; cancel_charge_driver: any; cancel_charge_rider: any; isactive: string; description: any; per_minute_rate: any; base_fare: any; tolls_fees: any; peek_hour_fare: any;
+      // import {RequestOptions} from '@angular/http';  
+      // import { map } from 'rxjs/operators'; 
+      make: any; model: any; year: any; tax_percent: any;
+      // import { map } from 'rxjs/operators'; 
+      per_km_rate_share: any; per_minute_rate_share: any; minimum_fare_share: any; base_fare_share: any;
+    }) {
     debugger;
     return this.http.post(this.config.addVehicle, JSON.stringify(inputParameter), this.httpOptions);
 
   }
-  deleteVehicle(id) {
+  deleteVehicle(id: string) {
     debugger;
     return this.http.delete(this.config.deleteVehicle + '/' + id, this.httpOptions);
 
   }
-  updateVehicleType(inputParameter, id) {
+  updateVehicleType(inputParameter: { vehicle_type_id: string; }, id: string) {
     debugger;
     return this.http.put(this.config.updateVehicleType + '/' + id, JSON.stringify(inputParameter), this.httpOptions);
   }
 
-  postFile(id, fileToUpload: File): Observable<boolean> {
+  postFile(fileToUpload: File): Observable<boolean> {
     // postFile(id,fileToUpload) {
     debugger;
     // const endpoint = '/uploads/imageLin.png';
@@ -116,7 +130,7 @@ export class vehicleService {
   //   console.log(event);
   // }
 
-  uploadFiletoServer(file: File, staffId, filetype, leaveId) {
+  uploadFiletoServer(file: File, staffId: string | number, filetype: string, leaveId: any) {
     const headertxt = new HttpHeaders();
     // const baseUrl = this.config.uploadLicense + '/' + staffId + '/' + filetype ;
     const baseUrl = this.config.uploadImageLincense + '/' + staffId;

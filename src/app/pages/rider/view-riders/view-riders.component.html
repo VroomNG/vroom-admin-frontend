@@ -10,21 +10,21 @@
       <div class="card-header border-0">
         <h3 class="mb-0 d-inline-block">View Riders</h3>
         <span class="text-right p-2 ">
-          <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName" placeholder="search" /> 
+          <!-- <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName" placeholder="search" />  -->
         </span>
         <span class="spnFilter">Status 
-          <select id="selRiderFilter" class="form-control form-control-alternative drpFilter" (change)="riderFilter($event)">            
+          <!-- <select id="selRiderFilter" class="form-control form-control-alternative drpFilter" (change)="riderFilter($event)">            
           <option *ngFor="let level of riderFil" value="{{level.id}}">
             {{level.value}}
           </option>
-        </select>
-        <span style="margin-left: 25px;">Days <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span>
-        </span>
+        </select> -->
+        <!-- <span style="margin-left: 25px;">Days <input type="text" id="txtDays" class="form-control w-25 d-inline-block daysFil" placeholder="Days" [disabled]="(dayDisable == false ? true : null)" (keyup)="filterDays($event)" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></span>
+        </span> -->
         <span class="text-right p-2 expBtn">
           <button class="btn btn-primary" (click)="exportRiders()">Export</button>
        <button id="btnNotify" [hidden]="true" class="btn btn-primary" (click)="openNotifyModel()">Send Notification</button>
         </span>
-      </div>
+      <!-- </div> -->
       <div class="table-responsive" id = "main">
         <table class="table align-items-center table-flush" >
           <thead class="thead-light">
@@ -43,13 +43,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor = "let item of (pageOfItems  | search: FilterName)">
-              <th scope="row">
+            <tr *ngFor = "let item of pageOfItem">
+              <!-- <th scope="row">
                 {{item.firstname | titlecase}}
               </th>
               <td>
                 {{item.lastname | titlecase}}
-              </td>
+              </td> -->
               <td>
                
                 {{item.email}}
@@ -61,7 +61,7 @@
               <!-- <td>
                {{item.is_active == '1' ? 'Active' : 'Inactive'}} 
               </td> -->
-              <td>
+              <!-- <td>
                 {{item.created_at | date:'mediumDate'}} 
                </td>
                <td>
@@ -69,7 +69,7 @@
                  </td>
                  <td>
                   {{item.last_trip_date | date:'mediumDate'}} 
-                 </td>
+                 </td> -->
               <td class="text-center">
                 <!-- <div ngbDropdown placement="bottom-right">
                   <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
@@ -82,8 +82,8 @@
                   <!-- </div>
                 </div> -->
               </td>
-              <td><input type="checkbox" id="chkBlock" (change)="setUserBlock($event,item.id)" [checked]="(item.isBlock === '1' ? true: false)"></td>
-              <td><input type="checkbox" class="notifycheck" id="{{item.id}}" (change)="showNotifyBtn($event,item.id)"></td>
+              <!-- <td><input type="checkbox" id="chkBlock" (change)="setUserBlock($event,item.id)" [checked]="(item.isBlock === '1' ? true: false)"></td> -->
+              <!-- <td><input type="checkbox" class="notifycheck" id="{{item.id}}" (change)="showNotifyBtn($event,item.id)"></td> -->
             </tr>
         
           </tbody>
@@ -92,12 +92,9 @@
      
       <div class="card-footer py-4">
         <div class="card-footer pb-0 pt-3">         
-          <jw-pagination [items]="ridersList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+          <!-- <jw-pagination [items]="ridersList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination> -->
       </div>       
       </div>
-     
-    </div>
-  </div>
   <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Reason for Block</h4>
@@ -168,7 +165,7 @@
     
     </ng-template>
 
-</div>
+<!-- </div> -->
 
    
 </div>

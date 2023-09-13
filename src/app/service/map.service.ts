@@ -13,7 +13,7 @@ export class MapService {
 
     constructor(private http: HttpClient, private config: Configuration) { }
 
-    getMapsList(inputParameter) {
+    getMapsList(inputParameter: { [x: string]: any; token?: any; }) {
       //  debugger;
         const serializer = new DefaultUrlSerializer();
         const paramSerializer = serializer.parse('');
@@ -22,7 +22,7 @@ export class MapService {
         return this.http.get(this.config.OnlineDrivers + params , this.httpOptions);
     }
 
-    getdriverList(inputParameter){
+    getdriverList(inputParameter: { [x: string]: any; token?: any; }){
         debugger;
         const serializer = new DefaultUrlSerializer();
         const paramSerializer = serializer.parse('');

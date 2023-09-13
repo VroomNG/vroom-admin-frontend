@@ -12,7 +12,7 @@ export class SettlementListComponent implements OnInit {
   token: any;
   driverList = [];
   tripStatusId: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   constructor(private service: passengerService,
     private service1: exportService,private route: Router,
     private router: ActivatedRoute) { }
@@ -39,7 +39,7 @@ export class SettlementListComponent implements OnInit {
   onChangePage(pageOfItems: Array<any>) {   
     this.pageOfItems = pageOfItems;
   }
-  viewDriverWithdraw(id,amount) {
+  viewDriverWithdraw(id: string | number | undefined,amount: any) {
     debugger;    
     if (id != undefined && id != 0) {     
         this.route.navigate(['settlements/driver-settlement/withdraw-listview/' + id], { queryParams: { amount: amount} });

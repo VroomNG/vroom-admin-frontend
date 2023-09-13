@@ -10,8 +10,8 @@
         <div class="card-header border-0">
           <h3 class="mb-0 d-inline-block">Partner Withdrawals</h3>
          <span class="text-right p-2 ">
-            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
-              placeholder="search" />
+            <!-- <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" /> -->
           </span>
          
 
@@ -34,7 +34,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
+              <!-- <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
                 <th scope="row"><span>#00</span>{{item.id}}</th>
                 <td>{{item.firstname}}</td>
                 
@@ -45,13 +45,13 @@
                 <td *ngIf = "item.paid == 0"><button  id="btnAdminPaid" class="btn btn-primary paidalgn" (click)="setPaid(item.id)">Open</button></td>
                 <td *ngIf = "item.pay_date != 'Pending'">{{item.pay_date | date }}</td>
                 <td *ngIf = "item.pay_date == 'Pending'">{{item.pay_date}}</td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
         <div class="card-footer py-4">
           <div class="card-footer pb-0 pt-3">
-            <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+            <!-- <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination> -->
           </div>
           
         </div>

@@ -17,8 +17,8 @@ export class ViewVehicleComponent implements OnInit {
 
   token: any;
   vehicleList = [];
-  pageOfItems: Array<any>;
-  settlementList:[];
+  pageOfItems: Array<any> | undefined;
+  settlementList:[] | undefined;
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
@@ -28,8 +28,8 @@ export class ViewVehicleComponent implements OnInit {
     private service2:driverService,
     private loginService: LoginService
   ) {
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -70,22 +70,22 @@ export class ViewVehicleComponent implements OnInit {
   });
   }
 
-  viewVehicleDetails(id) {
+  viewVehicleDetails(id: string | number | undefined) {
     debugger;
     if (id != undefined && id != 0)
       this.route.navigate(['vehicle/add-vehicle/' + id]);
   }
-  onChangePage(pageOfItems: Array<any>) {
-    // update current page of items
-    this.pageOfItems = pageOfItems;
-  }
+  // onChangePage(pageOfItems: Array<any>) {
+  //   // update current page of items
+  //   this.pageOfItems = pageOfItems;
+  // }
   exportVehicles(){       
     if(this.FilterName != '')
     this.service1.exportExcel(this.vehicleList.filter((item:any) => item.vehicle_type.toLowerCase().includes(this.FilterName.toLowerCase()) || item.trip_type.toLowerCase().includes(this.FilterName.toLowerCase()) || item.per_km_rate === this.FilterName || item.minimum_fare === this.FilterName || item.commission === this.FilterName || item.base_fare === this.FilterName || item.tolls_fees === this.FilterName), 'vehiclesDetails');
    else
     this.service1.exportExcel(this.vehicleList, 'vehiclesDetails');  
   }
-  changeRadius(id){
+  changeRadius(id: any){
     debugger;
     var vehicleRadius = (<HTMLInputElement>document.getElementById("vehicleRadius"));    
     const inputRequest = {

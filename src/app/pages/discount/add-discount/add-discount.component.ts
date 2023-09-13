@@ -6,10 +6,10 @@ import { chartService } from '../../../service/chart.service';
 import { discountInfo } from '../../../model/discountInfo';
 import { ApiService, Maps } from '../../../service/api.service';
 import { ReplaySubject } from 'rxjs';
-import { ThrowStmt } from '@angular/compiler';
+// import { ThrowStmt } from '@angular/compiler';
 let colorIndex = 0;
-const place = null as google.maps.places.PlaceResult;
-type Components = typeof place.address_components;
+// const place = null as unknown as google.maps.places.PlaceResult;
+// type Components = typeof place.address_components;
 
 @Component({
   selector: 'app-add-discount',
@@ -18,8 +18,8 @@ type Components = typeof place.address_components;
 })
 export class AddDiscountComponent implements OnInit {
 token : any;
-discountData: discountInfo;
-discountForm: FormGroup;
+discountData!: discountInfo;
+discountForm!: FormGroup;
 errorMessage: any;
 isFormReady = false;
 submitted = false;
@@ -38,8 +38,8 @@ DisID:any;
         return false;
       };
   
-      if (localStorage.token != "" || localStorage.token != undefined) {
-        this.token = localStorage.token;
+      if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+        this.token = localStorage['token'];
         //this.flag_admin = localStorage.flag_admin;
   
       }
@@ -59,7 +59,7 @@ DisID:any;
     
       if(this.discountData.id == 0){
         var s = this.getNewID();   
-        var firstDigit = s.toString().substring(1,6); 
+        var firstDigit = toString().substring(1,6); 
         console.log("firstDigit",firstDigit);
         
         this.discountData.discount_code = firstDigit;
@@ -84,7 +84,7 @@ DisID:any;
   //    this.randomSub.next(Math.random());
   //    console.log("ran tt==>", this.randomSub.next(Math.random()));
   // }
-  getNewID() {
+  getNewID():any {
     try {
         var myDate = new Date();
         var varID = myDate.getHours() + "" + myDate.getMinutes() + "" + myDate.getSeconds() + "" + myDate.getMilliseconds();
@@ -92,7 +92,7 @@ DisID:any;
             varID = varID.substr(0, 15);
         }
         return varID;
-    } catch (e) {
+    } catch (e:any) {
         console.log(e.message);
     }
 }
@@ -181,7 +181,7 @@ DisID:any;
         });
       }
         // update passanger
-  updateDiscount(id) {
+  updateDiscount(id:any) {
     debugger;    
     this.isFormReady = true;
     this.submitted = true;
@@ -212,7 +212,7 @@ DisID:any;
     });
   }
   // delete surcharge
-  deleteDiscount(id) {
+  deleteDiscount(id:any) {
     this.surgeService.deleteDiscount(id).subscribe((result: any) => {
       if (result) {
         this.route.navigate(['discount/edit-discount']);

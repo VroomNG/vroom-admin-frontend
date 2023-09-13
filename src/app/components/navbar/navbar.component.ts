@@ -15,14 +15,14 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  public focus;
-  public listTitles: any[];
+  public focus: any;
+  public listTitles!: any[];
   public location: Location;
   loginName: any;
   filepath: any;
   siteURL: any;
   filename: any;
-  profileDetails: driverInfo;
+  profileDetails!: driverInfo;
 
 
   constructor(
@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
     private element: ElementRef,
     private router: Router,
     private service: adminService,
-    private loginService: LoginService,
+    public loginService: LoginService,
     ) {
     this.location = location;
     this.siteURL = environment.serverUrl;
@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     debugger;
-    this.loginName = localStorage.firstname + ' ' + (localStorage.lastname != 'null' ? localStorage.lastname : '');
+    this.loginName = localStorage['firstname'] + ' ' + (localStorage['lastname'] != 'null' ? localStorage['lastname'] : '');
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     this.getProfileDetails();
   }

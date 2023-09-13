@@ -12,28 +12,28 @@
           <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '2'? 'Upcoming Trips': '' ">Upcoming Trips</h3>
           <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '3'? 'Past Trips': ''  ">Past Trips</h3>
           <span class="text-right p-2 ">
-            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+            <!-- <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
               placeholder="search" />
-          </span>
+          </span> -->
           <!-- <span class="spnFilter"><span>From Date    <input id="fromDate" style="width: 15%;" type="date" class="form-control" /> </span>
           <span>To Date    <input id="toDate" style="width: 15%;" type="date" class="form-control" /></span>
             <button class="btn btn-secondary" (click)="submitDateFilter()">Submit</button>
             </span> -->
           <span class="text-right p-2 ">
             <span class="text-right p-2 ">
-              <input placeholder="From Date" class="form-control w-20 d-inline-block" type="text" data-date-format="MM/DD/YYYY"
-                [(ngModel)]="startDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
+              <!-- <input placeholder="From Date" class="form-control w-20 d-inline-block" type="text" data-date-format="MM/DD/YYYY"
+                [(ngModel)]="startDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" /> -->
                 <!-- <input placeholder="From Date" class="form-control w-20 d-inline-block" type="text"
                 [value]="startDate | dateFilter:dateFormat" onblur="(this.type='text')" id="date" />
                 <owl-date-time #dt1></owl-date-time> -->
             </span>
-            <span class="text-right p-2 ">
+            <!-- <span class="text-right p-2 ">
               <input placeholder="To Date" class="form-control w-20 d-inline-block" type="text" [disabled]="!startDate"
                 [(ngModel)]="endDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date1" />
-            </span>
+            </span> -->
             <span class="text-right p-2 ">
               <button class="btn btn-info" (click)="dateFilter()" [disabled]="!endDate" *ngIf="show">Submit</button>
-              <button class="btn btn-dark" (click)="CanceldateFilter()" *ngIf="hide">Cancel</button>
+              <!-- <button class="btn btn-dark" (click)="CanceldateFilter()" *ngIf="hide">Cancel</button> -->
             </span>
           </span>
 
@@ -41,7 +41,7 @@
             <button class="btn btn-primary" (click)="exportTrips()">Export</button>
           </span>
 
-        </div>
+        <!-- </div> -->
         <div class="table-responsive" id = "main">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
@@ -64,14 +64,14 @@
               <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
                 <th scope="row">{{item.trip_type}}</th>
                 <td>VRM{{item.id}}</td>
-                <td>{{item.trip_date | date:'MM/dd/yyyy'}}<br>{{item.trip_date | date:'HH:mm'}}</td>
-                <td>{{item.driverName | titlecase}}</td>
-                <td>{{item.riderName | titlecase}}</td>
-                <td class="text-right">{{item.actual_amount | number:'1.2-2'}}</td>
-                <td class="text-right">{{item.trip_amount | number:'1.2-2'}}</td>                
-                <td>{{item.vehicle_type}}</td>
-                <td>{{item.trip_status}}</td>
-                <td>{{item.payment_type}}</td>
+                <!-- <td>{{item.trip_date | date:'MM/dd/yyyy'}}<br>{{item.trip_date | date:'HH:mm'}}</td> -->
+                <!-- <td>{{item.driverName | titlecase}}</td> -->
+                <!-- <td>{{item.riderName | titlecase}}</td> -->
+                <!-- <td class="text-right">{{item.actual_amount | number:'1.2-2'}}</td> -->
+                <!-- <td class="text-right">{{item.trip_amount | number:'1.2-2'}}</td>                 -->
+                <!-- <td>{{item.vehicle_type}}</td> -->
+                <!-- <td>{{item.trip_status}}</td> -->
+                <!-- <td>{{item.payment_type}}</td> -->
                 <td *ngIf="pagePath === '1'">{{item.Trips_sts}}</td>
                 <td class="text-center">
                   <div ngbDropdown placement="bottom-right">
@@ -88,9 +88,9 @@
           </table>
         </div>
         <div class="card-footer py-4">
-          <div class="card-footer pb-0 pt-3">
-            <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
-          </div>
+          <!-- <div class="card-footer pb-0 pt-3">
+            <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage(event)"></jw-pagination>
+          </div> -->
           <!-- <nav aria-label="...">
           <ul class="pagination justify-content-end mb-0">
             <li class="page-item disabled">
@@ -115,8 +115,8 @@
           </ul>
         </nav> -->
         </div>
-      </div>
-    </div>
-  </div>
+      <!-- </div> -->
+    <!-- </div> -->
+  <!-- </div> -->
 
-</div>
+<!-- </div> -->

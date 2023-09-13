@@ -12,8 +12,8 @@ import { passengerService } from '../../../service/passenger.service';
 export class EditSurgeSettingsComponent implements OnInit {
 
   
-  radius;
-  req_threshold;
+  radius:any;
+  req_threshold:any;
 
   constructor(private formBuilder: FormBuilder,
     private route: Router,

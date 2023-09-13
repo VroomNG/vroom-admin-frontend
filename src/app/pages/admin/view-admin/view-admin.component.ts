@@ -16,7 +16,7 @@ export class ViewAdminComponent implements OnInit {
   FilterName = '';
   token: any;
   adminList = [];
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,8 +26,8 @@ export class ViewAdminComponent implements OnInit {
     private service: adminService,
     private service1: exportService
   ) {
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -53,13 +53,13 @@ export class ViewAdminComponent implements OnInit {
       if (result) {
         if (result.data.length) {
           console.log("RESULT ==>", result.data);
-          this.adminList = (result.data.filter(x=> x.user_type != 4));
+          this.adminList = (result.data.filter((x: { user_type: number; })=> x.user_type != 4));
         }
       }
     })
   }
 
-  editAdmin(id) {
+  editAdmin(id: string | number | undefined) {
     debugger;
     if (id != undefined && id != 0)
       this.route.navigate(['admin/add-admin/' + id]);

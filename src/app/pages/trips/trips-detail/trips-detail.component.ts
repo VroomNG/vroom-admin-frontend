@@ -15,8 +15,8 @@ export class TripsDetailComponent implements OnInit {
   tripsList = [];
   tripList = [];
   tripsId: any;
-  data: SafeHtml;
-  res: string;
+  data!: SafeHtml;
+  res!: string;
   maproute:any = "";
   appCancel = "";
   declines = "";
@@ -36,8 +36,8 @@ export class TripsDetailComponent implements OnInit {
       return false;
     };
 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
       //this.flag_admin = localStorage.flag_admin;
     
     }
@@ -69,19 +69,19 @@ debugger;
           this.tripList = result.data;
           //this.estimated_trip_time = this.tripList.copy_travel_time + " mins";
           this.tripsList = this.tripList.slice(0,1);
-          if(this.tripsList[0].user_canceled_reason == undefined && this.tripsList[0].driver_canceled_reason == undefined && this.tripsList[0].driverName == undefined)
-            this.appCancel = "Search timeout";
-          if(this.tripsList[0].user_canceled_reason == undefined && this.tripsList[0].driver_canceled_reason == '' && this.tripsList[0].driverName == undefined)
-            this.tripsList[0].user_canceled_reason = "Cancelled before trip acceptance"
-          this.tripList.map(item => {
-            if(item.reason != undefined){
-              this.number_of_declining_drivers++;
-             var decline_data = {"serial":this.number_of_declining_drivers,
-                                "driver":item.declining_driver,
-                                "reason":item.reason};
-            this.decline_drivers.push(decline_data);
+          // if(this.tripsList[0].user_canceled_reason == undefined && this.tripsList[0].driver_canceled_reason == undefined && this.tripsList[0].driverName == undefined)
+          //   this.appCancel = "Search timeout";
+          // if(this.tripsList[0].user_canceled_reason == undefined && this.tripsList[0].driver_canceled_reason == '' && this.tripsList[0].driverName == undefined)
+          //   this.tripsList[0].user_canceled_reason = "Cancelled before trip acceptance"
+          // this.tripList.map(item => {
+          //   if(item.reason != undefined){
+          //     this.number_of_declining_drivers++;
+          //    var decline_data = {"serial":this.number_of_declining_drivers,
+          //                       "driver":item.declining_driver,
+          //                       "reason":item.reason};
+          //   this.decline_drivers.push(decline_data);
 
-            }
+            }}
           });
           //var decline_data = {"driver":"Ikenna",
            //                   "reason":"ETA too long"}
@@ -91,19 +91,19 @@ debugger;
           //this.decline_drivers.push(decline_data2);
           //this.decline_drivers.push("nnamdi");
 
-          this.maproute="https://www.google.com/maps?q="+result.data[0].from_lat+","+result.data[0].from_long+"&z=15&output=embed"
-          // <iframe src='"+this.maproute+"' width='100%' height='300' frameborder='0' style='border:0;' allowfullscreen='' aria-hidden='false' tabindex='0'></iframe></div>
-          this.res=`
-<iframe
-            src="${this.maproute}"
-            width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
-            tabindex="0"></iframe>`;
-            this.data = this.sanitizer.bypassSecurityTrustHtml(this.res);
-        }
-      }
-    })
+//           this.maproute="https://www.google.com/maps?q="+result.data[0].from_lat+","+result.data[0].from_long+"&z=15&output=embed"
+//           // <iframe src='"+this.maproute+"' width='100%' height='300' frameborder='0' style='border:0;' allowfullscreen='' aria-hidden='false' tabindex='0'></iframe></div>
+//           this.res=`
+// <iframe
+//             src="${this.maproute}"
+//             width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+//             tabindex="0"></iframe>`;
+//             this.data = this.sanitizer.bypassSecurityTrustHtml(this.res);
+//         }
+//       }
+    // })
   }
-  tripStatus(status){
+  tripSts(status:any){
     debugger;
     var tripSts='';
     if(status == '0')

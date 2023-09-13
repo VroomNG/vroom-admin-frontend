@@ -7,32 +7,28 @@
         <div class="col expbtnfixed">
           <h5 class="h3 mb-4 d-inline-block">Revenue:</h5>
           <span class="d-inline-block ml-3">
-            <select id="tripStatus" class="form-control w_135" (click)="selectedDropdownTrip($event)" >
+            <!-- <select id="tripStatus" class="form-control w_135" (click)="selectedDropdownTrip($event)" >
               <option value="2022">2022</option>
               <option value="2021">2021</option>
-              
-            <!--  <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option> -->
-            </select>
-           
+            </select> --> 
           </span>
           <span class="d-inline-block ml-3">
-            <select id="tripFilter" class="form-control w_135" (click)="selectedDropdownTripYear($event)" >
+            <!-- <select id="tripFilter" class="form-control w_135" (click)="selectedDropdownTripYear($event)" >
               <option value="0">Select</option>
               <option value="7">Last 7 days</option>
               <option value="30">Last 30 days</option>          
               <option value="1">This Month</option>  
               <option value="2">Last 3 Month</option>  
-            </select>
+            </select> -->
           </span>
         </div>
         <ul class="nav justify-content-center" [hidden]="true">
     
-          <li class="nav-item px-3 text-center" *ngFor="let item of tempArray2; let i of index">
+          <!-- <li class="nav-item px-3 text-center" *ngFor="let item of tempArray2; let i of index"> -->
+          <li>
             <p class="mb-0 text-uppercase ">{{item.name}}</p>
-            <p class="btn btn_primary py-0 px-3 text-white font-weight-bold" [ngStyle]="{'background-color': item.color}">
+            <p class="btn btn_primary py-0 px-3 text-white font-weight-bold">
+             <!-- [ngStyle]="{'background-color': item.color}"> -->
               {{item.data}}</p>
           </li>
     
@@ -58,19 +54,19 @@
           <!-- <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '2'? 'Upcoming Trips': '' ">Upcoming Trips</h3>
           <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '3'? 'Past Trips': ''  ">Past Trips</h3> -->
           <span class="text-right p-2 ">
-            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
-              placeholder="search" />
+            <!-- <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" /> -->
           </span>
         
           <span class="text-right p-2 ">
             <span class="text-right p-2 ">
-              <input placeholder="From Date" class="form-control w-20 d-inline-block" type="text" data-date-format="MM/DD/YYYY"
-                [(ngModel)]="startDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
+              <!-- <input placeholder="From Date" class="form-control w-20 d-inline-block" type="text" data-date-format="MM/DD/YYYY"
+                [(ngModel)]="startDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" /> -->
                
             </span>
             <span class="text-right p-2 ">
-              <input placeholder="To Date" class="form-control w-20 d-inline-block" type="text" [disabled]="!startDate"
-                [(ngModel)]="endDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date1" />
+              <!-- <input placeholder="To Date" class="form-control w-20 d-inline-block" type="text" [disabled]="!startDate"
+                [(ngModel)]="endDate" onfocus="(this.type='date')" onblur="(this.type='text')" id="date1" /> -->
             </span>
             <span class="text-right p-2 ">
               <button class="btn btn-info" (click)="dateFilter()" [disabled]="!endDate" *ngIf="show">Submit</button>
@@ -98,7 +94,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
+              <!-- <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
                 <th scope="row">{{item.trip_type}}</th>
                 <td>VRM{{item.id}}</td>
                 <td>{{item.trip_date | date:'MM/dd/yyyy'}}<br>{{item.trip_date | date:'HH:mm'}}</td>
@@ -108,20 +104,13 @@
                 <td>{{item.vehicle_type}}</td>
                 <td>{{item.trip_status}}</td>
                 <td>{{item.payment_type}}</td>
-                <!-- <td class="text-center">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light" (click)="editTrips(item.id)">
-                      <i class="fas fa-eye"></i>
-                    </a>                   
-                  </div>
-                </td> -->
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
         <div class="card-footer py-4">
           <div class="card-footer pb-0 pt-3">
-            <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+            <!-- <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination> -->
           </div>
         
         </div>

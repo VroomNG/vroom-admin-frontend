@@ -107,18 +107,18 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   user_type:any;
   user_id:any;
-  public focus;
-  public listTitles: any[];
+  public focus: any;
+  public listTitles!: any[];
   public location: Location;
   loginName: any;
   filepath: any;
   siteURL: any;
   filename: any;
-  profileDetails: driverInfo;
+  profileDetails!: driverInfo;
   prifileDetails: any;
   nabarData: boolean = false;
 
-  public menuItems: any[];
+  public menuItems!: any[];
   public isCollapsed = true;
 
   constructor(
@@ -129,7 +129,7 @@ export class SidebarComponent implements OnInit {
     private service: adminService,
     private loginService: LoginService,
   ) {
-    this.user_type = (localStorage.user_type != undefined ? localStorage.user_type : '')
+    this.user_type = (localStorage['user_type'] != undefined ? localStorage['user_type'] : '')
     this.location = location;
     this.siteURL = environment.serverUrl;
   }

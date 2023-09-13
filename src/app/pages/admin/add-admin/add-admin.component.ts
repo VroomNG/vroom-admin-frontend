@@ -14,7 +14,7 @@ import { Location } from '@angular/common';
 export class AddAdminComponent implements OnInit {
 
   adminForm: any;
-  adminDetails: driverInfo;
+  adminDetails!: driverInfo;
   token: any;
   isFormReady = false;
   submitted = false;
@@ -43,8 +43,8 @@ export class AddAdminComponent implements OnInit {
       return false;
     };
 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
       //this.flag_admin = localStorage.flag_admin;
 
     }
@@ -113,7 +113,7 @@ export class AddAdminComponent implements OnInit {
     });
   }
 
-  updatePassenger(id) {
+  updatePassenger(id: string) {
     debugger;
     this.isFormReady = true;
     this.submitted = true;
@@ -181,7 +181,7 @@ export class AddAdminComponent implements OnInit {
     }
   }
 
-  deletePassenger(id) {
+  deletePassenger(id: string) {
     this.service.delete(id).subscribe((result: any) => {
       if (result) {
         this.route.navigate(['admin/view-admin']);

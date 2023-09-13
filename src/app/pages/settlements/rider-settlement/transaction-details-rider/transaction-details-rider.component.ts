@@ -10,12 +10,12 @@ import { LoginService } from '../../../../service/login.service';
   styleUrls: ['./transaction-details-rider.component.css']
 })
 export class TransactionDetailsRiderComponent implements OnInit {
-  driverDetails: driverInfo;
+  driverDetails!: driverInfo;
   token: any;
   paramsval: any;
   paramsName: any;
   riderPaymentList: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
 
   constructor(
     private service: passengerService,
@@ -31,8 +31,8 @@ export class TransactionDetailsRiderComponent implements OnInit {
     });
     console.log("this.paramsval==>", this.paramsval);
 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);

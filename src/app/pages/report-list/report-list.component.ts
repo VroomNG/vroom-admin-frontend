@@ -7,9 +7,9 @@ import { exportService } from '../../service/export.service';
 // import { passengerService } from '../../service/passenger.service';
 // import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { chartService } from '../../service/chart.service';
-import { chartOptions, parseOptions } from "../../variables/charts";
+// import { chartOptions, parseOptions } from "../../variables/charts";
 import {DatePipe} from '@angular/common';
-import Chart from 'chart.js';
+// import Chart from 'chart.js';
 @Component({
   selector: 'app-report-list',
   templateUrl: './report-list.component.html',
@@ -36,9 +36,9 @@ export class ReportListComponent implements OnInit {
   backgroundColor: any;
   tempArray: any;
   primaryObject: any; primaryObject1: any;
-  public pieChart1;
+  public pieChart1:any;
   // items = [];
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   currentYear: number = new Date().getFullYear();
   constructor(
     private formBuilder: FormBuilder,
@@ -52,8 +52,8 @@ export class ReportListComponent implements OnInit {
     private reportService: chartService
   ) {
     debugger;
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -69,13 +69,13 @@ export class ReportListComponent implements OnInit {
     debugger;
     
     this.getDriverView(0, '', '', '', this.currentYear);
-    this.driverReports(this.currentYear, '', '');
+    this.driverReports(this.currentYear, '',);
     // this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
     this.pagePath = this.route.url.split('/');
     this.pagePath = "1"; //this.pagePath[this.pagePath.length - 1];
     // // console.log("Path name", this.pagePath)
   }
-  getDriverView(filt, days, isOnline, fil, year) {
+  getDriverView(filt: any, days: string, isOnline: string, fil: string, year: string | number) {
     var inputRequest;
     debugger; this.driverList = [];
 
@@ -87,7 +87,7 @@ export class ReportListComponent implements OnInit {
     };
     // console.log("driverStatus ==> ", this.driverStatus);
     if (this.driverStatus == 1) {
-      inputRequest.days = days;
+      // inputRequest.days = days;
 
       this.service.getDriverreportFilter(inputRequest, filt).subscribe((result: any) => {
         debugger;
@@ -113,7 +113,7 @@ export class ReportListComponent implements OnInit {
     }
   }
 
-  viewDriverDetails(id) {
+  viewDriverDetails(id:any) {
     debugger;
     if (id != undefined && id != 0)
       this.route.navigate(['driver/add-driver/' + id], { queryParams: { status: this.driverStatus } });
@@ -136,7 +136,7 @@ export class ReportListComponent implements OnInit {
 
   }
 
-  driverFilter(event) {
+  driverFilter(event:any) {
     debugger;
     debugger; var txtDays = (<HTMLInputElement>document.getElementById("txtDays"));
     var selOnlineFilter = (<HTMLInputElement>document.getElementById("selOnlineFilter"));
@@ -146,10 +146,10 @@ export class ReportListComponent implements OnInit {
     if (target == '1' || target == '0')
       this.dayDisable = true;
     else { txtDays.value = ""; this.dayDisable = false; }
-    this.driverReports(selUser.value, selYear.value, target);
+    this.driverReports(selUser.value, selYear.value, );
     this.getDriverView(0, txtDays.value, target != 2 ? target : '', (selYear.value != '0' ? selYear.value : ""), selUser.value);
   }
-  filterDays(event) {
+  filterDays(event:any) {
     debugger;
     var target = event.target;
     var selDriverFilter = (<HTMLInputElement>document.getElementById("selDriverFilter"));
@@ -163,7 +163,7 @@ export class ReportListComponent implements OnInit {
   clearError() {
     this.errorMessage = "";
   }
-  sortNumberColumn(event, boolean) {
+  sortNumberColumn(event:any, boolean:any) {
     debugger;
     var target = event.currentTarget,
       colName = target.id,
@@ -191,7 +191,7 @@ export class ReportListComponent implements OnInit {
     // return this.pageOfItems = this.driverList;
 
   }
-  OnlineFilter(event) {
+  OnlineFilter(event:any) {
     var target = event.target;
     var selDriverFilter = (<HTMLInputElement>document.getElementById("selDriverFilter"));
     var txtDays = (<HTMLInputElement>document.getElementById("txtDays"));
@@ -200,7 +200,7 @@ export class ReportListComponent implements OnInit {
     this.getDriverView(selDriverFilter.value, txtDays.value, target.value, (selYear.value != '0' ? selYear.value : ""), selUser.value);
   }
 
-  driverReports(year, filt, status) {
+  driverReports(year:any, filt:any, ) {
     debugger;
     const inputRequest = {
       token: this.token,
@@ -244,59 +244,59 @@ export class ReportListComponent implements OnInit {
           this.pieChart1.destroy();
         }
 
-        parseOptions(Chart, chartOptions());
+        // parseOptions(Chart, chartOptions());
 
         var chartSales = document.getElementById('chart-pielist');
-        this.pieChart1 = new Chart(chartSales, {
-          type: 'bar',
-          options: {
-            scales: {
-              xAxes: [{
-                barThickness: 30,
-                maxBarThickness: 20,
-              }],
-              // yAxes: [
-              //   {
-              //     ticks: {
-              //       callback: function (value) {
-              //         if (!(value % 1)) {
-              //           //return '$' + value + 'k'
-              //           return value;
-              //         }
-              //       }
-              //     }
-              //   }
-              // ]
-            }
-          },
-          data: {
-            labels: yearlbl, //this.arrayKeys,
-            datasets: [
-              {
-                label: "Driver",
-                data: this.arrayValue,
-                borderColor: 'rgb(243, 164, 181)',
-                backgroundColor: 'rgba(255,0,0,0.3)',
-                radius: 5
-                // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#ffd600', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
-              },
-              {
-                label: "Rider",
-                data: this.arrayValue1,
-                borderColor: 'rgb(94, 114, 228)',
-                backgroundColor: 'rgb(17, 205, 239)',
-                radius: 5
-                // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#fb6340', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
-              }
-            ]
-          }
-        });
+        // this.pieChart1 = new Chart(chartSales, {
+        //   type: 'bar',
+        //   options: {
+        //     scales: {
+        //       xAxes: [{
+        //         barThickness: 30,
+        //         maxBarThickness: 20,
+        //       }],
+        //       // yAxes: [
+        //       //   {
+        //       //     ticks: {
+        //       //       callback: function (value) {
+        //       //         if (!(value % 1)) {
+        //       //           //return '$' + value + 'k'
+        //       //           return value;
+        //       //         }
+        //       //       }
+        //       //     }
+        //       //   }
+        //       // ]
+        //     }
+        //   },
+        //   data: {
+        //     labels: yearlbl, //this.arrayKeys,
+        //     datasets: [
+        //       {
+        //         label: "Driver",
+        //         data: this.arrayValue,
+        //         borderColor: 'rgb(243, 164, 181)',
+        //         backgroundColor: 'rgba(255,0,0,0.3)',
+        //         radius: 5
+        //         // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#ffd600', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
+        //       },
+        //       {
+        //         label: "Rider",
+        //         data: this.arrayValue1,
+        //         borderColor: 'rgb(94, 114, 228)',
+        //         backgroundColor: 'rgb(17, 205, 239)',
+        //         radius: 5
+        //         // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#fb6340', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
+        //       }
+        //     ]
+        //   }
+        // });
 
       }
     })
 
   }
-  selectedDropdown(i) {
+  selectedDropdown(i: { target: { value: string | number; }; }) {
     debugger;
     var selYear = (<HTMLInputElement>document.getElementById("selYear"));
     var selDriverFilter = (<HTMLInputElement>document.getElementById("selDriverFilter"));
@@ -304,7 +304,7 @@ export class ReportListComponent implements OnInit {
 
     var area = i.target.value;
     console.log('area of data', area)
-    this.driverReports(i.target.value, selYear.value, selDriverFilter.value);
+    this.driverReports(i.target.value, selYear.value, );
     // if(i.target.value === '2'){
     //   this.driverReports();
     // }
@@ -313,7 +313,7 @@ export class ReportListComponent implements OnInit {
     // }
     this.getDriverView(0, txtDays.value, selDriverFilter.value, (selYear.value != '0' ? selYear.value : ""), i.target.value);
   }
-  selectedDropdownYear(i) {
+  selectedDropdownYear(i:any) {
     // debugger;    
     var selUser = (<HTMLInputElement>document.getElementById("selUser"));
     var selDriverFilter = (<HTMLInputElement>document.getElementById("selDriverFilter"));
@@ -321,7 +321,7 @@ export class ReportListComponent implements OnInit {
 
     var area = i.target.value;
     console.log('area of data', area)
-    this.driverReports(selUser.value, (i.target.value != "0" ? i.target.value : ""), selDriverFilter.value);
+    this.driverReports(selUser.value, (i.target.value != "0" ? i.target.value : ""));
     this.getDriverView(0, txtDays.value, selDriverFilter.value, (i.target.value != "0" ? i.target.value : ""), selUser.value);
   }
 

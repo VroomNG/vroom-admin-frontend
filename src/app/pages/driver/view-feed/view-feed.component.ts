@@ -22,8 +22,8 @@ export class ViewFeedComponent implements OnInit {
   private service: passengerService,
   private expservice:exportService
     ) { 
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);
@@ -46,13 +46,13 @@ export class ViewFeedComponent implements OnInit {
            console.log("RESULT ==>", result.data);
            for(let i = 0;i < result.data.length;i++)
            {
-            this.feedList.push({
-              "id":result.data[i].id,
-              "content":result.data[i].content,
-              "title":result.data[i].title,
-              "imageurl":result.data[i].imageurl,
-              "publishedOn":result.data[i].datestamp
-            });
+        //     this.feedList.push({
+        //       "id":result.data[i].id,
+        //       "content":result.data[i].content,
+        //       "title":result.data[i].title,
+        //       "imageurl":result.data[i].imageurl,
+        //       "publishedOn":result.data[i].datestamp
+        //     });
            }
         }
       }

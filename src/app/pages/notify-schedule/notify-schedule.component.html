@@ -9,13 +9,13 @@
       	 <div class="card-header border-0">
       	 <h3 class="mb-0 d-inline-block" >Notification label</h3>
       	 <span class="text-right p-2 ">
-            <input type="text" class="form-control w-25 d-inline-block" 
-              placeholder="Label" required [(ngModel)] = "noteLabel"/>
+            <!-- <input type="text" class="form-control w-25 d-inline-block" 
+              placeholder="Label" required [(ngModel)] = "noteLabel"/> -->
           </span>
           <span class="text-right p-2 ">
           	<span class="text-right p-2 ">
-              <input placeholder=" Date" class="form-control d-inline-block" style = "width:15%"  type="text" data-date-format="MM/DD/YYYY" 
-                 onfocus="(this.type='datetime-local')" onblur="(this.type='text')" id="date" [(ngModel)] = "selectedDate" required #dt = "ngModel" />
+              <!-- <input placeholder=" Date" class="form-control d-inline-block" style = "width:15%"  type="text" data-date-format="MM/DD/YYYY" 
+                 onfocus="(this.type='datetime-local')" onblur="(this.type='text')" id="date" [(ngModel)] = "selectedDate" required #dt = "ngModel" /> -->
                 </span>
               <span class="text-right p-2 ">
               <button class="btn btn-info" (click) = "schedule()">Schedule</button>
@@ -25,13 +25,13 @@
           	<div class = "form-group">
           		<h3 style = "margin-top:50px;">Title</h3>
             <div class="input-group">                            
-              <input type="text" id="txtTitle" class = "form-control title" (keyup)="clearError1()"
-                placeholder="Title" [(ngModel)] = "title" required  #tit = "ngModel"/>
+              <!-- <input type="text" id="txtTitle" class = "form-control title" (keyup)="clearError1()"
+                placeholder="Title" [(ngModel)] = "title" required  #tit = "ngModel"/> -->
             </div>
              <h3 style = "margin-top:50px">Description</h3>
             <div class="input-group">                          
                 
-                <textarea type="text" id="txtDescription" placeholder="Description" class="md-textarea form-control" (keyup)="clearError2()" mdbInput style="height: 100px;"  [(ngModel)] = "description" required></textarea> 
+                <!-- <textarea type="text" id="txtDescription" placeholder="Description" class="md-textarea form-control" (keyup)="clearError2()" mdbInput style="height: 100px;"  [(ngModel)] = "description" required></textarea>  -->
             </div>
             <div class = "input-group" style = "margin-top: 50px;">
             	<label>Notify approved drivers&nbsp;&nbsp;&nbsp;<input type="checkbox" (change) = "setDrivers()" [checked] = "forDrivers == 1 ? true : false"></label>

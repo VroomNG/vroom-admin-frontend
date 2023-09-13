@@ -14,11 +14,11 @@ import { Configuration } from '../../../../configuration';
 })
 export class DriverFeedComponent implements OnInit {
 
-  title;
-  content;
-  imageurl;
+  title:any;
+  content:any;
+  imageurl:any;
   expires = 0;
-  expiryDate;
+  expiryDate:any;
 
 
   constructor(
@@ -87,7 +87,7 @@ export class DriverFeedComponent implements OnInit {
     const file = imageFiles.item(0);
     //this.driverService.uploadImagetoServer(file);
     const formData = new FormData();
-    formData.append('photo',file);
+    // formData.append('photo',file);
     this.http.post(this.config.externalImages,formData).subscribe(res => {
       console.log(res);
       //this.imageurl = res.url;

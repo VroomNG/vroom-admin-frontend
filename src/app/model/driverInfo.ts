@@ -1,5 +1,5 @@
 export class driverInfo {
-    id: number;
+    id!: number;
     user_id: any;
     email: any;
     firstname: any;

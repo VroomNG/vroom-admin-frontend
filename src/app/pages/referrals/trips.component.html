@@ -12,8 +12,8 @@
           <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '2'? 'Upcoming Trips': '' ">Upcoming Trips</h3>
           <h3 class="mb-0 d-inline-block" *ngIf="pagePath === '3'? 'Past Trips': ''  ">Past Trips</h3>
           <span class="text-right p-2 ">
-            <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
-              placeholder="search" />
+            <!-- <input type="search" class="form-control w-25 d-inline-block" [(ngModel)]="FilterName"
+              placeholder="search" /> -->
           </span>
           <!-- <span class="spnFilter"><span>From Date    <input id="fromDate" style="width: 15%;" type="date" class="form-control" /> </span>
           <span>To Date    <input id="toDate" style="width: 15%;" type="date" class="form-control" /></span>
@@ -63,12 +63,12 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of (selectedMembers  | search: FilterName)">
-                <th scope="row">{{item.userid}}</th>
-                <td>{{item.firstname | titlecase}}</td>
+                <!-- <th scope="row">{{item.userid}}</th>
+                <td>{{item.firstname | titlecase}}</td> -->
                 <!--<td>{{item.trip_date | date:'MM/dd/yyyy'}}<br>{{item.trip_date | date:'HH:mm'}}</td>-->
-                <td>{{item.lastname | titlecase}}</td>
+                <!-- <td>{{item.lastname | titlecase}}</td>
                 <td>{{item.created_at | date}}</td>
-                <td>{{item.referee | titlecase}}</td>
+                <td>{{item.referee | titlecase}}</td> -->
                 <!--<td class="text-right">{{item.actual_amount | number:'1.2-2'}}</td>
                 <td class="text-right">{{item.trip_amount | number:'1.2-2'}}</td> -->               
                 <td>{{item.earned}}</td>
@@ -91,7 +91,7 @@
         </div>
         <div class="card-footer py-4">
           <div class="card-footer pb-0 pt-3">
-            <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination>
+            <!-- <jw-pagination [items]="tripsList  | search: FilterName" (changePage)="onChangePage($event)"></jw-pagination> -->
           </div>
           <!-- <nav aria-label="...">
           <ul class="pagination justify-content-end mb-0">

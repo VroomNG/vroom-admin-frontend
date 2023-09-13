@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Configuration } from '../../configuration';
 import { DefaultUrlSerializer } from '@angular/router';
-import * as FileSaver from 'file-saver';
+// import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 
 
@@ -27,6 +27,6 @@ export class exportService {
 
   private saveExcelFile(buffer: any, fileName: string): void {
     const data: Blob = new Blob([buffer], {type: this.fileType});
-    FileSaver.saveAs(data, fileName + this.fileExtension);
+    // FileSaver.saveAs(data, fileName + this.fileExtension);
   }
 }

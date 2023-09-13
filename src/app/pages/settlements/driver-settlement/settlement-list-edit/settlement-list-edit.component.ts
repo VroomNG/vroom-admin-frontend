@@ -11,14 +11,14 @@ import { Location } from '@angular/common';
   styleUrls: ['./settlement-list-edit.component.css']
 })
 export class SettlementListEditComponent implements OnInit {
-  driverDetails: driverInfo;
+  driverDetails!: driverInfo;
   token: any;
   paramsval: any;
   paramsName: any;
   driverPaymentList: any;
   tripId: any;
   TotalDriverPay: any;
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   errorMessage : any;
   closeResult = '';
   startDate:any;
@@ -36,8 +36,8 @@ export class SettlementListEditComponent implements OnInit {
      // this.paramsName = params['name'];
     });
     console.log("this.paramsval==>", this.paramsval);
-    if (localStorage.token != "" || localStorage.token != undefined) {
-      this.token = localStorage.token;
+    if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+      this.token = localStorage['token'];
     }
     else
       this.route.navigate(['/login']);

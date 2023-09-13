@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-//import { NgScrollbarModule } from 'ngx-scrollbar'
+
+import { NgScrollbarModule } from 'ngx-scrollbar'
 
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
@@ -18,12 +19,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { Configuration } from '../configuration';
-// import { JwPaginationComponent } from 'jw-angular-pagination';
-// import { LoginComponent } from './pages/login/login.component';
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import { LoginComponent } from './pages/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+// import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+// import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+// import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 
 // SERVICE
@@ -49,8 +50,9 @@ import { ViewAcessTrailComponent } from './pages/admin/view-acess-trail/view-ace
 import { EditSurgeSettingsComponent } from './pages/settings/edit-surge-settings/edit-surge-settings.component';
 import { DriverFeedComponent } from './pages/driver/driver-feed/driver-feed.component';
 import { ViewFeedComponent } from './pages/driver/view-feed/view-feed.component';
-
-
+import { AddVehicleComponent } from './pages/vehicle/add-vehicle/add-vehicle.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { ReportListComponent } from './pages/report-list/report-list.component';
 
 //import { SettlementListComponent } from './pages/settlements/driver-settlement/settlement-list/settlement-list.component';
 
@@ -67,9 +69,9 @@ import { ViewFeedComponent } from './pages/driver/view-feed/view-feed.component'
 // import { AgmCoreModule } from '@agm/core';
 // import { AuthInterceptor } from './helpers/auth.interceptor';
 
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
-};
+// const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+//   suppressScrollX: true
+// };
 
 
 @NgModule({
@@ -85,6 +87,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserModule,
     ClipboardModule,
     CommonModule,
+    AddVehicleComponent,
+    UserProfileComponent,
     //NgScrollbarModule,
     //PerfectScrollbarModule,
     // SearchPipe.forRoot(),
@@ -100,7 +104,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AdminLayoutComponent,
     AuthLayoutComponent,
     SortDirective,
-    NotifyScheduleComponent
+    NotifyScheduleComponent,
     //ViewFeedComponent
     //DriverFeedComponent,
     //EditSurgeSettingsComponent,
@@ -115,7 +119,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     // ReportRidersComponent,
     // ReportDriverComponent,
     // ReportTripsComponent,
-    // ReportListComponent,
+    ReportListComponent,
     // AddDiscountComponent,
     // EditDiscountComponent,
     // SearchPipe,

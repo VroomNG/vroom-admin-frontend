@@ -5,9 +5,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { passengerService } from '../../service/passenger.service';
 import { exportService } from '../../service/export.service';
 // import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { chartOptions, parseOptions } from "../../variables/charts";
+// import { chartOptions, parseOptions } from "../../variables/charts";
 import { chartService } from '../../service/chart.service';
-import Chart from 'chart.js';
+// import Chart from 'chart.js';
 @Component({
   selector: 'app-report-riders',
   templateUrl: './report-riders.component.html',
@@ -17,7 +17,7 @@ export class ReportRidersComponent implements OnInit {
   FilterName: any = '';
   token: any;
   ridersList = [];
-  pageOfItems: Array<any>;
+  pageOfItems!: Array<any>;
   riderFil = [{ "id": 0, "value": "All" }, { "id": 1, "value": "Active" }, { "id": 2, "value": "InActive" }]
   dayDisable: boolean = false;
   closeResult = '';
@@ -29,7 +29,7 @@ export class ReportRidersComponent implements OnInit {
   tempArray2: any;
   arrayValue3: any;
   arrayKeys3: any;
-  public pieChart4;  
+  public pieChart4:any;  
   backgroundColor: any;
   currentYear: number = new Date().getFullYear();
   constructor(
@@ -40,8 +40,8 @@ export class ReportRidersComponent implements OnInit {
     private service1: exportService,
     // private modalService: NgbModal,
     private reportService: chartService,
-  ) {  if (localStorage.token != "" || localStorage.token != undefined) {
-    this.token = localStorage.token;
+  ) {  if (localStorage['token'] != "" || localStorage['token'] != undefined) {
+    this.token = localStorage['token'];
   }
   else
     this.route.navigate(['/login']);}
@@ -50,7 +50,7 @@ export class ReportRidersComponent implements OnInit {
     this.getRidersView(0, '',this.currentYear,'');
     this.getActiveRider(this.currentYear,'');
   }
-  getRidersView(filt, days,year,filter) {
+  getRidersView(filt: any, days: string,year: string | number,filter: string | undefined) {
     debugger; this.ridersList = [];
 
     //var searchkey = (<HTMLInputElement>document.getElementById("search"));
@@ -83,7 +83,7 @@ export class ReportRidersComponent implements OnInit {
     else
       this.service1.exportExcel(this.ridersList, 'driverDetails');
   }
-  riderFilter(event) {
+  riderFilter(event:any) {
     debugger;
     var txtDays = (<HTMLInputElement>document.getElementById("txtDays"));
     var riderRevenue = (<HTMLInputElement>document.getElementById("riderRevenue"));
@@ -94,7 +94,7 @@ export class ReportRidersComponent implements OnInit {
     else { txtDays.value = ""; this.dayDisable = false; }
     this.getRidersView(target, txtDays.value,riderRevenue.value,RiderRevFilter.value);
   }
-  filterDays(event) {
+  filterDays(event:any) {
     debugger;
     var target = event.target;
     var selRiderFilter = (<HTMLInputElement>document.getElementById("selRiderFilter"));
@@ -102,14 +102,14 @@ export class ReportRidersComponent implements OnInit {
     var RiderRevFilter = (<HTMLInputElement>document.getElementById("RiderRevFilter"));
     this.getRidersView(selRiderFilter.value, target.value,riderRevenue.value,RiderRevFilter.value);
   }
-  selectedDropdownActiveRider(i) {   
+  selectedDropdownActiveRider(i:any) {   
     // debugger;
     var RiderRevFilter = (<HTMLInputElement>document.getElementById("RiderRevFilter"));
     var area = i.target.value;   
     this.getActiveRider(i.target.value,RiderRevFilter.value);
     this.getRidersView(0, '',i.target.value,RiderRevFilter.value);
   }
-  selectedDropdownRiderFilter(i){
+  selectedDropdownRiderFilter(i:any){
     debugger;
     var riderRevenue = (<HTMLInputElement>document.getElementById("riderRevenue"));
     var area = i.target.value;
@@ -117,7 +117,7 @@ export class ReportRidersComponent implements OnInit {
     this.getActiveRider(riderRevenue.value,(i.target.value != "0"? i.target.value:""));
     this.getRidersView(0, '',riderRevenue.value,(i.target.value != "0"? i.target.value:""));
   }
-  getActiveRider(year,filter){
+  getActiveRider(year:any,filter:any){
     debugger;
     const inputRequest = {
       token: this.token,     
@@ -153,44 +153,43 @@ export class ReportRidersComponent implements OnInit {
         if(this.pieChart4) {
           this.pieChart4.destroy();
         } 
-        parseOptions(Chart, chartOptions());
+        // parseOptions(Chart, chartOptions());
 
         var chartSales1 = document.getElementById('Bar-ChartRiderreport');
-        this.pieChart4 = new Chart(chartSales1, {
-          type: 'line',
-          options: {
-            onClick: (event, legendItem) => {
-              debugger;
-              console.log("This is working!");
-            }
-          },
-          data: Chart.chartData = {
-          // chartData: Chart.ChartData[] =[{
-            labels: this.arrayKeys2,
-            datasets: [
-              {
-                 label: "Active Rider",
-                data: this.arrayValue2,
-                // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#ffd600', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
-                // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#ffd600', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
-                borderColor: 'rgb(243, 164, 181)',
-                backgroundColor: 'rgba(255,0,0,0.3)',              
-               radius:5
-              },
-              {
-                label: "Block Rider",
-               data: this.arrayValue2can,
-               // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#ffd600', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
-               // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#ffd600', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
-               borderColor: 'rgb(94, 114, 228)',
-               backgroundColor: 'rgb(17, 205, 239)',             
-              radius:5
-             }
-            ]
-          }
+        // this.pieChart4 = new Chart(chartSales1, {
+        //   type: 'line',
+        //   options: {
+        //     onClick: (event, legendItem) => {
+        //       debugger;
+        //       console.log("This is working!");
+        //     }
+        //   },
+        //   data: Chart.chartData = {
+        //   // chartData: Chart.ChartData[] =[{
+        //     labels: this.arrayKeys2,
+        //     datasets: [
+        //       {
+        //          label: "Active Rider",
+        //         data: this.arrayValue2,
+        //         // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#ffd600', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
+        //         // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#ffd600', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
+        //         borderColor: 'rgb(243, 164, 181)',
+        //         backgroundColor: 'rgba(255,0,0,0.3)',              
+        //        radius:5
+        //       },
+        //       {
+        //         label: "Block Rider",
+        //        data: this.arrayValue2can,
+        //        // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#ffd600', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
+        //        // backgroundColor: ['#5e72e4', '#5603ad', '#8965e0', '#f3a4b5', '#f5365c', '#fb6340', '#ffd600', '#2dce89', '#11cdef', '#2bffc6', '#32325d', '#94685e']
+        //        borderColor: 'rgb(94, 114, 228)',
+        //        backgroundColor: 'rgb(17, 205, 239)',             
+        //       radius:5
+        //      }
+        //     ]
+        //   }
        
-        });
-
+        // });
       }
     })
   }

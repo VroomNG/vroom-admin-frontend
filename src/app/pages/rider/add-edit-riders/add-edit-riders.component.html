@@ -20,7 +20,8 @@
     </div>
     <div class="card-body">
 
-      <form [formGroup]="ridersForm" *ngIf="isFormReady">
+      <!-- <form [formGroup]="ridersForm" *ngIf="isFormReady"> -->
+      <form>
 
         <div class="pl-lg-4">
 
@@ -28,9 +29,9 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-first-name">First Name *</label>
-                <input type="text" id="input-first-name" class="form-control form-control-alternative"
+                <!-- <input type="text" id="input-first-name" class="form-control form-control-alternative"
                   placeholder="First Name" formControlName="firstname" value="{{ridersDetails.firstname | titlecase}}" required
-                  [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+                  [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" /> -->
                 <!-- first name -->
                 <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
                   <div *ngIf="f.firstname.errors?.required">First Name is required</div>
@@ -41,9 +42,9 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-last-name">Last Name *</label>
-                <input type="text" id="input-last-name" class="form-control form-control-alternative"
+                <!-- <input type="text" id="input-last-name" class="form-control form-control-alternative"
                   placeholder="Last Name" formControlName="lastname" value="{{ridersDetails.lastname | titlecase}}" required
-                  [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+                  [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" /> -->
                 <!-- last name -->
                 <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
                   <div *ngIf="f.lastname.errors?.required">Last Name is required</div>
@@ -57,9 +58,9 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-email">Email Address *</label>
-                <input type="email" id="input-email" [readonly]="(ridersDetails.id == 0 ? false:true)"
+                <!-- <input type="email" id="input-email" [readonly]="(ridersDetails.id == 0 ? false:true)"
                   class="form-control form-control-alternative" formControlName="email" placeholder="Email"
-                  value="{{ridersDetails.email}}" required [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                  value="{{ridersDetails.email}}" required [ngClass]="{ 'is-invalid': submitted && f.email.errors }" /> -->
                 <!--  email -->
                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                   <div *ngIf="f.email.errors.required">Email is required</div>
@@ -71,10 +72,10 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-phone">Phone Number *</label>
-                <input type="text" id="input-phone" class="form-control form-control-alternative"
+                <!-- <input type="text" id="input-phone" class="form-control form-control-alternative"
                   formControlName="phone_no" placeholder="Phone" value="{{ridersDetails.phone_no}}" required
                   maxlength="13" minlength="11"
-                  onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" />
+                  onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" /> -->
                 <!-- phone number -->
                 <div *ngIf="submitted && f.phone_no.errors" class="invalid-feedback">
                   <div *ngIf="f.phone_no.errors.required">Phone Number is required</div>
@@ -89,9 +90,9 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-email">Password*</label>
-                <input type="password" id="input-password" [readonly]="(ridersDetails.id == 0 ? false:true)"
+                <!-- <input type="password" id="input-password" [readonly]="(ridersDetails.id == 0 ? false:true)"
                   class="form-control form-control-alternative" placeholder="Password" formControlName="password"
-                  value="{{ridersDetails.password}}" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                  value="{{ridersDetails.password}}" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" /> -->
                 <!-- last name -->
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                   <div *ngIf="f.password.errors?.required">Password is required</div>
@@ -103,9 +104,9 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-email">City</label>
-                <input id="selCity" placeholder="City" autocorrect="off" autocapitalize="off" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+                <!-- <input id="selCity" placeholder="City" autocorrect="off" autocapitalize="off" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
                 spellcheck="off" type="text" class="form-control auto" #search
-                value="{{ridersDetails.city}}">
+                value="{{ridersDetails.city}}"> -->
                 <!-- <select id="selCity" class="form-control form-control-alternative" placeholder="Provider Admin"
                   formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
                   [(ngModel)]="ridersDetails.city">
@@ -126,10 +127,10 @@
               <div class="form-group">
                 <label class="form-control-label" for="input-wallet">Wallet</label>
                
-                <input type="number" id="input-wallet" class="form-control form-control-alternative"
+                <!-- <input type="number" id="input-wallet" class="form-control form-control-alternative"
                 placeholder="Wallet" formControlName="balance" value="{{ridersDetails.balance}}"
                 [ngClass]="{ 'is-invalid': submitted && f.balance.errors }" min="0"
-                oninput="this.value = Math.abs(this.value)" />
+                oninput="this.value = Math.abs(this.value)" /> -->
 
                 <!-- <input type="text" id="input-wallet" class="form-control form-control-alternative"
                   placeholder="Wallet" formControlName="balance" value="{{ridersDetails.balance}}" required

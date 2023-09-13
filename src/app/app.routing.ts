@@ -22,6 +22,7 @@ export function getBreadcrumb(){
 }
 
 const routes: Routes = [
+  // { path: 'first-component', component: FirstComponent },
   {
     path: '',
     redirectTo: route,
@@ -30,21 +31,21 @@ const routes: Routes = [
   }, {
     path: '',
     component: AdminLayoutComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-      }
-    ]
+    // children: [
+    //   {
+    //     path: '',
+    //     loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+    //   }
+    // ]
   }, {
     path: '',
     component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
-      }
-    ]
+    // children: [
+    //   {
+    //     path: '',
+    //     loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
+    //   }
+    // ]
   }, {
     path: '**',
     redirectTo: 'dashboard'
