@@ -39,17 +39,18 @@
             </thead>
             <tbody>
               <!-- <tr *ngFor="let item of (selectedMembers  | search: FilterName)"> -->
-              <tr  *ngFor="let item of" > <th scope="row">{{item.userid}}</th>
+              <!-- <tr  *ngFor="let item of" >
+                 <th scope="row">{{item.userid}}</th>
                 <td>{{item.firstname}}</td>
                 <td>{{item.lastname}}</td>
                 <td>{{item.discount_code}}</td>
-                <td>{{item.description}}</td>
+                <td>{{item.description}}</td> -->
                 <!-- <td>{{item.date_applied | date}}</td> -->
                 <!--<td *ngIf  = "item.paid == 1"><button [disabled]="item.paid == 1 ? true : false" id="btnAdminPaid" class="btn btn-primary paidalgn" (click)="setPaid(item.id)">Paid</button></td>
                 <td *ngIf = "item.paid == 0"><button  id="btnAdminPaid" class="btn btn-primary paidalgn" (click)="setPaid(item.id)">Open</button></td>
                 <td *ngIf = "item.pay_date != 'Pending'">{{item.pay_date | date }}</td>
                 <td *ngIf = "item.pay_date == 'Pending'">{{item.pay_date}}</td>-->
-              </tr>
+              <!-- </tr> -->
             </tbody>
           </table>
         </div>

@@ -193,4 +193,16 @@ export class ReportRidersComponent implements OnInit {
       }
     })
   }
+  clearError(){
+    console.log('cleared')
+  }
+  errorMessage(){
+
+  }
+  saveReason(){
+
+  }
+  open(content:any){
+
+  }
 }

@@ -35,7 +35,7 @@ export class RefComponent implements OnInit {
     private router: ActivatedRoute,
     private service: passengerService,
     private service1: exportService,
-    private loginService: LoginService
+    public loginService: LoginService
     //public dateFilter:DateFilterPipe
   ) {
     if (localStorage['token'] != "" || localStorage['token'] != undefined) {

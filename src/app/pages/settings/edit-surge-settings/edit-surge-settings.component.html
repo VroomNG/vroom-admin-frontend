@@ -23,22 +23,17 @@
                                
                                 <!-- <input type="text" name = "hmr" class="form-control" (keyup)="chargeErrMsg()"
                                     placeholder="Heat map radius"  [(ngModel)] = "radius" required [ngClass]="{ 'is-invalid': submitted && f.charge.errors }" /> -->
-                                   <div *ngIf="submitted && f.charge.errors" class="invalid-feedback">
+                                <!-- <div *ngIf="submitted && f.charge.errors" class="invalid-feedback">
                                     <div *ngIf="charge.errors?['required']">Heat Map Radius is required</div>
                                     <div *ngIf="charge.errors?['pattern']">Invalid input</div>
-                                   
-                                </div>
+                                </div> -->
                                 <div class="divclass">
                                     <!-- *ngIf="errorMessage != ''" -->
                                     <div class="help-block">
                                         <!-- <div class="invalid-feedback">{{errorMessage}}</div> -->
                                     </div>
                                 </div>
-
                             </div>
-
-
-
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -51,7 +46,7 @@
                                     <!-- <div *ngIf="f.charge.errors?.required">Visibility threshold is required</div>
                                     <div *ngIf="f.charge.errors?.pattern">Invalid input</div> -->
                                    
-                                </div>
+                                <!-- </div> -->
                                 <div  class="divclass">
                                     <!-- *ngIf="errorMessage != ''" -->
                                     <div class="help-block">
@@ -60,22 +55,19 @@
                                 </div>
 
                             </div>
-
-
-
                         </div>
                 	</div>
                 	 <div class="row">
                         <div class="col-lg-12">
                             
-                            <a class="btn btn-info text-white" (click) = "updateValues()">Update</a>
+                            <!-- <a class="btn btn-info text-white" (click) = "updateValues()">Update</a> -->
                             <!--[[a class="btn btn-dark text-white" *ngIf="settingData.id == 0" (click)="surgeForm.reset()"
                                 (click)="changePathUrl()">Cancel</a-->
 
                         </div>
                     </div>
                 </div>
-            <!-- </form> -->
-        </div>
+            </form>
         </div>
     </div>
+</div>

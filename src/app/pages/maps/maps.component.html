@@ -245,21 +245,21 @@
                   <div class="row show-grid">
                     <div class="col-4 col-md-4">
                       <p style="margin-bottom: 0;text-align: center;">Vehicle Type</p>
-                      <p style="margin-bottom: 0;text-align: center;"> <b>{{item.vehicle_type}}</b></p>
+                      <!-- <p style="margin-bottom: 0;text-align: center;"> <b>{{item.vehicle_type}}</b></p> -->
                     </div>
                     <div class="col-4 col-md-4 ng-star-inserted">
                       <p style="margin-bottom: 0;text-align: center;">Distance</p>
-                      <p style="margin-bottom: 0;text-align: center;"><b>({{item.distance}} KM)</b></p>
+                      <!-- <p style="margin-bottom: 0;text-align: center;"><b>({{item.distance}} KM)</b></p> -->
                     </div>
                     <div class="col-4 col-md-4">
                       <p style="margin-bottom: 0;text-align: center;">Trip time (Min)</p>
                       <p style="margin-bottom: 0;text-align: center;">
-                        <b>{{item.trip_time}}</b>
+                        <!-- <b>{{item.trip_time}}</b> -->
                       </p>
                     </div>
                     <div class="col-4 col-md-4">
                       <p style="margin-bottom: 0;text-align: center;padding-top: 10px;">OTP</p>
-                      <p style="margin-bottom: 0;text-align: center;"><b>{{item.security_code}}</b></p>
+                      <!-- <p style="margin-bottom: 0;text-align: center;"><b>{{item.security_code}}</b></p> -->
 
                     </div>
                     <div class="col-4 col-md-4">
@@ -283,8 +283,8 @@
                         <td style="border-right: 1px solid #dee2e6 !important;border-top: transparent;" width="40%">
                           <div style="text-align: left;">Driver</div>
                           <div>
-                            <p style="text-align: left;"><b>{{item.driverName}}</b></p>
-                            <span>{{item.driverPhone_no}}</span>
+                            <!-- <p style="text-align: left;"><b>{{item.driverName}}</b></p> -->
+                            <!-- <span>{{item.driverPhone_no}}</span> -->
                           </div>
                         </td>
                         <td width="10%" style="border-top: transparent;"><img _ngcontent-c3="" alt="img"
@@ -293,8 +293,8 @@
                         <td width="40%" style="border-top: transparent;">
                           <div style="text-align: left;">Rider</div>
                           <div>
-                            <p style="text-align: left;"><b>{{item.riderName}}</b></p>
-                            <span>{{item.riderPhone_no}}</span>
+                            <!-- <p style="text-align: left;"><b>{{item.riderName}}</b></p> -->
+                            <!-- <span>{{item.riderPhone_no}}</span> -->
                           </div>
                         </td>
                       </tr>
@@ -307,18 +307,18 @@
           <div class="col-lg-12">
             <div class="card bg-secondary shadow">
               <div class="card-header bg-white border-0" style="padding-bottom: 0;">
-                <h4> Fare Breakdown For Ride No : {{item.id}}</h4>
+                <!-- <h4> Fare Breakdown For Ride No : {{item.id}}</h4> -->
               </div>
               <div class="card-body" style="padding-top: 0;">
                 <table class="table table-bordered fare-det trip-locpick " style="text-align: left">
                   <tbody>
                     <tr>
                       <td>Actual Cost</td>
-                      <td>{{item.trip_amount}}</td>
+                      <!-- <td>{{item.trip_amount}}</td> -->
                     </tr>
                     <tr>
                       <th class="totalFare" scope="row">Total Fare (Payment Mode: cash)</th>
-                      <th class="totalFare" scope="row">{{item.trip_amount}}</th>
+                      <!-- <th class="totalFare" scope="row">{{item.trip_amount}}</th> -->
                     </tr>
                   </tbody>
                 </table>
@@ -346,11 +346,11 @@
                     <tbody>
                       <tr>
                         <th scope="row" width="7%">Pickup:</th>
-                        <td width="93%" style="white-space: normal;"><b>{{item.from_address}}</b></td>
+                        <!-- <td width="93%" style="white-space: normal;"><b>{{item.from_address}}</b></td> -->
                       </tr>
                       <tr>
                         <th scope="row" width="7%">Drop:</th>
-                        <td width="93%" style="white-space: normal;"><b>{{item.to_address}}</b></td>
+                        <!-- <td width="93%" style="white-space: normal;"><b>{{item.to_address}}</b></td> -->
                       </tr>
                     </tbody>
                   </table>
@@ -383,15 +383,15 @@
                 <!--bindings={
                       "ng-reflect-ng-for-of": "[object Object]"
                       }-->
-                <tr border="1" class="ng-star-inserted">
+                <tr  class="ng-star-inserted border-1">
                   <td>DRV496</td>
-                  <td>{{item.driverName}}</td>
-                  <td>{{item.riderPhone_no}}</td>
-                  <td>{{item.trip_type == '1' ? 'Individual':item.trip_type == '2'?'Share':item.trip_type
-                    =='3'?'Split-Fare':''}}</td>
-                  <td>{{tripStatus(item.trip_status)}}</td>
+                  <!-- <td>{{item.driverName}}</td> -->
+                  <!-- <td>{{item.riderPhone_no}}</td> -->
+                  <!-- <td>{{item.trip_type == '1' ? 'Individual':item.trip_type == '2'?'Share':item.trip_type -->
+                    <!-- =='3'?'Split-Fare':''}}</td> -->
+                  <!-- <td>{{tripStatus(item.trip_status)}}</td> -->
                   <!-- <td>Accepted</td> -->
-                  <td>{{item.distance}}</td>
+                  <!-- <td>{{item.distance}}</td> -->
                 </tr>
                 <!--bindings={
                       "ng-reflect-ng-if": "false"

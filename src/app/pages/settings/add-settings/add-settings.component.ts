@@ -7,7 +7,8 @@ import { SettingInfo } from '../../../model/surgeChargeInfo';
 import { ApiService, Maps } from '../../../service/api.service';
 import { LoginService } from '../../../service/login.service';
 
-import * as turf from '@turf/turf';
+
+// import * as turf from '@turf/turf';
 declare const google: any;
 
 import { geolib } from '../../../geolib'

@@ -585,7 +585,7 @@
          
           <div class="col-md-2 productAddfromImages multUpld" *ngFor='let url of imageurls; let i = index'>
             <span *ngIf="(filepathmulti != undefined && filepathmulti != '' ? filepathmulti.length === 0? true: false:true)">
-            <img class="img-fluid" [src]="url.base64String">           
+            <!-- <img class="img-fluid" [src]="url.base64String">            -->
             <a (click)="removeImage(i)" class="btn btn-xs btn-danger">Remove </a></span>
           </div>
           
