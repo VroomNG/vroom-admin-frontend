@@ -76,6 +76,7 @@
     "karma-jasmine-html-reporter": "1.5.2",
     "ngx-scrollbar": "^10.0.1",
     "protractor": "7.0.0",
+    "tailwindcss": "^3.3.3",
     "ts-node": "8.6.2",
     "typescript": "^5.1.0-dev.20230515"
   }

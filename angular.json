@@ -32,16 +32,17 @@
            ],
             "styles": [
               "src/styles.scss",
-              // "src/assets/scss/argon.scss",
-              "node_modules/ngx-toastr/toastr.css"  
-            ],
+              "src/assets/scss/argon.scss",
+              "node_modules/ngx-toastr/toastr.css" ,
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+      ],
             "scripts": [
               // "node_modules/chart.js/dist/Chart.min.js",
               // "node_modules/clipboard/dist/clipboard.min.js",
               // "node_modules/@types/@google.maps/",
               // "node_modules/@google/markerclusterer/dist/markerclusterer.min.js",
               "node_modules/jquery/dist/jquery.min.js",
-              // "node_modules/@types/google.maps/index.d.ts",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/app/pages/rider/view-riders/floating_scroll.js"
             ]
           },
