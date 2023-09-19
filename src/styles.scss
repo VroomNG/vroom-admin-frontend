@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
 // date and time picker
 
 /* You can add global styles to this file, and also import other style files */
@@ -17,7 +17,6 @@ body{overflow-x: hidden;}
     border-color: #28094f !important;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
-
 
 .bg-default {
     background-color: #28094f  !important;
