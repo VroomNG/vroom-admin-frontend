@@ -1,18 +1,23 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../service/login.service';
 import { loginInfo } from '../../model/loginInfo';
 import { first } from 'rxjs/operators';
-
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
+
+// @NgModule({
+//   CUSTOM_ELEMENTS_SCHEMA
+// })
 export class LoginComponent implements OnInit, OnDestroy {
+  faCoffee = faCoffee;
   loginForm!: FormGroup;
   loginDetails: loginInfo;
   isFormReady = false;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 declare var ClipboardJS:any;
 
 @Component({
@@ -9,6 +10,7 @@ declare var ClipboardJS:any;
 
 export class AppComponent implements OnInit {
   title = 'VRoom';
+  faCoffee = faCoffee ;
 
   // route: any;
 
