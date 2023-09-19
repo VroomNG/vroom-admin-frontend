@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 var route: string = "user";
 
@@ -18,34 +19,37 @@ if (role != null)  {
 }
 
 export function getBreadcrumb(){
-  
 }
 
 const routes: Routes = [
-  // { path: 'first-component', component: FirstComponent },
+  // {
+  //   path: '',
+  //   redirectTo: route,
+  //   pathMatch: 'full',
+  //   data: {breadcrumb: getBreadcrumb},
+  // },
   {
     path: '',
-    redirectTo: route,
-    pathMatch: 'full',
-    data: {breadcrumb: getBreadcrumb},
-  }, {
+    component: AdminLayoutComponent
+  },
+  {
     path: '',
     component: AdminLayoutComponent,
-    // children: [
-    //   {
-    //     path: '',
-    //     loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-    //   }
-    // ]
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('../app/layouts/admin-layout/admin-layout.module').then(m=> m.AdminLayoutModule)
+      }
+    ]
   }, {
     path: '',
     component: AuthLayoutComponent,
-    // children: [
-    //   {
-    //     path: '',
-    //     loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
-    //   }
-    // ]
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./layouts/auth-layout/auth-layout.module').then(m=> m.AuthLayoutModule)
+      }
+    ]
   }, {
     path: '**',
     redirectTo: 'dashboard'
@@ -63,4 +67,7 @@ const routes: Routes = [
   exports: [
   ],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+
+
+}

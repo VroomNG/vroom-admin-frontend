@@ -99,6 +99,7 @@ export const ROUTES: RouteInfo[] = [
 ];
 
 @Component({
+  // standalone: true,
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']

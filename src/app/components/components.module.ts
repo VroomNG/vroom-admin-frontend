@@ -23,4 +23,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SidebarComponent
   ]
 })
-export class ComponentsModule { }
+export class ComponentsModule { 
+
+}

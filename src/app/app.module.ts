@@ -22,6 +22,7 @@ import { Configuration } from '../configuration';
 import { JwPaginationComponent } from 'jw-angular-pagination';
 import { LoginComponent } from './pages/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
+
 // import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 // import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 // import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -87,6 +88,7 @@ import { ReportListComponent } from './pages/report-list/report-list.component';
     BrowserModule,
     ClipboardModule,
     CommonModule,
+    //  LoginComponent,
     // AddVehicleComponent,
     // UserProfileComponent,
     //NgScrollbarModule,
