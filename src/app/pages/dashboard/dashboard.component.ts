@@ -169,6 +169,13 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  exportAdmin(){
+
+  }
+  editAdmin(){
+
+  }
+
 
   getCharts() {
     debugger;

@@ -2,9 +2,24 @@
 // @tailwind components;
 // @tailwind utilities;
 // date and time picker
-
+*{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+    width: 5px;
+    height: 3px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--default);
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
 /* You can add global styles to this file, and also import other style files */
 body{overflow-x: hidden;}
+
 
 .btn-dark{
     background-color: #525252!important;

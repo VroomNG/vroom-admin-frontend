@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTES } from '../sidebar/sidebar.component';
+// import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { adminService } from '../../service/admin.service';
@@ -38,8 +38,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     debugger;
-    this.loginName = localStorage['firstname'] + ' ' + (localStorage['lastname'] != 'null' ? localStorage['lastname'] : '');
-    this.listTitles = ROUTES.filter(listTitle => listTitle);
+    // this.loginName = localStorage['firstname'] + ' ' + (localStorage['lastname'] != 'null' ? localStorage['lastname'] : '');
+    // this.listTitles = ROUTES.filter(listTitle => listTitle);
     this.getProfileDetails();
   }
   getTitle() {

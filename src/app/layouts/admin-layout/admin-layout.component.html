@@ -1,11 +1,39 @@
 <!-- Sidenav -->
-<app-sidebar></app-sidebar>
-<div class="main-content">
+<!-- <app-sidebar></app-sidebar> -->
+<!-- <div class="main-content"> -->
   <!-- Top navbar -->
   <!-- <app-navbar></app-navbar> -->
   <!-- Pages -->
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
   <!-- <div class="container-fluid"> -->
-    <app-footer></app-footer>
+    <!-- <app-footer></app-footer> -->
   <!-- </div> -->
+<!-- </div> -->
+<div class="main-container d-flex flex" style="height: 100vh;">
+  <div class="sidebar h-full" style="width: 18%; height: 100%;"> 
+    <app-sidebar></app-sidebar>
+  </div>  
+  <div class="dashboard" style="width: 82%; height: 100%;">
+      <div class="navbar  bg-primary bg-gradient d-flex justify-content-center" style="height: 12%; width: 100%;">
+        <div class="container d-flex">
+          <div class="route-title d-flex  justify-content-start align-items-center" style="width: 70%;  height: 100%;">
+              <h6>DASHBOARD</h6>
+          </div>
+          <div class="user-profile d-flex  justify-content-end align-items-center " style="width: 30%;  height: 100%;">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class=" rounded-circle bg-secondary" style="width: 30px; height: 30px;" >
+                  <!-- <img class="userImg" src="/src/assets/img/user.jpg" /> -->
+                </div>
+                <div class="username pt-3 mx-2 " style="height: 100%;">
+                  <p>Tolulope Ajao</p>
+                </div> 
+              </div>
+          </div>
+        </div>
+     </div>
+      <!-- < Dashboard dynamic content  -->
+    <div class="main-content bg-secondary" style="height:92%">
+        <router-outlet></router-outlet>
+    </div> 
+  </div>
 </div>

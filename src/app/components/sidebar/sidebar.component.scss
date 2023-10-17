@@ -1,15 +1,76 @@
-// nav{
-//     overflow-x: hidden;
-// }
+.main-container{
+    height: 100%;
+}
+
 .circle_img{
     border-radius: 50%;
     width: 100%;
     height: 36.5px;
 }
+.container {
+    width: 95%;
+    // background-color: rgb(53, 255, 53);
+    display: flex;
+    align-items: center;
+}
 
 .navbar{
     z-index: 9999;
 }
+
+.logo {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+}
+.navbar-area {
+    height: 90%;
+    width: 100%;
+}
+
+.dashboard-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+.icon {
+    width: 20%;
+    // padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon i {
+    font-size: 14px;
+    // color: #5603ad;  
+}
+.navlink {
+    // d-flex flex-row align-items-center" style="width: 80%;"
+    width: 80%;
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    // padding: 12px;
+    margin-top: 10px;
+}
+.navlink p {
+    font-size: 14px;
+    color: black;
+    font-weight: 200;
+}
+
+
+
+
+
+
+
+
+
 
 @media (min-width: 768px){
     .navbar-expand-md .navbar-nav.sidemenustart .dropdown-menu {
